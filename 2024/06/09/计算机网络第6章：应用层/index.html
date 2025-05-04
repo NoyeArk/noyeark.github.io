@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络第6章：应用层 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。 应用层的许多协议都是基于客户服务器方式。客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。 客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。   1">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络第6章：应用层 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。 应用层的许多协议都是基于客户服务器方式。客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。 客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。 &amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络第6章：应用层">
 <meta property="og:url" content="http://zhouzimu.top/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/index.html">
 <meta property="og:site_name" content="诺亚方舟">
-<meta property="og:description" content="每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。 应用层的许多协议都是基于客户服务器方式。客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。 客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。   1">
+<meta property="og:description" content="每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。 应用层的许多协议都是基于客户服务器方式。客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。 客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。 &amp;#x">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg">
 <meta property="article:published_time" content="2024-06-09T09:09:18.000Z">
@@ -165,88 +165,76 @@
     document.addEventListener('pjax:send', () => { preloader.initLoading() })
     document.addEventListener('pjax:complete', () => { preloader.endLoading() })
   }
-})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络第6章：应用层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-06-09T09:09:18.000Z" title="发表于 2024-06-09 17:09:18">2024-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">10.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络第6章：应用层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="image_YpCRD0k_cE.png" alt=""></p>
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">123</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机网络第6章：应用层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-06-09T09:09:18.000Z" title="发表于 2024-06-09 17:09:18">2024-06-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络第6章：应用层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_YpCRD0k_cE.png"></p>
 <p>每个应用层协议都是为了解决某一类应用问题，而问题的解决又往往是通过位于不同主机中的多个应用进程之间的通信和协同工作来完成的。应用层的具体内容就是规定应用进程在通信时所遵循的协议。</p>
 <p>应用层的许多协议都是基于客户服务器方式。客户(client)和服务器(server)都是指通信中所涉及的两个应用进程。</p>
-<p>客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。  </p>
-<h1>1 域名系统 DNS</h1>
-<h2 id="1-1-域名系统概述">1.1 域名系统概述</h2>
-<p>域名系统 DNS (Domain Name System) ：</p>
+<p>客户服务器方式所描述的是进程之间服务和被服务的关系。客户是服务请求方，服务器是服务提供方。 &#x20;</p>
+<h1 id="1-域名系统-DNS"><a href="#1-域名系统-DNS" class="headerlink" title="1 域名系统 DNS"></a>1 域名系统 DNS</h1><h2 id="1-1-域名系统概述"><a href="#1-1-域名系统概述" class="headerlink" title="1.1 域名系统概述"></a>1.1 域名系统概述</h2><p>域名系统 DNS (Domain Name System) ：</p>
 <ol>
 <li>互联网使用的命名系统。</li>
 <li>用来把人们使用的机器名字（域名）转换为 IP 地址。</li>
 <li>为互联网的各种网络应用提供了核心服务。</li>
 </ol>
-<p><img src="image_1vG5s1-IxM.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_1vG5s1-IxM.png"></p>
 <p>互联网的域名系统DNS被设计称为一个联机分布式数据库系统，并采用客户服务器方式。DNS使大部分名字都在本地进行解析，仅少量解析需要在互联网上通信。</p>
 <ul>
 <li>域名到 IP 地址的解析是由若干个域名服务器程序共同完成。</li>
 <li>域名服务器程序在专设的结点上运行，运行该程序的机器称为<strong>域名服务器</strong>。</li>
 </ul>
-<p><img src="image_w5a72peOqL.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_w5a72peOqL.png"></p>
 <p>解析过程如下：当某一个应用进程需要把主机名解析为IP地址时，该应用进程就调用解析程序，并成为DNS的一个客户，把待解析的域名放在DNS的请求报文中，以UDP用户数据报方式发给本地域名服务器（使用UDP是为了较小开销）。</p>
 <p>本地域名服务器在查找域名后，把对应的IP地址放在回答报文中。</p>
 <p>如果本地域名服务器不能回答该请求，则此域名服务器暂时成为DNS中的另一个客户，并向其他域名服务器发出查询请求。</p>
-<h2 id="1-2-互联网的域名结构">1.2 互联网的域名结构</h2>
-<ul>
+<h2 id="1-2-互联网的域名结构"><a href="#1-2-互联网的域名结构" class="headerlink" title="1.2 互联网的域名结构"></a>1.2 互联网的域名结构</h2><ul>
 <li>命名方法：层次树状结构方法。</li>
 <li>任何一个连接在互联网上的主机或路由器，都有一个唯一的层次结构的名字，即域名 (domain name)。</li>
-<li>域 (domain)：
-<ul>
+<li>域 (domain)：<ul>
 <li>名字空间中一个可被管理的划分。</li>
 <li>可以划分为子域，而子域还可继续划分为子域的子域，这样就形成了顶级域、二级域、三级域，等等。</li>
 </ul>
 </li>
 </ul>
-<p><img src="image_N51QWJdmfR.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_N51QWJdmfR.png"></p>
 <p><strong>域名结构</strong>：层次结构。由标号 (label) 序列组成，各标号之间用点（.）隔开，各标号分别代表不同级别的域名。</p>
 <p>原先的顶级域名共分为3大类：</p>
-<p><img src="image_r_SckR_Cax.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_r_SckR_Cax.png"></p>
 <p>在国家顶级域名下注册的二级域名均由该国家自行确定。</p>
 <p>我国把二级域名划分为“类别域名”和“行政区域名”两大类。</p>
 <p>用域名树来表示域名系统最清楚，域名树的树叶就是计算机的名字，它不能再继续往下划分子域了。</p>
-<p><img src="image_xUuXIfNYgx.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_xUuXIfNYgx.png"></p>
 <p>注意：互联网的名字空间是按照机构的组织来划分的，与物理的网络无关，与 IP 地址中的“子网”也没有关系。</p>
-<h2 id="1-3-域名服务器">1.3 域名服务器</h2>
-<p>实现域名系统使用分布在各地的域名服务器（DNS 服务器）。一个服务器所负责管辖的（或有权限的）范围叫做区 (zone)。</p>
+<h2 id="1-3-域名服务器"><a href="#1-3-域名服务器" class="headerlink" title="1.3 域名服务器"></a>1.3 域名服务器</h2><p>实现域名系统使用分布在各地的域名服务器（DNS 服务器）。一个服务器所负责管辖的（或有权限的）范围叫做区 (zone)。</p>
 <p>各单位根据具体情况来划分自己管辖范围的区。但在一个区中的所有节点必须是能够连通的。每一个区设置相应的权限域名服务器，用来保存该区中的所有主机的域名到 IP 地址的映射。</p>
 <blockquote>
-<p>DNS 服务器的管辖范围不是以“域”为单位，而是以“区”为单位。 </p>
+<p>DNS 服务器的管辖范围不是以“域”为单位，而是以“区”为单位。&#x20;</p>
 </blockquote>
-<h3 id="1-3-1-区的不同划分方法举例">1.3.1 区的不同划分方法举例</h3>
-<p><img src="image_SQ4CpMArGF.png" alt=""></p>
-<h3 id="1-3-2-树状结构的-dns-域名服务器">1.3.2 树状结构的 DNS 域名服务器</h3>
-<p><img src="image_cR4sCa29ke.png" alt=""></p>
+<h3 id="1-3-1-区的不同划分方法举例-xD"><a href="#1-3-1-区的不同划分方法举例-xD" class="headerlink" title="1.3.1 区的不同划分方法举例&#xD;"></a>1.3.1 区的不同划分方法举例&#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_SQ4CpMArGF.png"></p>
+<h3 id="1-3-2-树状结构的-DNS-域名服务器-xD"><a href="#1-3-2-树状结构的-DNS-域名服务器-xD" class="headerlink" title="1.3.2 树状结构的 DNS 域名服务器&#xD;"></a>1.3.2 树状结构的 DNS 域名服务器&#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_cR4sCa29ke.png"></p>
 <p>每个域名服务器都只对域名体系中的一部分进行管辖。</p>
-<h3 id="1-3-3-域名服务器类型">1.3.3 域名服务器类型</h3>
-<p>根据所起的作用，分为四种类型：</p>
+<h3 id="1-3-3-域名服务器类型-xD"><a href="#1-3-3-域名服务器类型-xD" class="headerlink" title="1.3.3 域名服务器类型&#xD;"></a>1.3.3 域名服务器类型&#xD;</h3><p>根据所起的作用，分为四种类型：</p>
 <ol>
 <li>根域名服务器</li>
 <li>顶级域名服务器</li>
 <li>权限域名服务器</li>
 <li>本地域名服务器</li>
 </ol>
-<h4 id="1-3-3-1-根域名服务器">1.3.3.1 根域名服务器</h4>
-<p>根域名服务器是最高层次，最为重要。所有根域名服务器都知道所有的顶级域名服务器的域名和 IP 地址。</p>
+<h4 id="1-3-3-1-根域名服务器"><a href="#1-3-3-1-根域名服务器" class="headerlink" title="1.3.3.1 根域名服务器"></a>1.3.3.1 根域名服务器</h4><p>根域名服务器是最高层次，最为重要。所有根域名服务器都知道所有的顶级域名服务器的域名和 IP 地址。</p>
 <p>不管是哪一个本地域名服务器，若要对互联网上任何一个域名进行解析，只要自己无法解析，就首先求助于根域名服务器。</p>
 <p>若所有的根域名服务器都瘫痪了，整个互联网中的 DNS 系统就无法工作了。</p>
 <p>全世界的根域名服务器共有 13 套装置，构成 13 组根域名服务器。根域名服务器总共只有 13 个不同 IP 地址的域名，但并非仅由13台机器所组成。</p>
-<p><img src="image_nX0Q0MPWuQ.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_nX0Q0MPWuQ.png"></p>
 <p>根域名服务器分布在全世界。为了提供更可靠的服务，在每一个地点的根域名服务器往往由多台机器组成。</p>
 <p>根域名服务器采用任播 (anycast) 技术，当DNS 客户向某个根域名服务器发出查询报文时，路由器能找到离这个 DNS 客户最近的一个根域名服务器。</p>
 <blockquote>
 <p><strong>注意</strong>：根域名服务器并不直接把域名转换成 IP 地址（根域名服务器也没有存放这种信息），而是告诉本地域名服务器下一步应当找哪一个顶级域名服务器进行查询。</p>
 </blockquote>
-<h4 id="1-3-3-2-顶级域名服务器">1.3.3.2 顶级域名服务器</h4>
-<p>顶级域名服务器（即 TLD 服务器）负责管理在该顶级域名服务器注册的所有二级域名。</p>
+<h4 id="1-3-3-2-顶级域名服务器"><a href="#1-3-3-2-顶级域名服务器" class="headerlink" title="1.3.3.2 顶级域名服务器"></a>1.3.3.2 顶级域名服务器</h4><p>顶级域名服务器（即 TLD 服务器）负责管理在该顶级域名服务器注册的所有二级域名。</p>
 <p>当收到 DNS 查询请求时，就给出相应的回答（可能是最后的结果，也可能是下一步应当找的域名服务器的 IP 地址）。</p>
-<h4 id="1-3-3-3-权限域名服务器">1.3.3.3 权限域名服务器</h4>
-<ul>
+<h4 id="1-3-3-3-权限域名服务器"><a href="#1-3-3-3-权限域名服务器" class="headerlink" title="1.3.3.3 权限域名服务器"></a>1.3.3.3 权限域名服务器</h4><ul>
 <li>负责一个区（zone）的域名服务器。</li>
 </ul>
 <p>当一个权限域名服务器还不能给出最后的查询回答时，就会告诉发出查询请求的 DNS 客户，下一步应当找哪一个权限域名服务器。</p>
-<h4 id="1-3-3-4-本地域名服务器">1.3.3.4 本地域名服务器</h4>
-<ul>
+<h4 id="1-3-3-4-本地域名服务器"><a href="#1-3-3-4-本地域名服务器" class="headerlink" title="1.3.3.4 本地域名服务器"></a>1.3.3.4 本地域名服务器</h4><ul>
 <li>非常重要。</li>
 </ul>
 <p>当一个主机发出 DNS 查询请求时，该查询请求报文就发送给本地域名服务器。</p>
@@ -255,39 +243,31 @@
 <p>DNS 域名服务器都把数据复制到几个域名服务器来保存，其中的一个是主域名服务器，其他的是辅助域名服务器。</p>
 <p>当主域名服务器出故障时，辅助域名服务器可以保证 DNS 的查询工作不会中断。</p>
 <p>主域名服务器定期把数据复制到辅助域名服务器中，而更改数据只能在主域名服务器中进行，保证了数据的一致性。</p>
-<h3 id="1-3-4-域名的解析过程">1.3.4 域名的解析过程</h3>
-<h4 id="1-3-4-1-递归查询-比较少用">1.3.4.1 递归查询（比较少用）</h4>
-<ul>
+<h3 id="1-3-4-域名的解析过程-xD"><a href="#1-3-4-域名的解析过程-xD" class="headerlink" title="1.3.4 域名的解析过程&#xD;"></a>1.3.4 域名的解析过程&#xD;</h3><h4 id="1-3-4-1-递归查询（比较少用）"><a href="#1-3-4-1-递归查询（比较少用）" class="headerlink" title="1.3.4.1 递归查询（比较少用）"></a>1.3.4.1 递归查询（比较少用）</h4><ul>
 <li>通常，主机向本地域名服务器查询时使用。</li>
 <li>若不知道，就以 DNS 客户的身份，向其他根域名服务器继续发出查询请求报文。</li>
 </ul>
-<p><img src="image_LujyiSwPnO.png" alt=""></p>
-<h4 id="1-3-4-2-迭代查询">1.3.4.2 迭代查询</h4>
-<ul>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_LujyiSwPnO.png"></p>
+<h4 id="1-3-4-2-迭代查询"><a href="#1-3-4-2-迭代查询" class="headerlink" title="1.3.4.2 迭代查询"></a>1.3.4.2 迭代查询</h4><ul>
 <li>本地域名服务器向根域名服务器查询时使用。</li>
 <li>要么给出所要查询的 IP 地址，要么告诉下一个要查询的域名服务器的 IP 地址。</li>
 <li>本地域名服务器继续后续查询。</li>
 </ul>
-<p><img src="image_bUXNUELwba.png" alt=""></p>
-<h3 id="1-3-5-高速缓存">1.3.5 高速缓存</h3>
-<p>也称为高速缓存域名服务器，用于存放最近用过的名字以及从何处获得名字映射信息的记录。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_bUXNUELwba.png"></p>
+<h3 id="1-3-5-高速缓存-xD"><a href="#1-3-5-高速缓存-xD" class="headerlink" title="1.3.5 高速缓存&#xD;"></a>1.3.5 高速缓存&#xD;</h3><p>也称为高速缓存域名服务器，用于存放最近用过的名字以及从何处获得名字映射信息的记录。</p>
 <p><strong>作用</strong>：大大减轻根域名服务器的负荷，使 DNS 查询请求和回答报文的数量大为减少。</p>
 <p>域名服务器应为每项内容设置计时器，并处理超过合理时间的项。</p>
 <p>当权限域名服务器回答一个查询请求时，在响应中指明绑定有效存在的时间值。增加此时间值可减少网络开销，而减少此时间值可提高域名转换的准确性。</p>
 <hr>
-<h1>2 文件传送协议</h1>
-<h2 id="2-1-ftp概述">2.1 FTP概述</h2>
-<p>文件传送协议 FTP (File Transfer Protocol) 是互联网上使用得最广泛的文件传送协议。</p>
+<h1 id="2-文件传送协议"><a href="#2-文件传送协议" class="headerlink" title="2 文件传送协议"></a>2 文件传送协议</h1><h2 id="2-1-FTP概述"><a href="#2-1-FTP概述" class="headerlink" title="2.1 FTP概述"></a>2.1 FTP概述</h2><p>文件传送协议 FTP (File Transfer Protocol) 是互联网上使用得最广泛的文件传送协议。</p>
 <ul>
 <li>提供交互式的访问，允许客户指明文件的类型与格式，并允许文件具有存取权限。</li>
 <li>屏蔽了各计算机系统的细节，因而适合于在异构网络中任意计算机之间传送文件。</li>
 <li>是文件共享协议的一个大类。</li>
 </ul>
-<h3 id="2-1-1-文件共享协议">2.1.1 文件共享协议</h3>
-<p>文件传送协议：FTP（使用TCP）， TFTP（使用UDP） 等。</p>
+<h3 id="2-1-1-文件共享协议-xD"><a href="#2-1-1-文件共享协议-xD" class="headerlink" title="2.1.1 文件共享协议&#xD;"></a>2.1.1 文件共享协议&#xD;</h3><p>文件传送协议：FTP（使用TCP）， TFTP（使用UDP） 等。</p>
 <ul>
-<li>复制整个文件。对文件副本进行访问。
-<ul>
+<li>复制整个文件。对文件副本进行访问。<ul>
 <li>若要存取一个文件，就必须先获得一个本地文件副本。</li>
 <li>若要修改文件，只能对文件副本进行修改，然后再将修改后的文件副本传回到原节点。</li>
 </ul>
@@ -300,8 +280,7 @@
 <li>透明存取，不需要对该应用程序作明显的改动。</li>
 <li>由操作系统负责。</li>
 </ul>
-<h2 id="2-2-ftp-的基本工作原理">2.2 FTP 的基本工作原理</h2>
-<p>网络环境下复制文件的复杂性：</p>
+<h2 id="2-2-FTP-的基本工作原理"><a href="#2-2-FTP-的基本工作原理" class="headerlink" title="2.2 FTP 的基本工作原理"></a>2.2 FTP 的基本工作原理</h2><p>网络环境下复制文件的复杂性：</p>
 <ul>
 <li>计算机存储数据的格式不同。</li>
 <li>文件的目录结构和文件命名的规定不同。</li>
@@ -315,8 +294,7 @@
 <li>一个主进程，负责接受新的请求；</li>
 <li>若干个从属进程，负责处理单个请求。</li>
 </ol>
-<h3 id="2-2-1-ftp-主进程的工作步骤">2.2.1 FTP 主进程的工作步骤</h3>
-<ol>
+<h3 id="2-2-1-FTP-主进程的工作步骤-xD"><a href="#2-2-1-FTP-主进程的工作步骤-xD" class="headerlink" title="2.2.1 FTP 主进程的工作步骤&#xD;"></a>2.2.1 FTP 主进程的工作步骤&#xD;</h3><ol>
 <li>打开熟知端口（端口号为 21），使客户进程能够连接上。</li>
 <li>等待客户进程发出连接请求。</li>
 <li>启动从属进程来处理客户进程发来的请求。从属进程对客户进程的请求处理完毕后即终止，但从属进程在运行期间根据需要还可能创建其他一些子进程。</li>
@@ -325,17 +303,15 @@
 <blockquote>
 <p>FTP 客户和服务器之间的两个从属进程和两个 TCP 连接，并且FTP 使用两个不同的端口号。</p>
 </blockquote>
-<p><img src="image_YkBuY7gO-A.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_YkBuY7gO-A.png"></p>
 <p>图中服务器有两个从属进程：控制进程和数据传送进程。为简单起见，服务器端的主进程没有画上。</p>
 <p>在进程文件传输时，FTP的客户和服务器之间要建立两个并行的TCP连接：控制连接和数据连接。控制连接在整个会话期间一直保持打开，FTP客户所发出的传送请求，通过控制连接发送给服务器端的控制进程，但控制连接并不用来传送文件。</p>
 <p>由于FTP使用了一个分离的控制连接，因此FTP的控制信息是<strong>带外传送</strong>的。</p>
 <p>lFTP 并非对所有的数据传输都是最佳的：仅能访问副本。</p>
-<h3 id="2-2-2-nfs">2.2.2 NFS</h3>
-<p>NFS 允许应用进程打开一个远地文件，并能在该文件的某一个特定的位置上开始读写数据。</p>
+<h3 id="2-2-2-NFS"><a href="#2-2-2-NFS" class="headerlink" title="2.2.2 NFS"></a>2.2.2 NFS</h3><p>NFS 允许应用进程打开一个远地文件，并能在该文件的某一个特定的位置上开始读写数据。</p>
 <p>NFS 可使用户只复制一个大文件中的一个很小的片段，而不需要复制整个大文件。</p>
 <p>NFS 在网络上传送的只是少量的修改数据。</p>
-<h2 id="2-3-简单文件传送协议-tftp">2.3 简单文件传送协议 TFTP</h2>
-<p>TFTP (Trivial File Transfer Protocol) 是一个很小且易于实现的文件传送协议。使用客户服务器方式和使用 <strong>UDP</strong> 数据报，因此 TFTP 需要<strong>有自己的差错改正措施</strong>。</p>
+<h2 id="2-3-简单文件传送协议-TFTP"><a href="#2-3-简单文件传送协议-TFTP" class="headerlink" title="2.3 简单文件传送协议 TFTP"></a>2.3 简单文件传送协议 TFTP</h2><p>TFTP (Trivial File Transfer Protocol) 是一个很小且易于实现的文件传送协议。使用客户服务器方式和使用 <strong>UDP</strong> 数据报，因此 TFTP 需要<strong>有自己的差错改正措施</strong>。</p>
 <ul>
 <li>只支持文件传输，不支持交互。</li>
 <li>没有庞大的命令集，没有列目录的功能，也不能对用户进行身份鉴别。</li>
@@ -345,50 +321,40 @@
 <li>可用于 UDP 环境；</li>
 <li>代码所占的内存较小。</li>
 </ol>
-<h3 id="2-3-1-tftp-的主要特点">2.3.1 TFTP 的主要特点</h3>
-<ol>
+<h3 id="2-3-1-TFTP-的主要特点-xD"><a href="#2-3-1-TFTP-的主要特点-xD" class="headerlink" title="2.3.1 TFTP 的主要特点&#xD;"></a>2.3.1 TFTP 的主要特点&#xD;</h3><ol>
 <li>每次传送的数据报文中有 512 字节的数据，但最后一次可不足 512 字节。</li>
 <li>数据报文按序编号，从 1 开始。</li>
 <li>支持 ASCII 码或二进制传送。</li>
 <li>可对文件进行读或写。</li>
 <li>使用很简单的首部。</li>
 </ol>
-<h3 id="2-3-2-tftp-的工作很像停止等待协议">2.3.2 TFTP 的工作很像停止等待协议</h3>
-<p>发送完一个文件块后就等待对方的确认，确认时应指明所确认的块编号。</p>
+<h3 id="2-3-2-TFTP-的工作很像停止等待协议-xD"><a href="#2-3-2-TFTP-的工作很像停止等待协议-xD" class="headerlink" title="2.3.2 TFTP 的工作很像停止等待协议&#xD;"></a>2.3.2 TFTP 的工作很像停止等待协议&#xD;</h3><p>发送完一个文件块后就等待对方的确认，确认时应指明所确认的块编号。</p>
 <p>发完数据后在规定时间内收不到确认就要重发数据 PDU。</p>
 <p>发送确认 PDU 的一方若在规定时间内未收到下一个文件块，需重发确认 PDU，保证文件的传送不致因某一个数据报的丢失而告失败。</p>
-<h3 id="2-3-3-tftp-的工作过程">2.3.3 TFTP 的工作过程</h3>
-<ol>
+<h3 id="2-3-3-TFTP-的工作过程-xD"><a href="#2-3-3-TFTP-的工作过程-xD" class="headerlink" title="2.3.3 TFTP 的工作过程&#xD;"></a>2.3.3 TFTP 的工作过程&#xD;</h3><ol>
 <li>开始工作时，TFTP 客户进程发送一个读请求或写请求报文给 TFTP 服务器进程，其 UDP 熟知端口号码为 69。</li>
 <li>TFTP 服务器进程选择一个新的端口和 TFTP 客户进程进行通信。</li>
 <li>若文件长度恰好为 512 字节的整数倍，则在文件传送完毕后，还必须在最后发送一个只含首部而无数据的数据报文。</li>
 <li>若文件长度不是 512 字节的整数倍，则最后传送数据报文的数据字段一定不满 512 字节，作为文件结束的标志。</li>
 </ol>
-<h2 id="2-4-远程终端协议-telnet">2.4 远程终端协议 TELNET</h2>
-<p>TELNET是一个简单的远程终端协议，是互联网的正式标准。其允许用户在其所在地通过 <strong>TCP 连接</strong>注册（即登录）到远地的另一个主机上（使用主机名或 IP 地址）。</p>
+<h2 id="2-4-远程终端协议-TELNET"><a href="#2-4-远程终端协议-TELNET" class="headerlink" title="2.4 远程终端协议 TELNET"></a>2.4 远程终端协议 TELNET</h2><p>TELNET是一个简单的远程终端协议，是互联网的正式标准。其允许用户在其所在地通过 <strong>TCP 连接</strong>注册（即登录）到远地的另一个主机上（使用主机名或 IP 地址）。</p>
 <p>能将用户的击键传到远地主机，同时也能将远地主机的输出通过 TCP 连接返回到用户屏幕。服务是透明的，又称为<strong>终端仿真协议</strong>。</p>
 <p>在本地系统运行 TELNET 客户进程，而在远地主机则运行 TELNET 服务器进程。服务器中的主进程等待新的请求，产生从属进程来处理每一个连接。</p>
-<h3 id="2-4-1-telnet-使用网络虚拟终端-nvt-格式">2.4.1 TELNET 使用网络虚拟终端 NVT 格式 </h3>
-<p><img src="image_Kd1_Y4AZY1.png" alt=""></p>
+<h3 id="2-4-1-TELNET-使用网络虚拟终端-NVT-格式-xD"><a href="#2-4-1-TELNET-使用网络虚拟终端-NVT-格式-xD" class="headerlink" title="2.4.1 TELNET 使用网络虚拟终端 NVT 格式 &#xD;"></a>2.4.1 TELNET 使用网络虚拟终端 NVT 格式 &#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_Kd1_Y4AZY1.png"></p>
 <p>TELNET 的选项协商 (Option Negotiation) 使客户和服务器可商定使用更多的终端功能，协商的双方是平等的。</p>
-<h3 id="2-4-2-nvt-network-virtual-terminal-格式">2.4.2 NVT （Network Virtual Terminal ）格式</h3>
-<p><img src="image_0dd6adHhWA.png" alt=""></p>
+<h3 id="2-4-2-NVT-（Network-Virtual-Terminal-）格式"><a href="#2-4-2-NVT-（Network-Virtual-Terminal-）格式" class="headerlink" title="2.4.2 NVT （Network Virtual Terminal ）格式"></a>2.4.2 NVT （Network Virtual Terminal ）格式</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_0dd6adHhWA.png"></p>
 <hr>
-<h1>3 万维网WWW</h1>
-<h2 id="3-1-万维网概述">3.1 万维网概述</h2>
-<p>万维网 WWW (World Wide Web) 并非某种特殊的计算机网络。万维网是一个大规模的、联机式的信息储藏所。</p>
+<h1 id="3-万维网WWW"><a href="#3-万维网WWW" class="headerlink" title="3 万维网WWW"></a>3 万维网WWW</h1><h2 id="3-1-万维网概述"><a href="#3-1-万维网概述" class="headerlink" title="3.1 万维网概述"></a>3.1 万维网概述</h2><p>万维网 WWW (World Wide Web) 并非某种特殊的计算机网络。万维网是一个大规模的、联机式的信息储藏所。</p>
 <p>万维网用链接的方法能非常方便地从互联网上的一个站点访问另一个站点，从而主动地按需获取丰富的信息。这种访问方式称为“链接”。</p>
-<p><img src="image_qSkYlPju3C.png" alt=""></p>
-<h3 id="3-1-1-万维网是分布式超媒体-hypermedia-系统">3.1.1 万维网是分布式超媒体 (hypermedia) 系统</h3>
-<p>是超文本 (hypertext) 系统的扩充。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_qSkYlPju3C.png"></p>
+<h3 id="3-1-1-万维网是分布式超媒体-hypermedia-系统-xD"><a href="#3-1-1-万维网是分布式超媒体-hypermedia-系统-xD" class="headerlink" title="3.1.1 万维网是分布式超媒体 (hypermedia) 系统&#xD;"></a>3.1.1 万维网是分布式超媒体 (hypermedia) 系统&#xD;</h3><p>是超文本 (hypertext) 系统的扩充。</p>
 <ul>
 <li>超文本：由多个信息源链接成。是万维网的基础。</li>
 <li>超媒体与超文本的区别：文档内容不同。</li>
 </ul>
 <p>超文本文档仅包含文本信息。超媒体文档还包含其他信息，如图形、图像、声音、动画，甚至活动视频图像等。</p>
 <p>是一个分布式系统，信息分布在整个互联网上。每台主机上的文档都独立进行管理。</p>
-<h3 id="3-1-2-万维网的工作方式">3.1.2 万维网的工作方式</h3>
-<p>以客户服务器方式工作。</p>
+<h3 id="3-1-2-万维网的工作方式"><a href="#3-1-2-万维网的工作方式" class="headerlink" title="3.1.2 万维网的工作方式"></a>3.1.2 万维网的工作方式</h3><p>以客户服务器方式工作。</p>
 <ul>
 <li>客户程序：浏览器。</li>
 <li>服务器程序：在万维网文档所驻留的主机上运行。这个计算机也称为万维网服务器。</li>
@@ -420,8 +386,7 @@
 <ul>
 <li>使用各种的搜索工具（即搜索引擎）。</li>
 </ul>
-<h2 id="3-2-统一资源定位符-url">3.2 统一资源定位符 URL</h2>
-<p>URL是对互联网上资源的位置和访问方法的一种简洁表示。给资源的位置提供一种抽象的识别方法，并用这种方法给资源定位。</p>
+<h2 id="3-2-统一资源定位符-URL"><a href="#3-2-统一资源定位符-URL" class="headerlink" title="3.2 统一资源定位符 URL"></a>3.2 统一资源定位符 URL</h2><p>URL是对互联网上资源的位置和访问方法的一种简洁表示。给资源的位置提供一种抽象的识别方法，并用这种方法给资源定位。</p>
 <ul>
 <li>实际上就是在互联网上的资源的地址。</li>
 </ul>
@@ -430,72 +395,61 @@
 <li>资源：指在互联网上可以被访问的任何对象，包括文件目录、文件、文档、图像、声音等，以及与互联网相连的任何形式的数据。</li>
 </ul>
 <p>URL 相当于一个文件名在网络范围的扩展。因此，URL 是与互联网相连的机器上的任何可访问对象的一个指针。</p>
-<h3 id="3-2-1-url-的格式">3.2.1 URL 的格式</h3>
-<p>由以冒号（:）隔开的两大部分组成，对字符大写或小写没有要求。</p>
+<h3 id="3-2-1-URL-的格式"><a href="#3-2-1-URL-的格式" class="headerlink" title="3.2.1 URL 的格式"></a>3.2.1 URL 的格式</h3><p>由以冒号（:）隔开的两大部分组成，对字符大写或小写没有要求。</p>
 <p>一般形式：</p>
-<p><img src="image_iO1iMrsrE-.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_iO1iMrsrE-.png"></p>
 <ul>
 <li><strong>主机</strong>：存放资源的主机在互联网中的域名，也可以是用点分十进制的 IP 地址。</li>
 <li><strong>端口</strong>：端口号。省略时使用默认端口号。</li>
 <li><strong>路径</strong>：资源所在目录位置。区分大小写。省略时使用所定义的默认路径。后面可能还有一些选项。</li>
 </ul>
-<h3 id="3-2-2-使用-http-的-url">3.2.2 使用 HTTP 的 URL</h3>
-<p><img src="image_L_oeKc8rKY.png" alt=""></p>
-<h2 id="3-3-超文本传送协议-http">3.3 超文本传送协议 HTTP</h2>
-<p>HTTP 是面向事务的 (transaction-oriented) 应用层协议。使用 TCP 连接进行可靠的传送。其定义了浏览器与万维网服务器通信的格式和规则。是万维网上能够可靠地交换文件（包括文本、声音、图像等各种多媒体文件）的重要基础。</p>
+<h3 id="3-2-2-使用-HTTP-的-URL"><a href="#3-2-2-使用-HTTP-的-URL" class="headerlink" title="3.2.2 使用 HTTP 的 URL"></a>3.2.2 使用 HTTP 的 URL</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_L_oeKc8rKY.png"></p>
+<h2 id="3-3-超文本传送协议-HTTP"><a href="#3-3-超文本传送协议-HTTP" class="headerlink" title="3.3 超文本传送协议 HTTP"></a>3.3 超文本传送协议 HTTP</h2><p>HTTP 是面向事务的 (transaction-oriented) 应用层协议。使用 TCP 连接进行可靠的传送。其定义了浏览器与万维网服务器通信的格式和规则。是万维网上能够可靠地交换文件（包括文本、声音、图像等各种多媒体文件）的重要基础。</p>
 <p>HTTP 不仅传送完成超文本跳转所必需的信息，而且也传送任何可从互联网上得到的信息，如文本、超文本、声音和图像等。</p>
-<h3 id="3-3-1-http-的操作过程">3.3.1 HTTP 的操作过程</h3>
-<p><img src="image_qgJGty6KsP.png" alt=""></p>
+<h3 id="3-3-1-HTTP-的操作过程"><a href="#3-3-1-HTTP-的操作过程" class="headerlink" title="3.3.1 HTTP 的操作过程"></a>3.3.1 HTTP 的操作过程</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_qgJGty6KsP.png"></p>
 <p>HTTP 规定：在 HTTP 客户与 HTTP 服务器之间的每次交互，都由一个 ASCII 码串构成的请求和一个类似的通用互联网扩充，即“类MIME (MIME-like)”的响应组成。HTTP 报文通常都使用 TCP 连接传送。</p>
-<h3 id="3-3-2-http-的主要特点">3.3.2 HTTP 的主要特点</h3>
-<ol>
+<h3 id="3-3-2-HTTP-的主要特点"><a href="#3-3-2-HTTP-的主要特点" class="headerlink" title="3.3.2 HTTP 的主要特点"></a>3.3.2 HTTP 的主要特点</h3><ol>
 <li>HTTP 使用了<strong>面向连接的TCP</strong>作为运输层协议，保证了数据的可靠传输。</li>
 <li>HTTP 协议本身也是<strong>无连接</strong>的。</li>
 <li>HTTP 是<strong>无状态的</strong> (stateless)，同一个客户第二次访问同一个服务器上的页面时，服务器的响应与第一次被访问时相同，简化了服务器的设计，使服务器更容易支持大量并发的 HTTP 请求。</li>
 </ol>
-<h3 id="3-3-3-协议-http-1-0-的主要缺点">3.3.3 协议 HTTP/1.0 的主要缺点</h3>
-<ol>
+<h3 id="3-3-3-协议-HTTP-1-0-的主要缺点"><a href="#3-3-3-协议-HTTP-1-0-的主要缺点" class="headerlink" title="3.3.3 协议 HTTP&#x2F;1.0 的主要缺点"></a>3.3.3 协议 HTTP&#x2F;1.0 的主要缺点</h3><ol>
 <li>每请求一个文档就要有两倍 RTT 的开销。</li>
 <li>客户和服务器每一次建立新的 TCP 连接都要分配缓存和变量。</li>
 <li>这种非持续连接使服务器的负担很重。</li>
 </ol>
-<p><img src="image_Sa528SBmFA.png" alt=""></p>
-<h3 id="3-3-4-协议-http-1-1-使用持续连接">3.3.4 协议 HTTP/1.1 使用持续连接</h3>
-<p>持续连接（persistent connection）：服务器在发送响应后仍然在一段时间内保持这条连接（不释放），使同一个客户（浏览器）和该服务器可以继续在这条连接上传送后续的 HTTP 请求报文和响应报文。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_Sa528SBmFA.png"></p>
+<h3 id="3-3-4-协议-HTTP-1-1-使用持续连接"><a href="#3-3-4-协议-HTTP-1-1-使用持续连接" class="headerlink" title="3.3.4 协议 HTTP&#x2F;1.1 使用持续连接"></a>3.3.4 协议 HTTP&#x2F;1.1 使用持续连接</h3><p>持续连接（persistent connection）：服务器在发送响应后仍然在一段时间内保持这条连接（不释放），使同一个客户（浏览器）和该服务器可以继续在这条连接上传送后续的 HTTP 请求报文和响应报文。</p>
 <p>只要文档都在同一个服务器上，就可以继续使用该 TCP 连接。</p>
 <p>两种工作方式：</p>
 <ol>
 <li>非流水线方式 (without pipelining)</li>
 <li>流水线方式 (with pipelining)</li>
 </ol>
-<h4 id="3-3-4-1-非流水线方式">3.3.4.1 非流水线方式</h4>
-<ul>
+<h4 id="3-3-4-1-非流水线方式"><a href="#3-3-4-1-非流水线方式" class="headerlink" title="3.3.4.1 非流水线方式"></a>3.3.4.1 非流水线方式</h4><ul>
 <li>客户在收到前一个响应之后才能发出下一个请求</li>
 <li>缺点：TCP 连接空闲状态</li>
 </ul>
-<p><img src="image_wJ_JclJolE.png" alt=""></p>
-<h4 id="3-3-4-2-流水线方式">3.3.4.2 流水线方式</h4>
-<ul>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_wJ_JclJolE.png"></p>
+<h4 id="3-3-4-2-流水线方式"><a href="#3-3-4-2-流水线方式" class="headerlink" title="3.3.4.2 流水线方式"></a>3.3.4.2 流水线方式</h4><ul>
 <li>客户在收到响应报文之前就能够接着发送新的请求报文</li>
 <li>连续的多个请求报文到达服务器后，服务器就可连续发回响应报文</li>
 <li>下载效率提高</li>
 </ul>
-<p><img src="image_u8mi5OJF3m.png" alt=""></p>
-<h3 id="3-3-5-协议-http-2">3.3.5 协议 HTTP/2</h3>
-<p>协议 HTTP/2 是协议 HTTP/1.1 的升级版本。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_u8mi5OJF3m.png"></p>
+<h3 id="3-3-5-协议-HTTP-2"><a href="#3-3-5-协议-HTTP-2" class="headerlink" title="3.3.5 协议 HTTP&#x2F;2"></a>3.3.5 协议 HTTP&#x2F;2</h3><p>协议 HTTP&#x2F;2 是协议 HTTP&#x2F;1.1 的升级版本。</p>
 <ol>
 <li>服务器可以<strong>并行</strong>发回响应（使用同一个 TCP 连接）。</li>
 <li>允许客户<strong>复用 TCP 连接</strong>进行多个请求。</li>
 <li>把所有的报文都划分为许多较小的二进制编码的帧，并采用了新的压缩算法，不发送重复的首部字段，大大减小了首部的开销，提高了传输效率。</li>
 <li>向后兼容。</li>
 </ol>
-<h3 id="3-3-6-代理服务器">3.3.6 代理服务器</h3>
-<p>代理服务器 (proxy server) 又称为万维网高速缓存 (Web cache)，它代表浏览器发出 HTTP 请求。</p>
+<h3 id="3-3-6-代理服务器"><a href="#3-3-6-代理服务器" class="headerlink" title="3.3.6 代理服务器"></a>3.3.6 代理服务器</h3><p>代理服务器 (proxy server) 又称为万维网高速缓存 (Web cache)，它代表浏览器发出 HTTP 请求。</p>
 <p>使用高速缓存可减少访问互联网服务器的时延。</p>
 <p>不使用高速缓存的情况：</p>
-<p><img src="image_RgaD2BnPcx.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_RgaD2BnPcx.png"></p>
 <p>使用高速缓存的情况：</p>
-<p><img src="image_dt0ZGVOa0S.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_dt0ZGVOa0S.png"></p>
 <ol>
 <li>浏览器访问互联网的服务器时，先与校园网的高速缓存建立 TCP 连接，并向高速缓存发出 HTTP 请求报文。</li>
 <li>若高速缓存已经存放了所请求的对象，则将此对象放入 HTTP 响应报文中返回给浏览器。</li>
@@ -504,8 +458,7 @@
 <li>高速缓存收到对象后，先复制到本地存储器中（留待以后用），然后将该对象放在 HTTP 响应报文中，通过已建立的 TCP 连接，返回给请求该对象的浏览器。</li>
 </ol>
 <p>以代理服务器构成的<strong>内容分发网络CDN</strong>（Content Distribution Network）在互联网应用中起到了很大的作用。</p>
-<h2 id="3-4-http-的报文结构">3.4 HTTP 的报文结构</h2>
-<p>HTTP有两类报文：</p>
+<h2 id="3-4-HTTP-的报文结构"><a href="#3-4-HTTP-的报文结构" class="headerlink" title="3.4 HTTP 的报文结构"></a>3.4 HTTP 的报文结构</h2><p>HTTP有两类报文：</p>
 <ul>
 <li><strong>请求报文</strong>：从客户向服务器的请求</li>
 <li><strong>响应报文</strong>：从服务器到客户的回答</li>
@@ -517,22 +470,18 @@
 <li><strong>首部行</strong>：说明浏览器、服务器或报文主体的一些信息。可以有多行，也可以不使用。</li>
 <li><strong>实体主体</strong>：请求报文中一般不用，响应报文中也可能没有该字段。</li>
 </ul>
-<h3 id="3-4-1-http-的报文结构-请求报文">3.4.1 HTTP 的报文结构（请求报文）</h3>
-<p><img src="image_0w8rKr88Bv.png" alt=""></p>
+<h3 id="3-4-1-HTTP-的报文结构（请求报文）"><a href="#3-4-1-HTTP-的报文结构（请求报文）" class="headerlink" title="3.4.1 HTTP 的报文结构（请求报文）"></a>3.4.1 HTTP 的报文结构（请求报文）</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_0w8rKr88Bv.png"></p>
 <ul>
-<li>**方法：**对所请求的对象进行的操作，实际上就是一些命令。请求报文的类型是由它所采用的方法决定的。</li>
+<li><strong>方法：</strong>对所请求的对象进行的操作，实际上就是一些命令。请求报文的类型是由它所采用的方法决定的。</li>
 <li><strong>URL</strong>：所请求的资源的 URL。</li>
 <li><strong>版本</strong>：HTTP 的版本。</li>
 </ul>
 <p>HTTP 请求报文的一些方法</p>
-<p><img src="image_e4UoTotcgs.png" alt=""></p>
-<h4 id="3-4-1-1-http-请求报文举例">3.4.1.1 HTTP 请求报文举例</h4>
-<p><img src="image_ZAVzoxup4d.png" alt=""></p>
-<h3 id="3-4-2-http-的报文结构-响应报文">3.4.2 HTTP 的报文结构（响应报文）</h3>
-<p><img src="image_mgy1tCTeSp.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_e4UoTotcgs.png"></p>
+<h4 id="3-4-1-1-HTTP-请求报文举例-xD"><a href="#3-4-1-1-HTTP-请求报文举例-xD" class="headerlink" title="3.4.1.1 HTTP 请求报文举例&#xD;"></a>3.4.1.1 HTTP 请求报文举例&#xD;</h4><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_ZAVzoxup4d.png"></p>
+<h3 id="3-4-2-HTTP-的报文结构（响应报文）-xD"><a href="#3-4-2-HTTP-的报文结构（响应报文）-xD" class="headerlink" title="3.4.2 HTTP 的报文结构（响应报文）&#xD;"></a>3.4.2 HTTP 的报文结构（响应报文）&#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_mgy1tCTeSp.png"></p>
 <ul>
-<li><strong>状态码</strong>：都是三位数字，分为5大类
-<ul>
+<li><strong>状态码</strong>：都是三位数字，分为5大类<ul>
 <li>1xx 表示通知信息，如请求收到了或正在进行处理。</li>
 <li>2xx 表示成功，如接受或知道了。</li>
 <li>3xx 表示重定向，表示要完成请求还必须采取进一步的行动。</li>
@@ -543,32 +492,27 @@
 </ul>
 <p>响应报文中常见到的三种状态行：</p>
 <ol>
-<li>HTTP/1.1 202 Accepted 接受</li>
-<li>HTTP/1.1 400 Bad Request 错误的请求</li>
-<li>Http/1.1 404 Not Found 找不到</li>
+<li>HTTP&#x2F;1.1 202 Accepted 接受</li>
+<li>HTTP&#x2F;1.1 400 Bad Request 错误的请求</li>
+<li>Http&#x2F;1.1 404 Not Found 找不到</li>
 </ol>
-<h3 id="3-4-3-在服务器上存放用户的信息">3.4.3 在服务器上存放用户的信息</h3>
-<p>万维网使用 Cookie 跟踪在 HTTP 服务器和客户之间传递的状态信息。</p>
-<p><img src="image_9ZqEMF0ex7.png" alt=""></p>
-<h2 id="3-5-万维网的文档">3.5 万维网的文档</h2>
-<p>在一个客户程序主窗口上显示出的万维网文档称为<strong>页面</strong>（page）。</p>
+<h3 id="3-4-3-在服务器上存放用户的信息"><a href="#3-4-3-在服务器上存放用户的信息" class="headerlink" title="3.4.3 在服务器上存放用户的信息"></a>3.4.3 在服务器上存放用户的信息</h3><p>万维网使用 Cookie 跟踪在 HTTP 服务器和客户之间传递的状态信息。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_9ZqEMF0ex7.png"></p>
+<h2 id="3-5-万维网的文档"><a href="#3-5-万维网的文档" class="headerlink" title="3.5 万维网的文档"></a>3.5 万维网的文档</h2><p>在一个客户程序主窗口上显示出的万维网文档称为<strong>页面</strong>（page）。</p>
 <p>页面制作的标准语言：<code>HTML</code>，分为：</p>
 <ul>
 <li><strong>静态万维网文档</strong>：内容不会改变。简单。</li>
 <li><strong>动态万维网文档</strong>：文档的内容由应用程序动态创建。</li>
 <li><strong>活动万维网文档</strong>：由浏览器端改变文档的内容。</li>
 </ul>
-<h3 id="3-5-1-超文本标记语言-html">3.5.1 超文本标记语言 HTML</h3>
-<p>超文本标记语言 HTML (HyperText Markup Language) 是一种制作万维网页面的标准语言，它消除了不同计算机之间信息交流的障碍，是万维网的重要基础 [RFC 2854]。</p>
+<h3 id="3-5-1-超文本标记语言-HTML"><a href="#3-5-1-超文本标记语言-HTML" class="headerlink" title="3.5.1 超文本标记语言 HTML"></a>3.5.1 超文本标记语言 HTML</h3><p>超文本标记语言 HTML (HyperText Markup Language) 是一种制作万维网页面的标准语言，它消除了不同计算机之间信息交流的障碍，是万维网的重要基础 [RFC 2854]。</p>
 <p>最新 HTML 5.0 增加了&lt;audio&gt;和&lt;video&gt;两个标签，实现对多媒体中的音频、视频使用的支持，增加了能够在移动设备上支持多媒体功能。</p>
 <blockquote>
 <p>注意：HTML 不是应用层的协议，它只是万维网浏览器使用的一种语言。</p>
 </blockquote>
 <p>HTML 定义了许多用于排版的命令（即标签）。把各种标签嵌入到万维网的页面中，构成了所谓的 HTML 文档。HTML 文档是一种可以用任何文本编辑器创建的 ASCII 码文件。HTML 文档的后缀：.html 或 .htm。</p>
-<h4 id="3-5-1-1-html-文档中标签的用法">3.5.1.1 HTML 文档中标签的用法</h4>
-<p><img src="image_D6o1WeHnuS.png" alt=""></p>
-<h4 id="3-5-1-2-xml">3.5.1.2 XML</h4>
-<p>可扩展标记语言 <strong>XML</strong>(Extensible Markup Language) 和 HTML 很相似。</p>
+<h4 id="3-5-1-1-HTML-文档中标签的用法-xD"><a href="#3-5-1-1-HTML-文档中标签的用法-xD" class="headerlink" title="3.5.1.1 HTML 文档中标签的用法&#xD;"></a>3.5.1.1 HTML 文档中标签的用法&#xD;</h4><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_D6o1WeHnuS.png"></p>
+<h4 id="3-5-1-2-XML"><a href="#3-5-1-2-XML" class="headerlink" title="3.5.1.2 XML"></a>3.5.1.2 XML</h4><p>可扩展标记语言 <strong>XML</strong>(Extensible Markup Language) 和 HTML 很相似。</p>
 <p>设计宗旨是：传输数据，而不是显示数据。</p>
 <p>特点和优点：</p>
 <ol>
@@ -577,17 +521,14 @@
 <li>简单，与平台无关；</li>
 <li>将用户界面与结构化数据分隔开来；</li>
 </ol>
-<h4 id="3-5-1-3-xhtml">3.5.1.3 XHTML</h4>
-<p>可扩展超文本标记语言 XHTML (Extensible HTML) 与 HTML 4.01 几乎相同，是更严格的 HTML 版本。</p>
+<h4 id="3-5-1-3-XHTML"><a href="#3-5-1-3-XHTML" class="headerlink" title="3.5.1.3 XHTML"></a>3.5.1.3 XHTML</h4><p>可扩展超文本标记语言 XHTML (Extensible HTML) 与 HTML 4.01 几乎相同，是更严格的 HTML 版本。</p>
 <p>作为一种 XML 应用被重新定义的 HTML，将逐渐取代 HTML。</p>
-<h4 id="3-5-1-4-css">3.5.1.4 CSS</h4>
-<p>层叠样式表 CSS (Cascading Style Sheets) 是一种样式表语言，用于为 HTML 文档定义布局。</p>
+<h4 id="3-5-1-4-CSS"><a href="#3-5-1-4-CSS" class="headerlink" title="3.5.1.4 CSS"></a>3.5.1.4 CSS</h4><p>层叠样式表 CSS (Cascading Style Sheets) 是一种样式表语言，用于为 HTML 文档定义布局。</p>
 <p>CSS 与 HTML 的区别：HTML 用于结构化内容，而 CSS 则用于格式化结构化的内容。</p>
 <blockquote>
 <p>例如：精确规定在浏览器上显示的字体、颜色、边距、高度、宽度、背景图像等。</p>
 </blockquote>
-<h3 id="3-5-2-动态万维网文档">3.5.2 动态万维网文档</h3>
-<p><strong>静态文档</strong>：该文档创作完毕后就存放在万维网服务器中，在被用户浏览的过程中，内容不会改变。</p>
+<h3 id="3-5-2-动态万维网文档"><a href="#3-5-2-动态万维网文档" class="headerlink" title="3.5.2 动态万维网文档"></a>3.5.2 动态万维网文档</h3><p><strong>静态文档</strong>：该文档创作完毕后就存放在万维网服务器中，在被用户浏览的过程中，内容不会改变。</p>
 <p><strong>动态文档</strong>：文档的内容是在浏览器访问万维网服务器时才由应用程序动态创建。</p>
 <ul>
 <li>动态文档和静态文档之间的主要差别体现在服务器端：<strong>文档内容的生成方法不同</strong>。从浏览器的角度看，这两种文档并没有区别。</li>
@@ -597,28 +538,24 @@
 <li>增加一个应用程序：处理浏览器发来的数据，并创建动态文档。</li>
 <li>增加一个机制：使万维网服务器把浏览器发来的数据传送给这个应用程序，然后万维网服务器能够解释这个应用程序的输出，并向浏览器返回 HTML 文档。</li>
 </ol>
-<p><img src="image_lVCDlr8VEo.png" alt=""></p>
-<h4 id="3-5-2-1-cgi">3.5.2.1 CGI</h4>
-<p>通用网关接口 CGI (Common Gateway Interface) ：定义动态文档应如何创建，输入数据应如何提供给应用程序，以及输出结果应如何使用的一种标准。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_lVCDlr8VEo.png"></p>
+<h4 id="3-5-2-1-CGI-xD"><a href="#3-5-2-1-CGI-xD" class="headerlink" title="3.5.2.1 CGI&#xD;"></a>3.5.2.1 CGI&#xD;</h4><p>通用网关接口 CGI (Common Gateway Interface) ：定义动态文档应如何创建，输入数据应如何提供给应用程序，以及输出结果应如何使用的一种标准。</p>
 <ul>
 <li>通用：CGI 标准所定义的规则对其他任何语言都是通用的。</li>
 <li>网关：CGI 程序的作用像网关。</li>
 <li>接口：有一些已定义好的变量和调用等可供其他 CGI 程序使用。</li>
 </ul>
-<h4 id="3-5-2-2-cgi-网关程序">3.5.2.2 CGI 网关程序</h4>
-<p>正式名字：CGI 脚本 (script)。</p>
+<h4 id="3-5-2-2-CGI-网关程序-xD"><a href="#3-5-2-2-CGI-网关程序-xD" class="headerlink" title="3.5.2.2 CGI 网关程序&#xD;"></a>3.5.2.2 CGI 网关程序&#xD;</h4><p>正式名字：CGI 脚本 (script)。</p>
 <ul>
 <li>脚本：指的是一个程序，它被另一个程序（解释程序）而不是计算机的处理机来解释或执行。</li>
-<li>脚本语言 (script language)：如 Perl, JavaScript，Tcl/Tk 等。也可用一些常用的编程语言写出，如 C，C++等。</li>
+<li>脚本语言 (script language)：如 Perl, JavaScript，Tcl&#x2F;Tk 等。也可用一些常用的编程语言写出，如 C，C++等。</li>
 </ul>
 <p>脚本运行起来要比一般的编译程序要慢。脚本不一定是一个独立的程序，可以是一个动态装入的库，甚至是服务器的一个子程序。</p>
 <blockquote>
-<p>CGI 程序又称为 cgi-bin 脚本，因为在许多万维网服务器上，将 CGI 程序放在 /cgi-bin 的目录下。</p>
+<p>CGI 程序又称为 cgi-bin 脚本，因为在许多万维网服务器上，将 CGI 程序放在 &#x2F;cgi-bin 的目录下。</p>
 </blockquote>
 <hr>
-<h1>4 电子邮件</h1>
-<h2 id="4-1-电子邮件概述">4.1 电子邮件概述</h2>
-<p>电子邮件 (e-mail)：指使用电子设备交换的邮件及其方法。</p>
+<h1 id="4-电子邮件"><a href="#4-电子邮件" class="headerlink" title="4 电子邮件"></a>4 电子邮件</h1><h2 id="4-1-电子邮件概述"><a href="#4-1-电子邮件概述" class="headerlink" title="4.1 电子邮件概述"></a>4.1 电子邮件概述</h2><p>电子邮件 (e-mail)：指使用电子设备交换的邮件及其方法。</p>
 <p><strong>优点</strong>：使用方便，传递迅速，费用低廉，可以传送多种类型的信息（包括：文字信息，声音和图像等）。</p>
 <p><strong>重要标准</strong>：</p>
 <ul>
@@ -627,12 +564,10 @@
 <li>通用互联网邮件扩充 MIME</li>
 <li>邮件读取协议：POP3 和 IMAP</li>
 </ul>
-<p><img src="image_8wAjbhUff5.png" alt=""></p>
-<h3 id="4-1-1-用户代理-ua-user-agent">4.1.1 用户代理 UA（User Agent）</h3>
-<p>用户与电子邮件系统的接口。又被称为电子邮件客户端软件。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_8wAjbhUff5.png"></p>
+<h3 id="4-1-1-用户代理-UA（User-Agent）"><a href="#4-1-1-用户代理-UA（User-Agent）" class="headerlink" title="4.1.1 用户代理 UA（User Agent）"></a>4.1.1 用户代理 UA（User Agent）</h3><p>用户与电子邮件系统的接口。又被称为电子邮件客户端软件。</p>
 <p>基本功能：撰写、显示、处理、通信。</p>
-<h3 id="4-1-2-邮件服务器-mail-server">4.1.2 邮件服务器（Mail Server）</h3>
-<ul>
+<h3 id="4-1-2-邮件服务器（Mail-Server）"><a href="#4-1-2-邮件服务器（Mail-Server）" class="headerlink" title="4.1.2 邮件服务器（Mail Server）"></a>4.1.2 邮件服务器（Mail Server）</h3><ul>
 <li>被称为邮件传输代理。</li>
 <li>功能：发送和接收邮件，同时还要向发信人报告邮件传送的情况。</li>
 <li>按照客户服务器方式工作。</li>
@@ -643,44 +578,38 @@
 <li>邮局协议 POP3：用于用户代理从邮件服务器读取邮件。</li>
 </ol>
 <p>邮件服务器必须能够同时充当客户和服务器。SMTP 和 POP3（或 IMAP）都使用 <strong>TCP</strong> 连接可靠地传送邮件。</p>
-<p><img src="image_AtcP1_jWxH.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_AtcP1_jWxH.png"></p>
 <blockquote>
 <p>注意：邮件不会在互联网中的某个中间邮件服务器落地。</p>
 </blockquote>
-<h3 id="4-1-3-电子邮件的组成">4.1.3 电子邮件的组成</h3>
-<p>电子邮件由信封 (envelope) 和内容 (content) 两部分组成。电子邮件的传输程序根据邮件信封上的信息来传送邮件。</p>
+<h3 id="4-1-3-电子邮件的组成-xD"><a href="#4-1-3-电子邮件的组成-xD" class="headerlink" title="4.1.3 电子邮件的组成&#xD;"></a>4.1.3 电子邮件的组成&#xD;</h3><p>电子邮件由信封 (envelope) 和内容 (content) 两部分组成。电子邮件的传输程序根据邮件信封上的信息来传送邮件。</p>
 <p>用户在从自己的邮箱中读取邮件时才能见到邮件的内容。</p>
-<h3 id="4-1-4-电子邮件地址的格式">4.1.4 电子邮件地址的格式</h3>
-<p>在邮件的信封上，最重要的就是收件人的地址。</p>
-<p>TCP/IP 体系的电子邮件系统规定电子邮件地址的格式如下：</p>
-<p><img src="image_4uaVh-rATj.png" alt=""></p>
-<h2 id="4-2-简单邮件传送协议-smtp">4.2 简单邮件传送协议 SMTP</h2>
-<p><img src="image_F5uzxLhFbS.png" alt=""></p>
+<h3 id="4-1-4-电子邮件地址的格式-xD"><a href="#4-1-4-电子邮件地址的格式-xD" class="headerlink" title="4.1.4 电子邮件地址的格式&#xD;"></a>4.1.4 电子邮件地址的格式&#xD;</h3><p>在邮件的信封上，最重要的就是收件人的地址。</p>
+<p>TCP&#x2F;IP 体系的电子邮件系统规定电子邮件地址的格式如下：</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_4uaVh-rATj.png"></p>
+<h2 id="4-2-简单邮件传送协议-SMTP"><a href="#4-2-简单邮件传送协议-SMTP" class="headerlink" title="4.2 简单邮件传送协议 SMTP"></a>4.2 简单邮件传送协议 SMTP</h2><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_F5uzxLhFbS.png"></p>
 <blockquote>
 <p>SMTP 规定了在两个相互通信的 SMTP 进程之间交换信息的方法。</p>
 </blockquote>
-<p><img src="image_leBntHV02v.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_leBntHV02v.png"></p>
 <p>SMTP 是一个基于文本的（即 ASCII 码）的协议。SMTP 客户与服务器之间采用命令-响应方式进行交互。</p>
 <blockquote>
 <p>SMTP 使用客户服务器方式。</p>
 </blockquote>
-<p><img src="image_iVoqyGtSvo.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_iVoqyGtSvo.png"></p>
 <ul>
 <li>SMTP 基于 TCP 实现客户与服务器的通信。</li>
 </ul>
-<h3 id="4-2-1-smtp-通信的三个阶段">4.2.1 SMTP 通信的三个阶段</h3>
-<ol>
-<li>连接建立：连接是在发送主机的 SMTP 客户和接收主机的 SMTP 服务器之间建立的。SMTP 不使用中间的邮件服务器。 </li>
+<h3 id="4-2-1-SMTP-通信的三个阶段-xD"><a href="#4-2-1-SMTP-通信的三个阶段-xD" class="headerlink" title="4.2.1 SMTP 通信的三个阶段&#xD;"></a>4.2.1 SMTP 通信的三个阶段&#xD;</h3><ol>
+<li>连接建立：连接是在发送主机的 SMTP 客户和接收主机的 SMTP 服务器之间建立的。SMTP 不使用中间的邮件服务器。&#x20;</li>
 <li>邮件传送</li>
 <li>连接释放：邮件发送完毕后，SMTP 应释放 TCP 连接。</li>
 </ol>
-<h3 id="4-2-2-连接建立">4.2.2 连接建立</h3>
-<p><img src="image_62Q8_mc8ib.png" alt=""></p>
+<h3 id="4-2-2-连接建立"><a href="#4-2-2-连接建立" class="headerlink" title="4.2.2 连接建立"></a>4.2.2 连接建立</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_62Q8_mc8ib.png"></p>
 <p>发件人的邮件送到发送方邮件服务器的邮件缓存后，SMTP客户就每隔一定时间对邮件缓冲扫描一次。如发现有邮件，就是用SMTP的熟知端口号25与接收方邮件服务器的SMTP服务器建立TCP连接。</p>
 <p>如在一定时间内发送不了邮件，邮件服务器会把这个情况通知发件人。</p>
 <p>SMTP不使用中间的邮件服务器，不管发送方和接收方的邮件服务器有多远，不管要经过多少个路由器，TCP连接总是在发送方和接收方这两个邮件服务器之间直接建立。</p>
-<h3 id="4-2-3-邮件传送">4.2.3 邮件传送</h3>
-<p><img src="image_aiJc1qwCKu.png" alt=""></p>
+<h3 id="4-2-3-邮件传送"><a href="#4-2-3-邮件传送" class="headerlink" title="4.2.3 邮件传送"></a>4.2.3 邮件传送</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_aiJc1qwCKu.png"></p>
 <p>邮件的传送从MAIL命令开始，MAIL命令后面有发件人的地址。若SMTP服务器已准备好接收邮件，则回答“250 OK”。否则，返回一个代码，指出原因。</p>
 <p>下面跟着一个或多个RCPT命令，取决于把同一个邮件发送给一个或多个收件人。每发送一个RCPT命令，都应有相应的信息从SMTP服务器返回。</p>
 <blockquote>
@@ -693,33 +622,26 @@
 <li>收件人的邮箱容量用尽，无法接受新的邮件。</li>
 <li>被误判为垃圾邮件。</li>
 </ol>
-<h3 id="4-2-4-连接释放">4.2.4 连接释放</h3>
-<p><img src="image_SaOiTtMDvu.png" alt=""></p>
+<h3 id="4-2-4-连接释放"><a href="#4-2-4-连接释放" class="headerlink" title="4.2.4 连接释放"></a>4.2.4 连接释放</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_SaOiTtMDvu.png"></p>
 <p>邮件发送完之后，SMTP客户应发送QUIT命令。SMTP服务器返回的使“221 服务关闭”，表示SMTP同意释放TCP连接，邮件传送过程结束。</p>
-<h3 id="4-2-5-smtp的缺点">4.2.5 SMTP的缺点</h3>
-<ol>
+<h3 id="4-2-5-SMTP的缺点"><a href="#4-2-5-SMTP的缺点" class="headerlink" title="4.2.5 SMTP的缺点"></a>4.2.5 SMTP的缺点</h3><ol>
 <li>FROM命令后面的地址可以随便填写</li>
 <li>SMTP传送的邮件是明文，不利于保密</li>
 </ol>
 <p>针对上述问题，提出ESMTP，即扩充的SMTP。</p>
-<h3 id="4-2-6-电子邮件的信息格式">4.2.6 电子邮件的信息格式</h3>
-<p>一个电子邮件分为信封和内容两大部分。RFC 5322 只规定了邮件内容中的首部 (header) 格式。邮件的主体 (body) 部分则让用户自由撰写。</p>
-<p><img src="image_DUCTFqj2G1.png" alt=""></p>
-<h2 id="4-3-邮件读取协议-pop3-和-imap">4.3 邮件读取协议 POP3 和 IMAP</h2>
-<p>两个常用的邮件读取协议：</p>
+<h3 id="4-2-6-电子邮件的信息格式"><a href="#4-2-6-电子邮件的信息格式" class="headerlink" title="4.2.6 电子邮件的信息格式"></a>4.2.6 电子邮件的信息格式</h3><p>一个电子邮件分为信封和内容两大部分。RFC 5322 只规定了邮件内容中的首部 (header) 格式。邮件的主体 (body) 部分则让用户自由撰写。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_DUCTFqj2G1.png"></p>
+<h2 id="4-3-邮件读取协议-POP3-和-IMAP"><a href="#4-3-邮件读取协议-POP3-和-IMAP" class="headerlink" title="4.3 邮件读取协议 POP3 和 IMAP"></a>4.3 邮件读取协议 POP3 和 IMAP</h2><p>两个常用的邮件读取协议：</p>
 <ol>
 <li>POP3：邮局协议 (Post Office Protocol) 第3个版本</li>
 <li>IMAP：网际报文存取协议 (Internet Message Access Protocol)</li>
 </ol>
-<h3 id="4-3-1-pop3协议">4.3.1 POP3协议</h3>
-<p>POP3 使用客户服务器方式，基于 TCP 实现客户与服务器的通信。</p>
-<p><img src="image_XQN-P5GjZU.png" alt=""></p>
+<h3 id="4-3-1-POP3协议"><a href="#4-3-1-POP3协议" class="headerlink" title="4.3.1 POP3协议"></a>4.3.1 POP3协议</h3><p>POP3 使用客户服务器方式，基于 TCP 实现客户与服务器的通信。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_XQN-P5GjZU.png"></p>
 <p>POP3 协议的一个特点是只要用户从 POP3 服务器读取了邮件，POP3 服务器就把该邮件删除。</p>
-<h3 id="4-3-2-imap-协议">4.3.2 IMAP 协议</h3>
-<p><img src="image_Shk1Mi251u.png" alt=""></p>
+<h3 id="4-3-2-IMAP-协议-xD"><a href="#4-3-2-IMAP-协议-xD" class="headerlink" title="4.3.2 IMAP 协议&#xD;"></a>4.3.2 IMAP 协议&#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_Shk1Mi251u.png"></p>
 <p>lMAP 使用客户服务器方式，并且 lMAP 基于 TCP 实现客户与服务器的通信。lMAP 是一个联机协议。</p>
-<h4 id="4-3-2-1-imap-的特点">4.3.2.1 IMAP 的特点</h4>
-<ol>
+<h4 id="4-3-2-1-IMAP-的特点-xD"><a href="#4-3-2-1-IMAP-的特点-xD" class="headerlink" title="4.3.2.1 IMAP 的特点&#xD;"></a>4.3.2.1 IMAP 的特点&#xD;</h4><ol>
 <li>连接后只下载邮件首部（部分下载）。</li>
 <li>用户直接在 IMAP 服务器上创建和管理文件夹。</li>
 <li>用户可以搜索邮件内容。</li>
@@ -729,18 +651,16 @@
 <blockquote>
 <p>缺点：要想查阅邮件，必须先联网。</p>
 </blockquote>
-<h3 id="4-3-3-imap-与-pop3-比较">4.3.3 IMAP 与 POP3 比较</h3>
-<p><img src="image_0RbknxDwpI.png" alt=""></p>
-<p><img src="image_ndLEEDJvKZ.png" alt=""></p>
+<h3 id="4-3-3-IMAP-与-POP3-比较-xD"><a href="#4-3-3-IMAP-与-POP3-比较-xD" class="headerlink" title="4.3.3 IMAP 与 POP3 比较&#xD;"></a>4.3.3 IMAP 与 POP3 比较&#xD;</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_0RbknxDwpI.png"></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_ndLEEDJvKZ.png"></p>
 <p>必须注意：</p>
 <ol>
 <li>邮件读取协议 POP 或 IMAP 与邮件传送协议 SMTP 完全不同。</li>
 <li>发信人的用户代理向源邮件服务器发送邮件，以及源邮件服务器向目的邮件服务器发送邮件，都是使用 SMTP 协议。</li>
 <li>而 POP 协议或 IMAP 协议则是用户从目的邮件服务器上读取邮件所使用的协议。</li>
 </ol>
-<p><img src="image_l_U_JU2Co6.png" alt=""></p>
-<h2 id="4-4-基于万维网的电子邮件">4.4 基于万维网的电子邮件</h2>
-<p>用户代理 (UA) 的缺点：</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_l_U_JU2Co6.png"></p>
+<h2 id="4-4-基于万维网的电子邮件"><a href="#4-4-基于万维网的电子邮件" class="headerlink" title="4.4 基于万维网的电子邮件"></a>4.4 基于万维网的电子邮件</h2><p>用户代理 (UA) 的缺点：</p>
 <ol>
 <li>必须在计算机中安装用户代理软件。</li>
 <li>收发邮件不方便。</li>
@@ -751,60 +671,50 @@
 <li>计算机能联网，就能非常方便地收发电子邮件。</li>
 <li>界面非常友好。</li>
 </ol>
-<p><img src="image_8CWtJeROlG.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_8CWtJeROlG.png"></p>
 <ul>
 <li>发送、接收电子邮件时使用 HTTP 协议。</li>
 <li>两个邮件服务器之间传送邮件时使用 SMTP。</li>
 </ul>
 <p>使用 HTTP POST 方法提交要发送的邮件，使用 HTTP GET 方法读取邮件。</p>
-<h2 id="4-5-通用互联网邮件扩充-mime">4.5 通用互联网邮件扩充 MIME</h2>
-<p>SMTP 缺点：</p>
+<h2 id="4-5-通用互联网邮件扩充-MIME"><a href="#4-5-通用互联网邮件扩充-MIME" class="headerlink" title="4.5 通用互联网邮件扩充 MIME"></a>4.5 通用互联网邮件扩充 MIME</h2><p>SMTP 缺点：</p>
 <ol>
 <li>不能传送可执行文件或其他的二进制对象。</li>
 <li>限于传送 7 位的 ASCII 码，无法传送非 ASCII 编码的信息。</li>
 <li>服务器会拒绝超过一定长度的邮件。</li>
 <li>某些 SMTP 的实现并没有完全按照 [RFC 821] 的 SMTP 标准。</li>
 </ol>
-<h3 id="4-5-1-mime-概述">4.5.1 MIME 概述</h3>
-<p>通用互联网邮件扩充 MIME 并没有改动 SMTP 或取代它。</p>
+<h3 id="4-5-1-MIME-概述"><a href="#4-5-1-MIME-概述" class="headerlink" title="4.5.1 MIME 概述"></a>4.5.1 MIME 概述</h3><p>通用互联网邮件扩充 MIME 并没有改动 SMTP 或取代它。</p>
 <p><strong>意图</strong>：继续使用目前的 [RFC 822] 格式，但增加了邮件主体的结构，并定义了传送非 ASCII 码的编码规则。</p>
 <p>MIME 和 SMTP 的关系：</p>
-<p><img src="image_rRrx2IX41G.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_rRrx2IX41G.png"></p>
 <p>MIME 主要包括三个部分</p>
 <ol>
 <li>5 个新的邮件首部字段。</li>
 <li>定义了许多邮件内容的格式，对多媒体电子邮件的表示方法进行了标准化。</li>
 <li>定义了传送编码，可对任何内容格式进行转换，而不会被邮件系统改变。</li>
 </ol>
-<h4 id="4-5-1-1-mime-增加-5-个新的邮件首部">4.5.1.1 MIME 增加 5 个新的邮件首部</h4>
-<p><img src="image_YzRBeThhZ9.png" alt=""></p>
-<h3 id="4-5-2-内容传送编码-content-transfer-encoding">4.5.2 内容传送编码(Content-Transfer-Encoding)</h3>
-<p><img src="image_G1BYtOKGrP.png" alt=""></p>
-<h4 id="4-5-2-1-quoted-printable-编码">4.5.2.1 Quoted-printable 编码</h4>
-<ul>
+<h4 id="4-5-1-1-MIME-增加-5-个新的邮件首部-xD"><a href="#4-5-1-1-MIME-增加-5-个新的邮件首部-xD" class="headerlink" title="4.5.1.1 MIME 增加 5 个新的邮件首部&#xD;"></a>4.5.1.1 MIME 增加 5 个新的邮件首部&#xD;</h4><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_YzRBeThhZ9.png"></p>
+<h3 id="4-5-2-内容传送编码-Content-Transfer-Encoding"><a href="#4-5-2-内容传送编码-Content-Transfer-Encoding" class="headerlink" title="4.5.2 内容传送编码(Content-Transfer-Encoding)"></a>4.5.2 内容传送编码(Content-Transfer-Encoding)</h3><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_G1BYtOKGrP.png"></p>
+<h4 id="4-5-2-1-Quoted-printable-编码-xD"><a href="#4-5-2-1-Quoted-printable-编码-xD" class="headerlink" title="4.5.2.1 Quoted-printable 编码&#xD;"></a>4.5.2.1 Quoted-printable 编码&#xD;</h4><ul>
 <li>适用于所传送的数据中只有少量的非 ASCII 码的情况。</li>
 </ul>
-<p><img src="image_iG5_sXWjVm.png" alt=""></p>
-<p>原来 1 个字节，现在需要 3 个字节，开销 = 200%</p>
-<h4 id="4-5-2-2-base64-编码">4.5.2.2 Base64 编码</h4>
-<ul>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_iG5_sXWjVm.png"></p>
+<p>原来 1 个字节，现在需要 3 个字节，开销 &#x3D; 200%</p>
+<h4 id="4-5-2-2-Base64-编码-xD"><a href="#4-5-2-2-Base64-编码-xD" class="headerlink" title="4.5.2.2 Base64 编码&#xD;"></a>4.5.2.2 Base64 编码&#xD;</h4><ul>
 <li>适合任意长度的二进制数据。编码表如下：</li>
 </ul>
-<p><img src="image_GqPU9CdEcV.png" alt=""></p>
-<p>用两个连在一起的二个等号“==”和一个等号“=”分别表示最后一组的代码只有 8 位或 16 位。</p>
-<p><img src="image_M5Haz1ckst.png" alt=""></p>
-<h3 id="4-5-3-内容类型">4.5.3 内容类型</h3>
-<p>MIME 标准规定：Content-Type 说明必须含有两个标识符：内容类型 (type) 和子类型 (subtype)，中间用“/”分开。 </p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_GqPU9CdEcV.png"></p>
+<p>用两个连在一起的二个等号“&#x3D;&#x3D;”和一个等号“&#x3D;”分别表示最后一组的代码只有 8 位或 16 位。</p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_M5Haz1ckst.png"></p>
+<h3 id="4-5-3-内容类型"><a href="#4-5-3-内容类型" class="headerlink" title="4.5.3 内容类型"></a>4.5.3 内容类型</h3><p>MIME 标准规定：Content-Type 说明必须含有两个标识符：内容类型 (type) 和子类型 (subtype)，中间用“&#x2F;”分开。&#x20;</p>
 <p>MIME 标准原先定义了 7 个基本内容类型和 15 种子类型。</p>
 <p>MIME 允许发件人和收件人自己定义专用的内容类型。但为避免可能出现名字冲突，标准要求为专用内容类型选择的名字要以字符串 X-开始。</p>
-<h4 id="4-5-3-1-mime-content-type-说明中的类型及子类型">4.5.3.1 MIME Content-Type 说明中的类型及子类型</h4>
-<p><img src="image_ruHHhDTOvO.png" alt=""></p>
+<h4 id="4-5-3-1-MIME-Content-Type-说明中的类型及子类型-xD"><a href="#4-5-3-1-MIME-Content-Type-说明中的类型及子类型-xD" class="headerlink" title="4.5.3.1 MIME Content-Type 说明中的类型及子类型&#xD;"></a>4.5.3.1 MIME Content-Type 说明中的类型及子类型&#xD;</h4><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_ruHHhDTOvO.png"></p>
 <p>Multipart 很有用，使邮件增加了相当大的灵活性。</p>
-<h4 id="4-5-3-2-mime-举例">4.5.3.2 MIME 举例</h4>
-<p><img src="image_EUMtEai5to.png" alt=""></p>
+<h4 id="4-5-3-2-MIME-举例-xD"><a href="#4-5-3-2-MIME-举例-xD" class="headerlink" title="4.5.3.2 MIME 举例&#xD;"></a>4.5.3.2 MIME 举例&#xD;</h4><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_EUMtEai5to.png"></p>
 <hr>
-<h1>5 动态主机配置协议 DHCP</h1>
-<p>在协议软件中，给协议参数赋值的动作叫做<strong>协议配置</strong>。一个协议软件在使用之前必须是已正确配置的。具体的配置信息取决于协议栈。</p>
+<h1 id="5-动态主机配置协议-DHCP"><a href="#5-动态主机配置协议-DHCP" class="headerlink" title="5 动态主机配置协议 DHCP"></a>5 动态主机配置协议 DHCP</h1><p>在协议软件中，给协议参数赋值的动作叫做<strong>协议配置</strong>。一个协议软件在使用之前必须是已正确配置的。具体的配置信息取决于协议栈。</p>
 <p>连接到互联网的计算机的协议软件需要正确配置的参数包括：</p>
 <ol>
 <li>IP 地址</li>
@@ -817,16 +727,14 @@
 <p>需要 IP 地址的主机在启动时就向 DHCP 服务器广播发送<strong>发现报文</strong>（DHCPDISCOVER），这时该主机就成为 DHCP 客户。</p>
 <p>本地网络上所有主机都能收到此广播报文，但只有 DHCP 服务器才回答此广播报文。</p>
 <p>DHCP 服务器先在其数据库中查找该计算机的配置信息。若找到，则返回找到的信息。若找不到，则从服务器的 IP 地址池（address pool）中取一个地址分配给该计算机。DHCP服务器的回答报文叫做<strong>提供报文</strong>（DHCPOFFER）。</p>
-<h2 id="5-1-dhcp-工作方式">5.1 DHCP 工作方式</h2>
-<p>DHCP 使用客户服务器方式，采用请求/应答方式工作。</p>
+<h2 id="5-1-DHCP-工作方式"><a href="#5-1-DHCP-工作方式" class="headerlink" title="5.1 DHCP 工作方式"></a>5.1 DHCP 工作方式</h2><p>DHCP 使用客户服务器方式，采用请求&#x2F;应答方式工作。</p>
 <p>DHCP 基于 <strong>UDP</strong> 工作，DHCP 服务器运行在 <strong>67</strong> 号端口， DHCP客户运行在 <strong>68</strong> 号端口。</p>
-<p><img src="image_nUPFqc1Saa.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_nUPFqc1Saa.png"></p>
 <p>需要 IP 地址的主机向 DHCP 服务器<strong>广播</strong>发送发现报文 (DHCPDISCOVER) 。</p>
-<p><img src="image_g69255bUsm.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_g69255bUsm.png"></p>
 <p>DHCP 服务器回答提供报文 (DHCPOFFER) （<strong>单播</strong>），提供 IP 地址等配置信息。</p>
-<p><img src="image_ecU65SAITg.png" alt=""></p>
-<h2 id="5-2-dhcp-中继代理-relay-agent">5.2 DHCP 中继代理 (relay agent) </h2>
-<blockquote>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_ecU65SAITg.png"></p>
+<h2 id="5-2-DHCP-中继代理-relay-agent-x20"><a href="#5-2-DHCP-中继代理-relay-agent-x20" class="headerlink" title="5.2 DHCP 中继代理 (relay agent)&#x20;"></a>5.2 DHCP 中继代理 (relay agent)&#x20;</h2><blockquote>
 <p>问题：每个网络上都需要有 DHCP 服务器吗？</p>
 </blockquote>
 <ul>
@@ -839,30 +747,28 @@
 <li>每一个网络至少有一个 DHCP 中继代理，它配置了 DHCP 服务器的 IP 地址信息。</li>
 </ul>
 <p>DHCP 中继代理以单播方式转发发现报文：</p>
-<p><img src="image_3JI7GEEna3.png" alt=""></p>
+<p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_3JI7GEEna3.png"></p>
 <ul>
 <li>DHCP 中继代理收到主机广播发送的发现报文后，就以单播方式向 DHCP 服务器转发此报文，并等待其回答。</li>
 <li>收到 DHCP 服务器回答的提供报文后，DHCP 中继代理再将其发回给主机。</li>
 </ul>
-<h2 id="5-3-租用期-lease-period">5.3 租用期 (lease period) </h2>
-<p>DHCP 服务器分配给 DHCP 客户的 IP 地址的临时的，因此 DHCP 客户只能在一段有限的时间内使用这个分配到的 IP 地址。DHCP 协议称这段时间为<strong>租用期</strong>。</p>
+<h2 id="5-3-租用期-lease-period-x20"><a href="#5-3-租用期-lease-period-x20" class="headerlink" title="5.3 租用期 (lease period)&#x20;"></a>5.3 租用期 (lease period)&#x20;</h2><p>DHCP 服务器分配给 DHCP 客户的 IP 地址的临时的，因此 DHCP 客户只能在一段有限的时间内使用这个分配到的 IP 地址。DHCP 协议称这段时间为<strong>租用期</strong>。</p>
 <p>租用期的数值应由 DHCP 服务器自己决定。</p>
 <p>DHCP 客户也可在自己发送的报文中（例如，发现报文）提出对租用期的要求。</p>
-<h2 id="5-4-dhcp-协议的工作过程">5.4 DHCP 协议的工作过程</h2>
-<p><img src="image_JWy7jg2UfA.png" alt=""></p>
+<h2 id="5-4-DHCP-协议的工作过程"><a href="#5-4-DHCP-协议的工作过程" class="headerlink" title="5.4 DHCP 协议的工作过程"></a>5.4 DHCP 协议的工作过程</h2><p><img src="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/image_JWy7jg2UfA.png"></p>
 <ol>
 <li>DHCP 服务器被动打开 UDP 端口 67，等待客户端发来的报文。</li>
 <li>DHCP 客户从 UDP 端口 68 发送 DHCP 发现报文 DHCPDISCOVER。</li>
 <li>凡收到 DHCP 发现报文的 DHCP 服务器都发出 DHCP 提供报文 DHCPOFFER，因此 DHCP 客户可能收到多个 DHCP 提供报文 。</li>
 <li>DHCP 客户从几个 DHCP 服务器中选择其中的一个，并向所选择的 DHCP 服务器发送 DHCP 请求报文 DHCPREQUEST。</li>
-<li>被选择的 DHCP 服务器发送确认报文 DHCPACK，DHCP 客户可开始使用得到的临时 IP 地址了，进入已绑定状态。 </li>
+<li>被选择的 DHCP 服务器发送确认报文 DHCPACK，DHCP 客户可开始使用得到的临时 IP 地址了，进入已绑定状态。&#x20;</li>
 <li>DHCP 客户现在要根据服务器提供的租用期 T 设置两个计时器 T1 和 T2，它们的超时时间分别是 0.5T 和 0.875T。当超时时间到时，就要请求更新租用期。</li>
-<li>租用期过了一半（T1 时间到），DHCP 发送请求报文 DHCPREQUEST，要求更新租用期。 </li>
+<li>租用期过了一半（T1 时间到），DHCP 发送请求报文 DHCPREQUEST，要求更新租用期。&#x20;</li>
 <li>DHCP 服务器若同意，则发回确认报文 DHCPACK。DHCP 客户得到了新的租用期，重新设置计时器。</li>
 <li>DHCP 服务器若不同意，则发回否认报 DHCPNACK。这时 DHCP 客户必须立即停止使用原来的 IP 地址，而必须重新申请 IP 地址（回到步骤2）。</li>
 <li>若 DHCP 服务器不响应步骤 6 的请求报文 DHCPREQUEST，则在租用期过了 87.5% 时 (T2 时间到)，DHCP 客户必须重新发送请求报文 DHCPREQUEST（重复步骤 6），然后又继续后面的步骤。</li>
 </ol>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/">http://zhouzimu.top/2024/06/09/计算机网络第6章：应用层/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络第2章：物理层"><img class="cover" src="https://th.bing.com/th/id/OIP.upyRHF4n063vA2_j7PdDhwHaC7?w=1440&amp;h=571&amp;rs=1&amp;pid=ImgDetMain" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络第2章：物理层</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计算机网络第5章：传输层"><img class="cover" src="https://pic1.zhimg.com/v2-2159a954d03d90c2d869bf962a7ef775_720w.jpg?source=172ae18b" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络第5章：传输层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络第2章：物理层"><img class="cover" src="https://th.bing.com/th/id/OIP.upyRHF4n063vA2_j7PdDhwHaC7?w=1440&h=571&rs=1&pid=ImgDetMain" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第2章：物理层</div></div></a></div><div><a href="/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络第3章：数据链路层"><img class="cover" src="https://pic2.zhimg.com/v2-15bdc5c257f7c109f184f9872c57b2d5_b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-07</div><div class="title">计算机网络第3章：数据链路层</div></div></a></div><div><a href="/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/" title="计算机网络第4章：网络层"><img class="cover" src="https://so1.360tres.com/t01b34c003ce53dbb04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-08</div><div class="title">计算机网络第4章：网络层</div></div></a></div><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计算机网络第5章：传输层"><img class="cover" src="https://pic1.zhimg.com/v2-2159a954d03d90c2d869bf962a7ef775_720w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第5章：传输层</div></div></a></div><div><a href="/2024/06/22/%E8%AE%A1%E7%BD%91%E8%AF%BE%E8%AE%BE%EF%BC%9A%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8E%86%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="计网课设：基于TCP协议的简历聊天室程序设计"><img class="cover" src="https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-22</div><div class="title">计网课设：基于TCP协议的简历聊天室程序设计</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">122</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1 域名系统 DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-text">1.1 域名系统概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%93%E6%9E%84"><span class="toc-text">1.2 互联网的域名结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3 域名服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E5%8C%BA%E7%9A%84%E4%B8%8D%E5%90%8C%E5%88%92%E5%88%86%E6%96%B9%E6%B3%95%E4%B8%BE%E4%BE%8B"><span class="toc-text">1.3.1 区的不同划分方法举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84%E7%9A%84-dns-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.2 树状结构的 DNS 域名服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">1.3.3 域名服务器类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-1-%E6%A0%B9%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.1 根域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-2-%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.2 顶级域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-3-%E6%9D%83%E9%99%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.3 权限域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-4-%E6%9C%AC%E5%9C%B0%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.4 本地域名服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-%E5%9F%9F%E5%90%8D%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B"><span class="toc-text">1.3.4 域名的解析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-1-%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2-%E6%AF%94%E8%BE%83%E5%B0%91%E7%94%A8"><span class="toc-text">1.3.4.1 递归查询（比较少用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-2-%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2"><span class="toc-text">1.3.4.2 迭代查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="toc-text">1.3.5 高速缓存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2 文件传送协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-ftp%E6%A6%82%E8%BF%B0"><span class="toc-text">2.1 FTP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%E5%8D%8F%E8%AE%AE"><span class="toc-text">2.1.1 文件共享协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-ftp-%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">2.2 FTP 的基本工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-ftp-%E4%B8%BB%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="toc-text">2.2.1 FTP 主进程的工作步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-nfs"><span class="toc-text">2.2.2 NFS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-tftp"><span class="toc-text">2.3 简单文件传送协议 TFTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-tftp-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-text">2.3.1 TFTP 的主要特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-tftp-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%BE%88%E5%83%8F%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="toc-text">2.3.2 TFTP 的工作很像停止等待协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-tftp-%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">2.3.3 TFTP 的工作过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%BF%9C%E7%A8%8B%E7%BB%88%E7%AB%AF%E5%8D%8F%E8%AE%AE-telnet"><span class="toc-text">2.4 远程终端协议 TELNET</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-telnet-%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BB%9C%E8%99%9A%E6%8B%9F%E7%BB%88%E7%AB%AF-nvt-%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.4.1 TELNET 使用网络虚拟终端 NVT 格式 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-nvt-network-virtual-terminal-%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.4.2 NVT （Network Virtual Terminal ）格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3 万维网WWW</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E4%B8%87%E7%BB%B4%E7%BD%91%E6%A6%82%E8%BF%B0"><span class="toc-text">3.1 万维网概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E4%B8%87%E7%BB%B4%E7%BD%91%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E8%B6%85%E5%AA%92%E4%BD%93-hypermedia-%E7%B3%BB%E7%BB%9F"><span class="toc-text">3.1.1 万维网是分布式超媒体 (hypermedia) 系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">3.1.2 万维网的工作方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6-url"><span class="toc-text">3.2 统一资源定位符 URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-url-%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">3.2.1 URL 的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E4%BD%BF%E7%94%A8-http-%E7%9A%84-url"><span class="toc-text">3.2.2 使用 HTTP 的 URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-http"><span class="toc-text">3.3 超文本传送协议 HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-http-%E7%9A%84%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">3.3.1 HTTP 的操作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-http-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-text">3.3.2 HTTP 的主要特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E5%8D%8F%E8%AE%AE-http-1-0-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BC%BA%E7%82%B9"><span class="toc-text">3.3.3 协议 HTTP&#x2F;1.0 的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-%E5%8D%8F%E8%AE%AE-http-1-1-%E4%BD%BF%E7%94%A8%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5"><span class="toc-text">3.3.4 协议 HTTP&#x2F;1.1 使用持续连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-1-%E9%9D%9E%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-text">3.3.4.1 非流水线方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-2-%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-text">3.3.4.2 流水线方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-5-%E5%8D%8F%E8%AE%AE-http-2"><span class="toc-text">3.3.5 协议 HTTP&#x2F;2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-6-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">3.3.6 代理服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-http-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-text">3.4 HTTP 的报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-http-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="toc-text">3.4.1 HTTP 的报文结构（请求报文）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-1-http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E4%B8%BE%E4%BE%8B"><span class="toc-text">3.4.1.1 HTTP 请求报文举例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-http-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84-%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="toc-text">3.4.2 HTTP 的报文结构（响应报文）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AD%98%E6%94%BE%E7%94%A8%E6%88%B7%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">3.4.3 在服务器上存放用户的信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E6%96%87%E6%A1%A3"><span class="toc-text">3.5 万维网的文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E8%B6%85%E6%96%87%E6%9C%AC%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80-html"><span class="toc-text">3.5.1 超文本标记语言 HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-1-html-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%A0%87%E7%AD%BE%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-text">3.5.1.1 HTML 文档中标签的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-2-xml"><span class="toc-text">3.5.1.2 XML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-3-xhtml"><span class="toc-text">3.5.1.3 XHTML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-4-css"><span class="toc-text">3.5.1.4 CSS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E5%8A%A8%E6%80%81%E4%B8%87%E7%BB%B4%E7%BD%91%E6%96%87%E6%A1%A3"><span class="toc-text">3.5.2 动态万维网文档</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-1-cgi"><span class="toc-text">3.5.2.1 CGI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-2-cgi-%E7%BD%91%E5%85%B3%E7%A8%8B%E5%BA%8F"><span class="toc-text">3.5.2.2 CGI 网关程序</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">4 电子邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-text">4.1 电子邮件概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E7%94%A8%E6%88%B7%E4%BB%A3%E7%90%86-ua-user-agent"><span class="toc-text">4.1.1 用户代理 UA（User Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8-mail-server"><span class="toc-text">4.1.2 邮件服务器（Mail Server）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">4.1.3 电子邮件的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-4-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">4.1.4 电子邮件地址的格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%AE%80%E5%8D%95%E9%82%AE%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-smtp"><span class="toc-text">4.2 简单邮件传送协议 SMTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-smtp-%E9%80%9A%E4%BF%A1%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-text">4.2.1 SMTP 通信的三个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="toc-text">4.2.2 连接建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E9%82%AE%E4%BB%B6%E4%BC%A0%E9%80%81"><span class="toc-text">4.2.3 邮件传送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE"><span class="toc-text">4.2.4 连接释放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-smtp%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">4.2.5 SMTP的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E4%BF%A1%E6%81%AF%E6%A0%BC%E5%BC%8F"><span class="toc-text">4.2.6 电子邮件的信息格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E9%82%AE%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8D%8F%E8%AE%AE-pop3-%E5%92%8C-imap"><span class="toc-text">4.3 邮件读取协议 POP3 和 IMAP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-pop3%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.3.1 POP3协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-imap-%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.3.2 IMAP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-1-imap-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">4.3.2.1 IMAP 的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-imap-%E4%B8%8E-pop3-%E6%AF%94%E8%BE%83"><span class="toc-text">4.3.3 IMAP 与 POP3 比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%9F%BA%E4%BA%8E%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-text">4.4 基于万维网的电子邮件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E9%80%9A%E7%94%A8%E4%BA%92%E8%81%94%E7%BD%91%E9%82%AE%E4%BB%B6%E6%89%A9%E5%85%85-mime"><span class="toc-text">4.5 通用互联网邮件扩充 MIME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-mime-%E6%A6%82%E8%BF%B0"><span class="toc-text">4.5.1 MIME 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-1-mime-%E5%A2%9E%E5%8A%A0-5-%E4%B8%AA%E6%96%B0%E7%9A%84%E9%82%AE%E4%BB%B6%E9%A6%96%E9%83%A8"><span class="toc-text">4.5.1.1 MIME 增加 5 个新的邮件首部</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-%E5%86%85%E5%AE%B9%E4%BC%A0%E9%80%81%E7%BC%96%E7%A0%81-content-transfer-encoding"><span class="toc-text">4.5.2 内容传送编码(Content-Transfer-Encoding)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-1-quoted-printable-%E7%BC%96%E7%A0%81"><span class="toc-text">4.5.2.1 Quoted-printable 编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-2-base64-%E7%BC%96%E7%A0%81"><span class="toc-text">4.5.2.2 Base64 编码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-3-%E5%86%85%E5%AE%B9%E7%B1%BB%E5%9E%8B"><span class="toc-text">4.5.3 内容类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-1-mime-content-type-%E8%AF%B4%E6%98%8E%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AD%90%E7%B1%BB%E5%9E%8B"><span class="toc-text">4.5.3.1 MIME Content-Type 说明中的类型及子类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-2-mime-%E4%B8%BE%E4%BE%8B"><span class="toc-text">4.5.3.2 MIME 举例</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5 动态主机配置协议 DHCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-dhcp-%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">5.1 DHCP 工作方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-dhcp-%E4%B8%AD%E7%BB%A7%E4%BB%A3%E7%90%86-relay-agent"><span class="toc-text">5.2 DHCP 中继代理 (relay agent) </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%A7%9F%E7%94%A8%E6%9C%9F-lease-period"><span class="toc-text">5.3 租用期 (lease period) </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-dhcp-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">5.4 DHCP 协议的工作过程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/01/3-%E5%BE%AE%E8%B0%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/" title="3. 微调预训练模型"><img src="https://venturebeat.com/wp-content/uploads/2023/05/Untitled-design-78.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="3. 微调预训练模型"/></a><div class="content"><a class="title" href="/2025/05/01/3-%E5%BE%AE%E8%B0%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/" title="3. 微调预训练模型">3. 微调预训练模型</a><time datetime="2025-05-01T02:51:22.000Z" title="发表于 2025-05-01 10:51:22">2025-05-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling"><img src="https://haowallpaper.com/link/common/file/previewFileImg/16303799969041792" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读8：AutoPooling"/></a><div class="content"><a class="title" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling">论文精读8：AutoPooling</a><time datetime="2025-01-22T09:19:35.000Z" title="发表于 2025-01-22 17:19:35">2025-01-22</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/">http://zhouzimu.top/2024/06/09/计算机网络第6章：应用层/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络第2章：物理层"><img class="cover" src="https://th.bing.com/th/id/OIP.upyRHF4n063vA2_j7PdDhwHaC7?w=1440&amp;h=571&amp;rs=1&amp;pid=ImgDetMain" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络第2章：物理层</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计算机网络第5章：传输层"><img class="cover" src="https://pic1.zhimg.com/v2-2159a954d03d90c2d869bf962a7ef775_720w.jpg?source=172ae18b" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络第5章：传输层</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络第2章：物理层"><img class="cover" src="https://th.bing.com/th/id/OIP.upyRHF4n063vA2_j7PdDhwHaC7?w=1440&h=571&rs=1&pid=ImgDetMain" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第2章：物理层</div></div></a></div><div><a href="/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络第3章：数据链路层"><img class="cover" src="https://pic2.zhimg.com/v2-15bdc5c257f7c109f184f9872c57b2d5_b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-07</div><div class="title">计算机网络第3章：数据链路层</div></div></a></div><div><a href="/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/" title="计算机网络第4章：网络层"><img class="cover" src="https://so1.360tres.com/t01b34c003ce53dbb04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-08</div><div class="title">计算机网络第4章：网络层</div></div></a></div><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计算机网络第5章：传输层"><img class="cover" src="https://pic1.zhimg.com/v2-2159a954d03d90c2d869bf962a7ef775_720w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第5章：传输层</div></div></a></div><div><a href="/2024/06/22/%E8%AE%A1%E7%BD%91%E8%AF%BE%E8%AE%BE%EF%BC%9A%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8E%86%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" title="计网课设：基于TCP协议的简历聊天室程序设计"><img class="cover" src="https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-22</div><div class="title">计网课设：基于TCP协议的简历聊天室程序设计</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">123</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F-DNS"><span class="toc-text">1 域名系统 DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-text">1.1 域名系统概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E5%9F%9F%E5%90%8D%E7%BB%93%E6%9E%84"><span class="toc-text">1.2 互联网的域名结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3 域名服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E5%8C%BA%E7%9A%84%E4%B8%8D%E5%90%8C%E5%88%92%E5%88%86%E6%96%B9%E6%B3%95%E4%B8%BE%E4%BE%8B-xD"><span class="toc-text">1.3.1 区的不同划分方法举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-%E6%A0%91%E7%8A%B6%E7%BB%93%E6%9E%84%E7%9A%84-DNS-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8-xD"><span class="toc-text">1.3.2 树状结构的 DNS 域名服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B1%BB%E5%9E%8B-xD"><span class="toc-text">1.3.3 域名服务器类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-1-%E6%A0%B9%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.1 根域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-2-%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.2 顶级域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-3-%E6%9D%83%E9%99%90%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.3 权限域名服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-3-4-%E6%9C%AC%E5%9C%B0%E5%9F%9F%E5%90%8D%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">1.3.3.4 本地域名服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-%E5%9F%9F%E5%90%8D%E7%9A%84%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B-xD"><span class="toc-text">1.3.4 域名的解析过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-1-%E9%80%92%E5%BD%92%E6%9F%A5%E8%AF%A2%EF%BC%88%E6%AF%94%E8%BE%83%E5%B0%91%E7%94%A8%EF%BC%89"><span class="toc-text">1.3.4.1 递归查询（比较少用）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-4-2-%E8%BF%AD%E4%BB%A3%E6%9F%A5%E8%AF%A2"><span class="toc-text">1.3.4.2 迭代查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98-xD"><span class="toc-text">1.3.5 高速缓存</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE"><span class="toc-text">2 文件传送协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-FTP%E6%A6%82%E8%BF%B0"><span class="toc-text">2.1 FTP概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%E5%8D%8F%E8%AE%AE-xD"><span class="toc-text">2.1.1 文件共享协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-FTP-%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">2.2 FTP 的基本工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-FTP-%E4%B8%BB%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%AD%A5%E9%AA%A4-xD"><span class="toc-text">2.2.1 FTP 主进程的工作步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-NFS"><span class="toc-text">2.2.2 NFS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-TFTP"><span class="toc-text">2.3 简单文件传送协议 TFTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-TFTP-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9-xD"><span class="toc-text">2.3.1 TFTP 的主要特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-TFTP-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%BE%88%E5%83%8F%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE-xD"><span class="toc-text">2.3.2 TFTP 的工作很像停止等待协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-TFTP-%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B-xD"><span class="toc-text">2.3.3 TFTP 的工作过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%BF%9C%E7%A8%8B%E7%BB%88%E7%AB%AF%E5%8D%8F%E8%AE%AE-TELNET"><span class="toc-text">2.4 远程终端协议 TELNET</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-TELNET-%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BB%9C%E8%99%9A%E6%8B%9F%E7%BB%88%E7%AB%AF-NVT-%E6%A0%BC%E5%BC%8F-xD"><span class="toc-text">2.4.1 TELNET 使用网络虚拟终端 NVT 格式 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-NVT-%EF%BC%88Network-Virtual-Terminal-%EF%BC%89%E6%A0%BC%E5%BC%8F"><span class="toc-text">2.4.2 NVT （Network Virtual Terminal ）格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E4%B8%87%E7%BB%B4%E7%BD%91WWW"><span class="toc-text">3 万维网WWW</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E4%B8%87%E7%BB%B4%E7%BD%91%E6%A6%82%E8%BF%B0"><span class="toc-text">3.1 万维网概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%E4%B8%87%E7%BB%B4%E7%BD%91%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E8%B6%85%E5%AA%92%E4%BD%93-hypermedia-%E7%B3%BB%E7%BB%9F-xD"><span class="toc-text">3.1.1 万维网是分布式超媒体 (hypermedia) 系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">3.1.2 万维网的工作方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6-URL"><span class="toc-text">3.2 统一资源定位符 URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-URL-%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="toc-text">3.2.1 URL 的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%E4%BD%BF%E7%94%A8-HTTP-%E7%9A%84-URL"><span class="toc-text">3.2.2 使用 HTTP 的 URL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-HTTP"><span class="toc-text">3.3 超文本传送协议 HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-HTTP-%E7%9A%84%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">3.3.1 HTTP 的操作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-HTTP-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="toc-text">3.3.2 HTTP 的主要特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%E5%8D%8F%E8%AE%AE-HTTP-1-0-%E7%9A%84%E4%B8%BB%E8%A6%81%E7%BC%BA%E7%82%B9"><span class="toc-text">3.3.3 协议 HTTP&#x2F;1.0 的主要缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-%E5%8D%8F%E8%AE%AE-HTTP-1-1-%E4%BD%BF%E7%94%A8%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5"><span class="toc-text">3.3.4 协议 HTTP&#x2F;1.1 使用持续连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-1-%E9%9D%9E%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-text">3.3.4.1 非流水线方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-2-%E6%B5%81%E6%B0%B4%E7%BA%BF%E6%96%B9%E5%BC%8F"><span class="toc-text">3.3.4.2 流水线方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-5-%E5%8D%8F%E8%AE%AE-HTTP-2"><span class="toc-text">3.3.5 协议 HTTP&#x2F;2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-6-%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">3.3.6 代理服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-HTTP-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="toc-text">3.4 HTTP 的报文结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-HTTP-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%EF%BC%88%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%EF%BC%89"><span class="toc-text">3.4.1 HTTP 的报文结构（请求报文）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-1-HTTP-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E4%B8%BE%E4%BE%8B-xD"><span class="toc-text">3.4.1.1 HTTP 请求报文举例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-HTTP-%E7%9A%84%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84%EF%BC%88%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87%EF%BC%89-xD"><span class="toc-text">3.4.2 HTTP 的报文结构（响应报文）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AD%98%E6%94%BE%E7%94%A8%E6%88%B7%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">3.4.3 在服务器上存放用户的信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E6%96%87%E6%A1%A3"><span class="toc-text">3.5 万维网的文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E8%B6%85%E6%96%87%E6%9C%AC%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80-HTML"><span class="toc-text">3.5.1 超文本标记语言 HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-1-HTML-%E6%96%87%E6%A1%A3%E4%B8%AD%E6%A0%87%E7%AD%BE%E7%9A%84%E7%94%A8%E6%B3%95-xD"><span class="toc-text">3.5.1.1 HTML 文档中标签的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-2-XML"><span class="toc-text">3.5.1.2 XML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-3-XHTML"><span class="toc-text">3.5.1.3 XHTML</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-1-4-CSS"><span class="toc-text">3.5.1.4 CSS</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E5%8A%A8%E6%80%81%E4%B8%87%E7%BB%B4%E7%BD%91%E6%96%87%E6%A1%A3"><span class="toc-text">3.5.2 动态万维网文档</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-1-CGI-xD"><span class="toc-text">3.5.2.1 CGI</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-2-2-CGI-%E7%BD%91%E5%85%B3%E7%A8%8B%E5%BA%8F-xD"><span class="toc-text">3.5.2.2 CGI 网关程序</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-text">4 电子邮件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E6%A6%82%E8%BF%B0"><span class="toc-text">4.1 电子邮件概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-1-%E7%94%A8%E6%88%B7%E4%BB%A3%E7%90%86-UA%EF%BC%88User-Agent%EF%BC%89"><span class="toc-text">4.1.1 用户代理 UA（User Agent）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-2-%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Mail-Server%EF%BC%89"><span class="toc-text">4.1.2 邮件服务器（Mail Server）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-3-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E7%BB%84%E6%88%90-xD"><span class="toc-text">4.1.3 电子邮件的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-4-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E6%A0%BC%E5%BC%8F-xD"><span class="toc-text">4.1.4 电子邮件地址的格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E7%AE%80%E5%8D%95%E9%82%AE%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE-SMTP"><span class="toc-text">4.2 简单邮件传送协议 SMTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-SMTP-%E9%80%9A%E4%BF%A1%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5-xD"><span class="toc-text">4.2.1 SMTP 通信的三个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="toc-text">4.2.2 连接建立</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E9%82%AE%E4%BB%B6%E4%BC%A0%E9%80%81"><span class="toc-text">4.2.3 邮件传送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE"><span class="toc-text">4.2.4 连接释放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-5-SMTP%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-text">4.2.5 SMTP的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-6-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6%E7%9A%84%E4%BF%A1%E6%81%AF%E6%A0%BC%E5%BC%8F"><span class="toc-text">4.2.6 电子邮件的信息格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E9%82%AE%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%8D%8F%E8%AE%AE-POP3-%E5%92%8C-IMAP"><span class="toc-text">4.3 邮件读取协议 POP3 和 IMAP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-POP3%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.3.1 POP3协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-IMAP-%E5%8D%8F%E8%AE%AE-xD"><span class="toc-text">4.3.2 IMAP 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-2-1-IMAP-%E7%9A%84%E7%89%B9%E7%82%B9-xD"><span class="toc-text">4.3.2.1 IMAP 的特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-IMAP-%E4%B8%8E-POP3-%E6%AF%94%E8%BE%83-xD"><span class="toc-text">4.3.3 IMAP 与 POP3 比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%9F%BA%E4%BA%8E%E4%B8%87%E7%BB%B4%E7%BD%91%E7%9A%84%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="toc-text">4.4 基于万维网的电子邮件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E9%80%9A%E7%94%A8%E4%BA%92%E8%81%94%E7%BD%91%E9%82%AE%E4%BB%B6%E6%89%A9%E5%85%85-MIME"><span class="toc-text">4.5 通用互联网邮件扩充 MIME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-1-MIME-%E6%A6%82%E8%BF%B0"><span class="toc-text">4.5.1 MIME 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-1-MIME-%E5%A2%9E%E5%8A%A0-5-%E4%B8%AA%E6%96%B0%E7%9A%84%E9%82%AE%E4%BB%B6%E9%A6%96%E9%83%A8-xD"><span class="toc-text">4.5.1.1 MIME 增加 5 个新的邮件首部</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-2-%E5%86%85%E5%AE%B9%E4%BC%A0%E9%80%81%E7%BC%96%E7%A0%81-Content-Transfer-Encoding"><span class="toc-text">4.5.2 内容传送编码(Content-Transfer-Encoding)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-1-Quoted-printable-%E7%BC%96%E7%A0%81-xD"><span class="toc-text">4.5.2.1 Quoted-printable 编码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-2-Base64-%E7%BC%96%E7%A0%81-xD"><span class="toc-text">4.5.2.2 Base64 编码</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-3-%E5%86%85%E5%AE%B9%E7%B1%BB%E5%9E%8B"><span class="toc-text">4.5.3 内容类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-1-MIME-Content-Type-%E8%AF%B4%E6%98%8E%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%AD%90%E7%B1%BB%E5%9E%8B-xD"><span class="toc-text">4.5.3.1 MIME Content-Type 说明中的类型及子类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-3-2-MIME-%E4%B8%BE%E4%BE%8B-xD"><span class="toc-text">4.5.3.2 MIME 举例</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E5%8D%8F%E8%AE%AE-DHCP"><span class="toc-text">5 动态主机配置协议 DHCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-DHCP-%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-text">5.1 DHCP 工作方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-DHCP-%E4%B8%AD%E7%BB%A7%E4%BB%A3%E7%90%86-relay-agent-x20"><span class="toc-text">5.2 DHCP 中继代理 (relay agent) </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E7%A7%9F%E7%94%A8%E6%9C%9F-lease-period-x20"><span class="toc-text">5.3 租用期 (lease period) </span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-DHCP-%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">5.4 DHCP 协议的工作过程</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/05/02/5-%E6%95%B0%E6%8D%AE%E9%9B%86/" title="「HFLLM」5-数据集"><img src="https://cdn.mos.cms.futurecdn.net/gHfBJ6FBHKnLbW36hEDvgV.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「HFLLM」5-数据集"/></a><div class="content"><a class="title" href="/2025/05/02/5-%E6%95%B0%E6%8D%AE%E9%9B%86/" title="「HFLLM」5-数据集">「HFLLM」5-数据集</a><time datetime="2025-05-02T08:26:25.000Z" title="发表于 2025-05-02 16:26:25">2025-05-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/05/01/3-%E5%BE%AE%E8%B0%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/" title="「HFLLM」3. 微调预训练模型"><img src="https://venturebeat.com/wp-content/uploads/2023/05/Untitled-design-78.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="「HFLLM」3. 微调预训练模型"/></a><div class="content"><a class="title" href="/2025/05/01/3-%E5%BE%AE%E8%B0%83%E9%A2%84%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B/" title="「HFLLM」3. 微调预训练模型">「HFLLM」3. 微调预训练模型</a><time datetime="2025-05-01T02:51:22.000Z" title="发表于 2025-05-01 10:51:22">2025-05-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
   let create_time = Math.round((new Date(2024, 1, 23).getTime()) / 1000);
   let timestamp = Math.round((new Date().getTime()) / 1000);
   let second = timestamp - create_time;
