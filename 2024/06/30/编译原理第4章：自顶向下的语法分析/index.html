@@ -1,0 +1,435 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>编译原理第4章：自顶向下的语法分析 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 自顶向下分析概述  从分析树的顶部（根节点）向底部（叶节点）方向构造分析树，可以看成是从文法开始符号SSS推导出词串www的过程。  每一步推导中，都需要做两个选择：  替换当前句型中的哪个非终结符 用该非终结符的哪个候选式进行替换  1.1 最左推导 在最左推导中，总是选择每个句型的最左非终结符进行替换。  如果S⇒lm∗α\boldsymbol{S} \Rightarrow{ }_{l m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理第4章：自顶向下的语法分析">
+<meta property="og:url" content="http://zhouzimu.top/2024/06/30/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="诺亚方舟">
+<meta property="og:description" content="1 自顶向下分析概述  从分析树的顶部（根节点）向底部（叶节点）方向构造分析树，可以看成是从文法开始符号SSS推导出词串www的过程。  每一步推导中，都需要做两个选择：  替换当前句型中的哪个非终结符 用该非终结符的哪个候选式进行替换  1.1 最左推导 在最左推导中，总是选择每个句型的最左非终结符进行替换。  如果S⇒lm∗α\boldsymbol{S} \Rightarrow{ }_{l m">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/18595460/38497042-45ebb4d0-3c32-11e8-93a6-23fe52e5a752.png">
+<meta property="article:published_time" content="2024-06-30T13:42:25.000Z">
+<meta property="article:modified_time" content="2025-01-27T11:03:56.000Z">
+<meta property="article:author" content="弘树">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/18595460/38497042-45ebb4d0-3c32-11e8-93a6-23fe52e5a752.png"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://zhouzimu.top/2024/06/30/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 弘树","link":"链接: ","source":"来源: 诺亚方舟","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '编译原理第4章：自顶向下的语法分析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-27 19:03:56'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/tianli_gpt.css"><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://user-images.githubusercontent.com/18595460/38497042-45ebb4d0-3c32-11e8-93a6-23fe52e5a752.png')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">编译原理第4章：自顶向下的语法分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-06-30T13:42:25.000Z" title="发表于 2024-06-30 21:42:25">2024-06-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="编译原理第4章：自顶向下的语法分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>1 自顶向下分析概述</h1>
+<p><img src="image_tEHP2eRtHk.png" alt=""></p>
+<p>从分析树的顶部（根节点）向底部（叶节点）方向构造分析树，可以看成是从文法开始符号<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>推导出词串<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi></mrow><annotation encoding="application/x-tex">w</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span></span></span></span>的过程。</p>
+<p><img src="image_A6OnfpprDm.png" alt=""></p>
+<p>每一步推导中，都需要做两个选择：</p>
+<ol>
+<li>替换当前句型中的哪个非终结符</li>
+<li>用该非终结符的哪个候选式进行替换</li>
+</ol>
+<h2 id="1-1-最左推导">1.1 最左推导</h2>
+<p>在最左推导中，总是选择每个句型的最左非终结符进行替换。</p>
+<p><img src="image_5r5f7DUKYX.png" alt=""></p>
+<p>如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold-italic">S</mi><mo>⇒</mo><msubsup><mrow></mrow><mrow><mi>l</mi><mi>m</mi></mrow><mo lspace="0em" rspace="0em">∗</mo></msubsup><mi mathvariant="bold-italic">α</mi></mrow><annotation encoding="application/x-tex">\boldsymbol{S} \Rightarrow{ }_{l m}^{*} \boldsymbol{\alpha}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68611em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.05382em;">S</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">⇒</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9718039999999999em;vertical-align:-0.2831079999999999em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.688696em;"><span style="top:-2.4168920000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">m</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∗</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2831079999999999em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord"><span class="mord boldsymbol">α</span></span></span></span></span></span>，则称<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>是当前文法的<strong>最左句型</strong>（<code>left-sentential form</code>）。</p>
+<h2 id="1-2-最右推导">1.2 最右推导</h2>
+<p>在最右推导中，总是选择每个句型的最右非终结符进行替换。</p>
+<p><img src="image_oBZYmjGeF_.png" alt=""></p>
+<p>在自底向上的分析中，总是采用最左归约的方式，因此把<strong>最左归约</strong>称为<strong>规范归约</strong>，而<strong>最右推导</strong>相应地称为<strong>规范推导</strong>。</p>
+<h2 id="1-3-最左推导和最右推导的唯一性">1.3 最左推导和最右推导的唯一性</h2>
+<p><img src="image_RykppazbW-.png" alt=""></p>
+<p>如果最左推导和最右推导生成的语法树不是唯一的，那么这个文法就有二义性。</p>
+<h3 id="1-3-1-自顶向下的语法分析采用最左推导方式">1.3.1 自顶向下的语法分析采用最左推导方式</h3>
+<ol>
+<li>总是选择每个句型的最左非终结符进行替换</li>
+<li>根据输入流中的下一个终结符，选择最左非终结符的一个候选式</li>
+</ol>
+<p><img src="image_8p6NTn3ABN.png" alt=""></p>
+<h2 id="1-4-自顶向下语法分析的通用形式">1.4 自顶向下语法分析的通用形式</h2>
+<h3 id="1-4-1-递归下降分析">1.4.1 递归下降分析</h3>
+<ul>
+<li>由一组过程组成，每个过程对应一个非终结符</li>
+<li>从文法开始符号<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>对应的过程开始，其中递归调用文法中其它非终结符对应的过程。如果<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>对应的过程体恰好扫描了整个输入串，则成功完成语法分析</li>
+</ul>
+<p><img src="image_qv6M0C5xF0.png" alt=""></p>
+<h2 id="1-5-预测分析">1.5 预测分析</h2>
+<p>预测分析是递归下降分析技术的一个特例，通过在输入中向前看固定个数（通常是一个）符号来选择正确的A-产生式。</p>
+<p>可以对某些文法构造出向前看<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>个输入符号的预测分析器，该类文法有时也称为<strong>LL(k) 文法类</strong>。</p>
+<p>预测分析<strong>不需要回溯</strong>，是一种确定的自顶向下分析方法。</p>
+<hr>
+<h1>2 文法转换</h1>
+<p>左递归文法会使递归下降分析器陷入无限循环，含有<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>A</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">A→Aα</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>形式产生式的文法称为是<strong>直接左递归</strong>的(immediate left recursive)。</p>
+<p>如果一个文法中有一个非终结符<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>使得对某个串<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">α</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>存在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><msup><mo>⇒</mo><mo lspace="0em" rspace="0em">+</mo></msup><mi>A</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">A \Rightarrow^{+} A \alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.771331em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">⇒</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.771331em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">+</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>，那么这个文法就是<strong>左递归</strong>的。</p>
+<p>经过两步或两步以上推导产生的左递归称为是<strong>间接左递归</strong>的。</p>
+<h2 id="2-1-消除左递归">2.1 消除左递归</h2>
+<h3 id="2-1-1-消除直接左递归">2.1.1 消除直接左递归</h3>
+<p><img src="image_NXoVDIqW8Z.png" alt=""></p>
+<h3 id="2-1-2-消除直接左递归的一般形式">2.1.2 消除直接左递归的一般形式</h3>
+<p><img src="image_IT0PziampE.png" alt=""></p>
+<p>消除左递归是要付出代价的——引进了一些非终结符和ε_产生式。</p>
+<blockquote>
+<p>任何事情都不是两全其美的，当你获得一些东西的时候，必然也会失去其他东西。</p>
+</blockquote>
+<h3 id="2-1-3-消除间接左递归">2.1.3 消除间接左递归</h3>
+<p><img src="image_GFr89ScAY7.png" alt=""></p>
+<h3 id="2-1-4-消除左递归算法">2.1.4 消除左递归算法</h3>
+<p><img src="image_a7nw0jJma3.png" alt=""></p>
+<h2 id="2-2-提取左公因子">2.2 提取左公因子</h2>
+<p>同一非终结符的多个候选式存在共同前缀，或含有左递归将导致回溯现象。</p>
+<p><img src="image_Vo0rpE0IYj.png" alt=""></p>
+<p><img src="image_GzeEns7wrr.png" alt=""></p>
+<h3 id="2-2-1-提取左公因子算法">2.2.1 提取左公因子算法</h3>
+<p><img src="image_93dVEWdjQl.png" alt=""></p>
+<hr>
+<h1>3 LL(1)文法</h1>
+<h2 id="3-1-s-文法">3.1 S_文法</h2>
+<p><strong>预测分析法的工作过程</strong>：</p>
+<p>从文法开始符号出发，在每一步推导过程中根据当前句型的最左非终结符<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>和当前输入符号<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>，选择正确的A-产生式。</p>
+<p>为保证分析的确定性，选出的候选式必须是唯一的。</p>
+<p>S_文法是一种简单的确定性文法，要求如下：</p>
+<ol>
+<li>每个产生式的右部都以终结符开始</li>
+<li>同一非终结符的各个候选式的首终结符都不同</li>
+<li>S_文法不含 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">ε</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span> 产生式</li>
+</ol>
+<p><img src="image_BiGMcHKJvR.png" alt=""></p>
+<h2 id="3-2-非终结符的后继符号集">3.2 非终结符的后继符号集</h2>
+<p>可能在某个句型中紧跟在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>后边的终结符<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">a</span></span></span></span>的集合，记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>O</mi><mi>L</mi><mi>L</mi><mi>O</mi><mi>W</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">FOLLOW(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault">L</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span>。</p>
+<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 104: …n(V_T\cup V_N)^\̲*̲ \\}
+'>	\mathrm{FOLLOW}(A) = \\{ a \mid S\Rightarrow^*\alpha Aa\beta, a \in V_T,\alpha, \beta\in(V_T\cup V_N)^\* \\}
+</p>
+<p>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 是某个句型的最右符号，则将结束符“\$”添加到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>O</mi><mi>L</mi><mi>L</mi><mi>O</mi><mi>W</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">FOLLOW(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault">L</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span> 中。</p>
+<h2 id="3-3-产生式的可选集">3.3 产生式的可选集</h2>
+<p>产生式<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">A→β</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>的可选集是指可以选用该产生式进行推导时对应的输入符号的集合，记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SELECT(A→β)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span></span></span></span>。</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">SELECT</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>a</mi><mi>β</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\operatorname{SELECT}(A \rightarrow a \beta)=\{a\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">S</span><span class="mord mathrm">E</span><span class="mord mathrm">L</span><span class="mord mathrm">E</span><span class="mord mathrm">C</span><span class="mord mathrm">T</span></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">a</span><span class="mclose">}</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">SELECT</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>ε</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>O</mi><mi>L</mi><mi>L</mi><mi>O</mi><mi>W</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\operatorname{SELECT}(A \rightarrow \varepsilon)=F O L L O W(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mord mathrm">S</span><span class="mord mathrm">E</span><span class="mord mathrm">L</span><span class="mord mathrm">E</span><span class="mord mathrm">C</span><span class="mord mathrm">T</span></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ε</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault">L</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<h2 id="3-4-q-文法">3.4 q_文法</h2>
+<ol>
+<li>每个产生式的右部或为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">ε</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span>，或以终结符开始</li>
+<li>具有相同左部的产生式有不相交的可选集</li>
+</ol>
+<p>q_文法不含右部以非终结符开始的产生式。</p>
+<h2 id="3-5-串首终结符集">3.5 串首终结符集</h2>
+<p>串首终结符集：串首第一个符号，并且是终结符，简称首终结符。</p>
+<p>给定一个文法符号串<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">α</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">α</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>的串首终结符集<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">FIRST(α)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>被定义为可以从<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi></mrow><annotation encoding="application/x-tex">α</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>推导出的所有串首终结符构成的集合。</p>
+<p>如果<span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \* at position 4: α ⇒\̲*̲ ε'>α ⇒\* ε</span>，那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">ε</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span>也在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">FIRST(α)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>中。</p>
+<p><img src="image_ydF5aeqvoD.png" alt=""></p>
+<h3 id="3-5-1-计算文法符号x的first-x">3.5.1 计算文法符号X的FIRST(X)</h3>
+<p><img src="image_O7vmrG3O8m.png" alt=""></p>
+<h3 id="3-5-2-算法">3.5.2 算法</h3>
+<p>不断应用下列规则，直到没有新的终结符<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi></mrow><annotation encoding="application/x-tex">ε</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span></span></span></span>可以被加入到任何<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">FIRST</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>集合中为止：</p>
+<p><img src="image_3dS2E65fb5.png" alt=""></p>
+<h3 id="3-5-3-计算非终结符a的follow-a">3.5.3 计算非终结符A的FOLLOW(A)</h3>
+<p><img src="image_AjwPYJkJX6.png" alt=""></p>
+<h3 id="3-5-4-算法">3.5.4 算法</h3>
+<p>不断应用下列规则，直到没有新的终结符可以被加入到任何<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>F</mi><mi>O</mi><mi>L</mi><mi>L</mi><mi>O</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">FOLLOW</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault">L</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>集合中为止：</p>
+<p><img src="image_JS7nPdtyYZ.png" alt=""></p>
+<h2 id="3-6-产生式的可选集的重新定义">3.6 产生式的可选集的重新定义</h2>
+<p>产生式<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>β</mi></mrow><annotation encoding="application/x-tex">A→β</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span></span></span></span>的可选集是指可以选用该产生式进行推导时对应的输入符号的集合，记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>β</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SELECT(A→β)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span></span></span></span>。</p>
+<p>产生式<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>α</mi></mrow><annotation encoding="application/x-tex">A→α</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span></span></span></span>的可选集<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">SELECT</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>：</p>
+<ul>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo mathvariant="normal">∉</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ε∉FIRST(α)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>, 那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>α</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SELECT(A→α) = FIRST(α)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span></li>
+<li>如果 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ε</mi><mo>∈</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">ε∈FIRST(α)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span></span></span></span>, 那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>α</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>F</mi><mi>I</mi><mi>R</mi><mi>S</mi><mi>T</mi><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo><mo>−</mo><mi>ε</mi><mo stretchy="false">)</mo><mo>∪</mo><mi>F</mi><mi>O</mi><mi>L</mi><mi>L</mi><mi>O</mi><mi>W</mi><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">SELECT(A→α)=( FIRST(α)-{ε} )∪FOLLOW(A)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">ε</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault">L</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<h2 id="3-7-ll-1-文法">3.7 LL(1)文法</h2>
+<p>一个上下文无关文法是LL(1)文法的充要条件是，对每个非终结符A的任意两个不同产生式A → α ，A → β ，满足：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>α</mi><mo stretchy="false">)</mo><mo>∩</mo><mi>S</mi><mi>E</mi><mi>L</mi><mi>E</mi><mi>C</mi><mi>T</mi><mo stretchy="false">(</mo><mi>A</mi><mo>→</mo><mi>β</mi><mo stretchy="false">)</mo><mo>=</mo><mi mathvariant="normal">Φ</mi></mrow><annotation encoding="application/x-tex">S E L E C T(A \rightarrow \alpha) \cap S E L E C T(A \rightarrow \beta)=\Phi
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05278em;">β</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Φ</span></span></span></span></span></p>
+<p>其中，α、 β不能同时⇒*ε。</p>
+<p>即：<strong>同一非终结符的各个产生式的可选集互不相交</strong>。</p>
+<ul>
+<li>第一个“L”表示从左向右扫描输入</li>
+<li>第二个“ L”表示产生最左推导</li>
+<li>“1”表示在每一步中只需要向前看一个输入符号来决定语法分析动作</li>
+</ul>
+<p><img src="image_E9Q2l1xcxN.png" alt=""></p>
+<p><img src="image_tPjs5blkj9.png" alt=""></p>
+<p>LL(1)文法的分析方法：</p>
+<ol>
+<li>递归的预测分析法（递归下降LL(1)分析）</li>
+<li>非递归的预测分析法（表驱动的预测分析）</li>
+</ol>
+<hr>
+<h1>4 递归的预测分析法</h1>
+<p>递归的预测分析法是指：在递归下降分析中，根据预测分析表进行产生式的选择。</p>
+<p>根据每个非终结符的产生式和LL(1)文法的预测分析表，为每个非终结符编写对应的过程。</p>
+<p><img src="image_bh5IAj46sb.png" alt=""></p>
+<p><img src="image_dNQbZhcUA7.png" alt=""></p>
+<hr>
+<h1>5 非递归的预测分析法</h1>
+<p>非递归的预测分析<strong>不需要</strong>为每个非终结符<strong>编写递归下降过程</strong>，而是根据预测分析表构造一个<strong>自动机</strong>，也叫<strong>表驱动的预测分析</strong>。</p>
+<p><img src="image_YzsAzkxSK2.png" alt=""></p>
+<p><img src="image_PV1h2aZxOV.png" alt=""></p>
+<p><img src="image_mnYirnLaBD.png" alt=""></p>
+<h2 id="5-1-递归vs非递归">5.1 递归vs非递归</h2>
+<p><img src="image_jPlnisPdiJ.png" alt=""></p>
+<h2 id="5-2-预测分析法实现步骤">5.2 预测分析法实现步骤</h2>
+<ol>
+<li>构造文法</li>
+<li>改造文法：消除二义性、消除左递归、消除回溯</li>
+<li>求每个变量的FIRST集和FOLLOW集，从而求得每个候选式的SELECT集</li>
+<li>检查是不是 LL(1) 文法。若是，构造预测分析表</li>
+<li>对于递归的预测分析，根据预测分析表为每一个非终结符编写一个过程；对于非递归的预测分析，实现表驱动的预测分析算法</li>
+</ol>
+<hr>
+<h1>6 预测分析中的错误处理</h1>
+<p>两种情况下可以检测到错误：</p>
+<ol>
+<li>栈顶非终结符与当前输入符号在预测分析表对应项中的信息为空</li>
+<li>栈顶的终结符和当前输入符号不匹配</li>
+</ol>
+<h2 id="6-1-恐慌模式">6.1 恐慌模式</h2>
+<p>忽略输入中的一些符号，直到输入中出现由设计者选定的同步词法单元(synchronizing token)集合中的某个词法单元。</p>
+<p>其效果依赖于同步集合的选取。集合的选取应该使得语法分析器能从实际遇到的错误中快速恢复。例如可以把FOLLOW(A)中的所有终结符放入非终结符A的同步记号集合。</p>
+<p>如果终结符在栈顶而不能匹配，一个简单的办法就是弹出此终结符。</p>
+<p><img src="image_e1ptdczgek.png" alt=""></p>
+<p><img src="image_1vA8sjscA3.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/06/30/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/">http://zhouzimu.top/2024/06/30/编译原理第4章：自顶向下的语法分析/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="post_share"><div class="social-share" data-image="https://user-images.githubusercontent.com/18595460/38497042-45ebb4d0-3c32-11e8-93a6-23fe52e5a752.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/07/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理第6章：自底向上的语法分析"><img class="cover" src="https://xuan-insr.github.io/assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">编译原理第6章：自底向上的语法分析</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/29/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理第3章：词法分析"><img class="cover" src="https://th.bing.com/th/id/OIP.YCIxjYVpPpM9i4RZz9TWVgAAAA?rs=1&amp;pid=ImgDetMain" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">编译原理第3章：词法分析</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/29/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理第3章：词法分析"><img class="cover" src="https://th.bing.com/th/id/OIP.YCIxjYVpPpM9i4RZz9TWVgAAAA?rs=1&pid=ImgDetMain" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-29</div><div class="title">编译原理第3章：词法分析</div></div></a></div><div><a href="/2024/07/02/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90/" title="编译原理第6章：自底向上的语法分析"><img class="cover" src="https://xuan-insr.github.io/assets/1618581322665-4786f6cd-5978-4608-977e-0676666da18a.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-02</div><div class="title">编译原理第6章：自底向上的语法分析</div></div></a></div><div><a href="/2024/08/28/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%BF%BB%E8%AF%91/" title="编译原理第7章：语法制导翻译"><img class="cover" src="https://i.ytimg.com/vi/-chsZ-4yfHU/maxresdefault.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-28</div><div class="title">编译原理第7章：语法制导翻译</div></div></a></div><div><a href="/2024/08/30/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E7%AC%AC8%E7%AB%A0%EF%BC%9A%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E5%92%8C%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/" title="编译原理第8章：语义分析和中间代码生成"><img class="cover" src="https://pic1.zhimg.com/v2-c6bd4d69eb24c0715b1c17a6237a9dd1_720w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-30</div><div class="title">编译原理第8章：语义分析和中间代码生成</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1 自顶向下分析概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9C%80%E5%B7%A6%E6%8E%A8%E5%AF%BC"><span class="toc-text">1.1 最左推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%9C%80%E5%8F%B3%E6%8E%A8%E5%AF%BC"><span class="toc-text">1.2 最右推导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%9C%80%E5%B7%A6%E6%8E%A8%E5%AF%BC%E5%92%8C%E6%9C%80%E5%8F%B3%E6%8E%A8%E5%AF%BC%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-text">1.3 最左推导和最右推导的唯一性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%87%87%E7%94%A8%E6%9C%80%E5%B7%A6%E6%8E%A8%E5%AF%BC%E6%96%B9%E5%BC%8F"><span class="toc-text">1.3.1 自顶向下的语法分析采用最左推导方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E7%9A%84%E9%80%9A%E7%94%A8%E5%BD%A2%E5%BC%8F"><span class="toc-text">1.4 自顶向下语法分析的通用形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E5%88%86%E6%9E%90"><span class="toc-text">1.4.1 递归下降分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90"><span class="toc-text">1.5 预测分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2 文法转换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%B6%88%E9%99%A4%E5%B7%A6%E9%80%92%E5%BD%92"><span class="toc-text">2.1 消除左递归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E6%B6%88%E9%99%A4%E7%9B%B4%E6%8E%A5%E5%B7%A6%E9%80%92%E5%BD%92"><span class="toc-text">2.1.1 消除直接左递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E6%B6%88%E9%99%A4%E7%9B%B4%E6%8E%A5%E5%B7%A6%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F"><span class="toc-text">2.1.2 消除直接左递归的一般形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E6%B6%88%E9%99%A4%E9%97%B4%E6%8E%A5%E5%B7%A6%E9%80%92%E5%BD%92"><span class="toc-text">2.1.3 消除间接左递归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-%E6%B6%88%E9%99%A4%E5%B7%A6%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95"><span class="toc-text">2.1.4 消除左递归算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8F%90%E5%8F%96%E5%B7%A6%E5%85%AC%E5%9B%A0%E5%AD%90"><span class="toc-text">2.2 提取左公因子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%8F%90%E5%8F%96%E5%B7%A6%E5%85%AC%E5%9B%A0%E5%AD%90%E7%AE%97%E6%B3%95"><span class="toc-text">2.2.1 提取左公因子算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3 LL(1)文法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-s-%E6%96%87%E6%B3%95"><span class="toc-text">3.1 S_文法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E9%9D%9E%E7%BB%88%E7%BB%93%E7%AC%A6%E7%9A%84%E5%90%8E%E7%BB%A7%E7%AC%A6%E5%8F%B7%E9%9B%86"><span class="toc-text">3.2 非终结符的后继符号集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%9A%84%E5%8F%AF%E9%80%89%E9%9B%86"><span class="toc-text">3.3 产生式的可选集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-q-%E6%96%87%E6%B3%95"><span class="toc-text">3.4 q_文法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E4%B8%B2%E9%A6%96%E7%BB%88%E7%BB%93%E7%AC%A6%E9%9B%86"><span class="toc-text">3.5 串首终结符集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%E8%AE%A1%E7%AE%97%E6%96%87%E6%B3%95%E7%AC%A6%E5%8F%B7x%E7%9A%84first-x"><span class="toc-text">3.5.1 计算文法符号X的FIRST(X)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%E7%AE%97%E6%B3%95"><span class="toc-text">3.5.2 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-3-%E8%AE%A1%E7%AE%97%E9%9D%9E%E7%BB%88%E7%BB%93%E7%AC%A6a%E7%9A%84follow-a"><span class="toc-text">3.5.3 计算非终结符A的FOLLOW(A)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-4-%E7%AE%97%E6%B3%95"><span class="toc-text">3.5.4 算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%E4%BA%A7%E7%94%9F%E5%BC%8F%E7%9A%84%E5%8F%AF%E9%80%89%E9%9B%86%E7%9A%84%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89"><span class="toc-text">3.6 产生式的可选集的重新定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-ll-1-%E6%96%87%E6%B3%95"><span class="toc-text">3.7 LL(1)文法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">4 递归的预测分析法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5 非递归的预测分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E9%80%92%E5%BD%92vs%E9%9D%9E%E9%80%92%E5%BD%92"><span class="toc-text">5.1 递归vs非递归</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E9%A2%84%E6%B5%8B%E5%88%86%E6%9E%90%E6%B3%95%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="toc-text">5.2 预测分析法实现步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">6 预测分析中的错误处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E6%81%90%E6%85%8C%E6%A8%A1%E5%BC%8F"><span class="toc-text">6.1 恐慌模式</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling"><img src="https://haowallpaper.com/link/common/file/previewFileImg/16303799969041792" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读8：AutoPooling"/></a><div class="content"><a class="title" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling">论文精读8：AutoPooling</a><time datetime="2025-01-22T09:19:35.000Z" title="发表于 2025-01-22 17:19:35">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN"><img src="https://deeptables.readthedocs.io/en/latest/_images/pnn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读7：PNN"/></a><div class="content"><a class="title" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN">论文精读7：PNN</a><time datetime="2025-01-05T06:59:04.000Z" title="发表于 2025-01-05 14:59:04">2025-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://user-images.githubusercontent.com/18595460/38497042-45ebb4d0-3c32-11e8-93a6-23fe52e5a752.png')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
+  let create_time = Math.round((new Date(2024, 1, 23).getTime()) / 1000);
+  let timestamp = Math.round((new Date().getTime()) / 1000);
+  let second = timestamp - create_time;
+  let time = new Array(0, 0, 0, 0, 0);
+  if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+  }
+  if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+  }
+  if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+  }
+  if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+  }
+  if (second > 0) {
+      time[4] = second;
+  }
+  currentTimeHtml = "本站已安全运行 " +
+      time[0] + " 年 " +
+      (time[1] + 31) + " 天 " +
+      time[2] + " 时 " +
+      time[3] + " 分 " +
+      time[4] + " 秒";
+  document.getElementById("running-time").innerHTML = currentTimeHtml;
+  }, 1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'NoyeArk/noyeark.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><script src="/js/nav.js"></script><script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'iyiSf8ljbaf';</script><script src="/js/tianli_gpt.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>

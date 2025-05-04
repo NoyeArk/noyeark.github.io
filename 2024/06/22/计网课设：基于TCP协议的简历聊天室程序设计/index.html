@@ -1,0 +1,950 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计网课设：基于TCP协议的简历聊天室程序设计 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 题目要求 设计题目：基于TCP协议的简易聊天室程序设计 设计要求：使用Java编程语言，设计并实现一个基于TCP协议的简易聊天室程序。 程序包括服务器端和多个客户端，客户端能够连接到服务器并实现实时的聊天功能。 实现基本的用户登录、消息发送和接收功能。  2 整体架构设计 在线聊天室程序通常采用客户端-服务器（C&#x2F;S）架构设计如图3.1所示，其中服务器端负责管理用户连接、消息传递和群聊管理等核">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网课设：基于TCP协议的简历聊天室程序设计">
+<meta property="og:url" content="http://zhouzimu.top/2024/06/22/%E8%AE%A1%E7%BD%91%E8%AF%BE%E8%AE%BE%EF%BC%9A%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8E%86%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:site_name" content="诺亚方舟">
+<meta property="og:description" content="1 题目要求 设计题目：基于TCP协议的简易聊天室程序设计 设计要求：使用Java编程语言，设计并实现一个基于TCP协议的简易聊天室程序。 程序包括服务器端和多个客户端，客户端能够连接到服务器并实现实时的聊天功能。 实现基本的用户登录、消息发送和接收功能。  2 整体架构设计 在线聊天室程序通常采用客户端-服务器（C&#x2F;S）架构设计如图3.1所示，其中服务器端负责管理用户连接、消息传递和群聊管理等核">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2">
+<meta property="article:published_time" content="2024-06-22T07:28:54.000Z">
+<meta property="article:modified_time" content="2024-07-17T09:45:59.000Z">
+<meta property="article:author" content="弘树">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://zhouzimu.top/2024/06/22/%E8%AE%A1%E7%BD%91%E8%AF%BE%E8%AE%BE%EF%BC%9A%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8E%86%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 弘树","link":"链接: ","source":"来源: 诺亚方舟","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计网课设：基于TCP协议的简历聊天室程序设计',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-17 17:45:59'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/tianli_gpt.css"><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网课设：基于TCP协议的简历聊天室程序设计</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-06-22T07:28:54.000Z" title="发表于 2024-06-22 15:28:54">2024-06-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>25分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网课设：基于TCP协议的简历聊天室程序设计"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>1 题目要求</h1>
+<p>设计题目：基于TCP协议的简易聊天室程序设计</p>
+<p>设计要求：使用<strong>Java</strong>编程语言，设计并实现一个基于TCP协议的简易聊天室程序。</p>
+<p>程序包括<strong>服务器端和多个客户端</strong>，客户端能够连接到服务器并实现实时的聊天功能。</p>
+<p>实现基本的用户登录、消息发送和接收功能。</p>
+<hr>
+<h1>2 整体架构设计</h1>
+<p>在线聊天室程序通常采用客户端-服务器（C/S）架构设计如图3.1所示，其中服务器端负责管理用户连接、消息传递和群聊管理等核心功能，而客户端则提供用户界面，允许用户登录、发送消息和接收其他用户消息。</p>
+<p><img src="image_a4pQVSRyGa.png" alt=""></p>
+<center>图3.1  TCP聊天室系统架构图</center>
+<p>当设计一个聊天室程序时，除了客户端-服务器（C/S）架构外，通常还涉及到服务器与数据库的交互部分。服务器需要与数据库交互来存储用户的用户名和账号信息。</p>
+<h2 id="2-1-服务器端设计">2.1 服务器端设计</h2>
+<p>在日常生活中，服务器通常要同时接收来自客户端的多个请求，需要同时为这些客户端提供它们想要的服务，因此服务器端通常采用多线程或异步IO等技术，以支持多个客户端同时连接和消息处理。</p>
+<p>在此次课程设计任务中，服务器实现的核心功能列举如下：</p>
+<ol>
+<li>**接受和管理连接：**服务器通过绑定到特定端口的ServerSocket监听客户端连接请求，每当有新的连接请求时，创建一个新的线程用于处理服务器与该客户端的连接。</li>
+<li>**用户认证：**每当有客户端发出登录请求时，服务器需要验证客户端提供的用户名和密码是否存在以及是否正确，以确保用户身份的安全性和合法性。</li>
+<li>**消息接收和转发：**当用户登录成功之后，需要和其他用户发送消息，此时服务器需要接收来自客户端的消息，根据目标用户或聊天室的不同，将消息发送给特定的客户端或所有连接的客户端（群发）。</li>
+<li>**用户管理：**维护当前所有在线用户的状态，管理用户的发言权，当发现用户出现在聊天中使用言语或行为对其他用户进行恶意攻击时等行为时，应当对其进行禁言处理或者强制下线处理，防止对其他用户造成影响，也可以对指定用户解除禁言。</li>
+<li>**消息日志：**日志记录可以帮助开发人员追踪和诊断服务器或客户端的问题。同时掌握每个客户端的行为，了解用户行为模式和使用习惯，从而优化产品功能和用户体验。</li>
+</ol>
+<h2 id="2-2-客户端设计">2.2 客户端设计</h2>
+<p>客户端主要用于处理用户的请求，以及与服务器端进行信息的交互，并且客户端的用户界面设计应考虑到用户友好性和操作便捷性，客户端实现的核心功能如下：</p>
+<ol>
+<li>**登录功能：**登录界面主要为用户提供输入用户名和密码进行登录，用户点击登录后将登录信息发送给服务器，以进行用户身份的核验。</li>
+<li>**聊天功能：**聊天功能是这个设计过程中最重要的部分，用户在成功登录后，进入聊天界面，可以和当前其他的在线用户进行群聊或者进行私聊，以及确保用户可以即时地接收到其他用户发送的消息，并在界面上实时显示。</li>
+</ol>
+<h2 id="2-3-数据库设计">2.3 数据库设计</h2>
+<p>在本次课程设计任务中，使用MySQL数据库来存储用户的登录信息，包括用户名和对应的密码。具体实现是通过创建一个名为user的表来完成，该表包含两个主要列，分别用于存储用户名（username）和密码（password）。这样设计的主要目的是在用户登录时能够有效地验证其身份信息。</p>
+<hr>
+<h1>3 TCP协议</h1>
+<p>当一个用户给其他用户发送消息时，应保证消息的完整性，因此在传输层采用TCP协议实现可靠传输。TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层协议。它是互联网协议套件中最核心的协议之一，确保了数据在网络中的可靠传输。</p>
+<h2 id="3-1-面向连接">3.1 面向连接</h2>
+<p>在通信之前，TCP需要先建立连接，这包括3次握手过程（SYN、SYN-ACK、ACK），确保通信双方能够彼此确认并准备好数据传输。在用户聊天结束后应该释放连接。TCP协议通过4次握手释放连接，确保双方安全地关闭连接，避免数据丢失或冗余传输。</p>
+<h2 id="3-2-tcp连接的端点是socket">3.2 TCP连接的端点是Socket</h2>
+<p>每一条TCP连接唯一地被通信两端的两个套接字（Socket）所确定。每一个Socket由主机的IP地址和端口号构成，其中IP地址用来在整个互联网中标识一个主机，端口号用于在一个主机的若干进程中标识指定的进程。通过Socket，同一主机、不同主机的应用进程之间可以通过不同的端口号进行通信。TCP协议确保了数据传输的可靠性和安全性。</p>
+<hr>
+<h1>4 通信消息格式设计</h1>
+<p>在设计服务器和客户端之间的通信消息格式时，重要的考虑因素包括消息的结构化、易解析性和扩展性。因此将通信的消息分为消息头和消息体部分，消息头用于标识消息的用途或操作类型，类型为字符串（String）；消息体是实际传输的数据载荷，类型为字符串（String）。</p>
+<h2 id="4-1-消息头">4.1 消息头</h2>
+<p>消息头通常用于标识消息的用途或操作类型。类型为字符串（String），它可以包括诸如命令、指令、请求类型等信息。通过消息头，服务器和客户端可以快速识别消息的意图，从而决定下一步要执行的操作。如表3.1所示，在消息头的设计中包含8种类型以及对应的关键字。</p>
+<center>表3.1  消息头种类</center>
+<table>
+<thead>
+<tr>
+<th>关键字
+</th>
+<th>作用
+</th>
+<th>解释
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loginRequest
+</td>
+<td>登录请求
+</td>
+<td>客户端向服务器发出登录请求
+</td>
+</tr>
+<tr>
+<td>loginReply
+</td>
+<td>登录回复
+</td>
+<td>服务器对客户端发送的登录请求进行回复
+</td>
+</tr>
+<tr>
+<td>public
+</td>
+<td>群聊消息
+</td>
+<td>一个用户发送一条群聊消息
+</td>
+</tr>
+<tr>
+<td>private
+</td>
+<td>私聊消息
+</td>
+<td>一个用户对指定的用户发送一条私聊消息
+</td>
+</tr>
+<tr>
+<td>mute
+</td>
+<td>禁言
+</td>
+<td>服务器将指定用户禁言
+</td>
+</tr>
+<tr>
+<td>dismute
+</td>
+<td>解除禁言
+</td>
+<td>服务器将指定用户解除禁言
+</td>
+</tr>
+<tr>
+<td>delete
+</td>
+<td>通知有用户下线
+</td>
+<td>从客户端的在线用户列表中删除下线用户
+</td>
+</tr>
+<tr>
+<td>exit
+</td>
+<td>强制用户下线
+</td>
+<td>服务器将指定用户强制下线
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-2-消息体">4.2 消息体</h2>
+<p>消息体则是实际传输的数据载荷，也以字符串（String）类型为主。消息体包含了具体的数据信息，例如文本内容、文件内容、数据结构等，这些数据是根据消息头指示的操作类型而传输的。对不同消息头的消息体分析如下：</p>
+<ol>
+<li>**消息头为loginRequest：**消息体包含用户名和密码登录凭证信息。</li>
+<li>**消息头为loginReply：**消息体分为“true”和“false”两种信息，“true”表示身份信息核验通过，允许用户登录。否则不允许登录。</li>
+<li>**消息头为public：**消息体为用户发送消息的主体内容，将其消息体的内容显示在群聊窗口中。</li>
+<li>**消息头为private：**此时消息体是一个结构化的内容，分别用户名和对应的消息内容主体。</li>
+<li>**消息头为delete：**消息体中包含下线用户的用户名，需要将其从在线用户列表中进行删除。</li>
+<li>**消息头为mute、dismute和exit：**此时消息体为空，分别执行用户禁言和解除禁言操作。</li>
+</ol>
+<p>通过合理设计和使用消息头和消息体，可以实现服务器和客户端之间的有效通信和数据交换。消息头提供了关键的元数据信息，帮助接收方正确解析消息；消息体则承载了具体的业务数据或操作结果。这种设计不仅能够满足各种通信场景的需求，还能保证通信的安全性、可靠性和扩展性。</p>
+<hr>
+<h1>5 数据库交互功能设计</h1>
+<p>在Java语言中，通常使用JDBC（Java Database Connectivity）与数据库进行交互。JDBC作为Java语言中与关系型数据库交互的标准API，提供了开发和维护数据库应用程序的基础设施。通过合理地利用JDBC的各种功能和特性，开发人员能够实现高效、可靠和安全的数据库操作，从而满足复杂的业务需求和性能要求。</p>
+<p>在JDBC的基础上，实现了一个用于操作数据库的Java类DatabaseConnect，主要用于连接到MySQL数据库，并提供了查询和插入操作的功能，其中包含的变量如表3.2所示。</p>
+<center>表3.2  DatabaseConnect类中的变量</center>
+<table>
+<thead>
+<tr>
+<th>变量名
+</th>
+<th>变量类型
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sql
+</td>
+<td>String
+</td>
+<td>用于存储SQL语句
+</td>
+</tr>
+<tr>
+<td>stmt
+</td>
+<td>Statement
+</td>
+<td>用于执行SQL语句的Statement对象
+</td>
+</tr>
+<tr>
+<td>conn
+</td>
+<td>Connection
+</td>
+<td>数据库连接对象
+</td>
+</tr>
+</tbody>
+</table>
+<p>表3.3列举了DatabaseConnect类中定义的方法。通过这些方法，可以实现基本的用户身份验证和数据记录功能。同时，通过异常处理，确保程序在面对异常情况时能够正确地处理并提供错误信息。</p>
+<center>表3.3  DatabaseConnect类中的方法</center>
+<table>
+<thead>
+<tr>
+<th>方法名
+</th>
+<th>返回值类型
+</th>
+<th>参数列表
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DatabaseConnect
+</td>
+<td>无返回值
+</td>
+<td>无
+</td>
+<td>注册JDBC驱动，建立数据库连接，实例话Statement对象
+</td>
+</tr>
+<tr>
+<td>query
+</td>
+<td>boolean
+</td>
+<td>String username
+String password
+</td>
+<td>查询数据库中指定用户名的密码，并验证密码是否匹配
+</td>
+</tr>
+<tr>
+<td>insert
+</td>
+<td>boolean
+</td>
+<td>String username
+String password
+</td>
+<td>向数据库中插入新的用户名和密码记录
+</td>
+</tr>
+</tbody>
+</table>
+<p>DatabaseConnect类的代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DatabaseConnect</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> String sql;</span><br><span class="line">    <span class="keyword">private</span> Statement stmt;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DatabaseConnect</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 注册JDBC驱动程序</span></span><br><span class="line">            Class.forName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 打开连接</span></span><br><span class="line">            System.out.println(<span class="string">&quot;连接到数据库...&quot;</span>);</span><br><span class="line">            conn = DriverManager.getConnection(<span class="string">&quot;jdbc:mysql://localhost:3306/db_stu?useSSL=false&quot;</span>,<span class="string">&quot;root&quot;</span>,<span class="string">&quot;root&quot;</span>);</span><br><span class="line">            stmt = conn.createStatement();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException se) &#123;</span><br><span class="line">            <span class="comment">// 处理JDBC错误</span></span><br><span class="line">            se.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">// 处理Class.forName错误</span></span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">query</span><span class="params">(String username, String password)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="comment">// 执行查询</span></span><br><span class="line">        System.out.println(<span class="string">&quot;查询username为&quot;</span> + username);</span><br><span class="line"></span><br><span class="line">        sql = <span class="string">&quot;SELECT password FROM user where username=&#x27;&quot;</span> + username + <span class="string">&quot;&#x27;&quot;</span>;</span><br><span class="line">        <span class="type">ResultSet</span> <span class="variable">rs</span> <span class="operator">=</span> stmt.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理结果集</span></span><br><span class="line">        <span class="keyword">if</span> (rs.next()) &#123;</span><br><span class="line">            <span class="comment">// 检索每列</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">pwd</span> <span class="operator">=</span> rs.getString(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 清理环境</span></span><br><span class="line">            rs.close();</span><br><span class="line">            stmt.close();</span><br><span class="line">            <span class="keyword">return</span> password.equals(pwd);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 清理环境</span></span><br><span class="line">        rs.close();</span><br><span class="line">        stmt.close();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">insert</span><span class="params">(String username, String password)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        sql = <span class="string">&quot;INSERT INTO user values(&#x27;&quot;</span> + username + <span class="string">&quot;&#x27; ,&#x27;&quot;</span> + password + <span class="string">&quot;&#x27;);&quot;</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">rowsAffected</span> <span class="operator">=</span> stmt.executeUpdate(sql);</span><br><span class="line">        <span class="keyword">return</span> rowsAffected &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用JDBC之前，首先需要加载适当的数据库驱动程序。每个数据库厂商都提供了自己的JDBC驱动程序，它们通常都实现了java.sql.Driver接口。之后通过DriverManager.getConnection()方法建立与数据库的连接。需要提供数据库的URL、用户名和密码。连接建立后，可以创建Connection对象来执行SQL语句和管理事务。并创建Statement或PreparedStatement对象，用于执行SQL查询、更新或删除操作。</p>
+<p>通过执行SQL查询语句后返回的ResultSet对象来处理查询结果。ResultSet提供了对查询结果集的遍历和访问方法，可以通过列名或索引获取具体的数据值。在完成数据库操作后，需要显式关闭Connection、Statement、PreparedStatement和ResultSet等对象，以释放数据库资源并避免内存泄漏。</p>
+<hr>
+<h1>6 界面绘制</h1>
+<p>在界面绘制部分，包括客户端登录界面、客户端聊天界面以及服务器管理界面的设计，使用Java Swing工具进行开发。Java Swing是Java提供的一个GUI工具包，用于创建跨平台的桌面应用程序。它提供了丰富的组件和布局管理器，使开发者能够灵活地设计和布局用户界面。</p>
+<p>在Swing中，提供了很多封装好的组件（Component）和布局管理器（Layout Manager），其中组件包括按钮（JButton）、标签（JLabel）和文本框（JTextArea）等；布局管理器用来确定组件在容器中的位置和大小，确保界面在不同平台和窗口大小下的一致性和美观性。常见的布局管理器包括FlowLayout、BorderLayout、GridLayout和GridBagLayout。</p>
+<p>此外，在界面设计中还使用了事件监听器（Listener）来处理用户操作，比如处理用户点击按钮、用户选择私聊对象等事件，通过使用上述基本组件、布局和事件设计来完成此次界面的开发。</p>
+<hr>
+<h1>7 Socket编程实现聊天功能</h1>
+<h2 id="7-1-server类实现">7.1 Server类实现</h2>
+<p>Server类是一个实现服务器端功能的Java类，主要用于管理和处理多个客户端的连接和通信。该类包含两个重要的内部类：ClientAgent和ServerUI，它们分别负责处理客户端连接和管理服务器的用户界面。</p>
+<p>表3.4描述了Server类中的变量，通过这些变量来帮助服务器管理和处理来自多个客户端的请求和消息。</p>
+<center>表3.4  Server类中的变量</center>
+<table>
+<thead>
+<tr>
+<th>变量名
+</th>
+<th>变量类型
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ui
+</td>
+<td>ServerUI
+</td>
+<td>控制界面相关信息显示
+</td>
+</tr>
+<tr>
+<td>db
+</td>
+<td>DatabaseConnect
+</td>
+<td>与数据库进行交互
+</td>
+</tr>
+<tr>
+<td>serverSocket
+</td>
+<td>ServerSocket
+</td>
+<td>监听是否有客户端发送请求
+</td>
+</tr>
+<tr>
+<td>mp
+</td>
+<td>Map&lt;Socket, String&gt;
+</td>
+<td>建立socket和用户姓名之间的映射
+</td>
+</tr>
+<tr>
+<td>clients
+</td>
+<td>List&lt;ClientAgent&gt;
+</td>
+<td>保存当前所有在线用户的socket
+</td>
+</tr>
+</tbody>
+</table>
+<p>表3.5描述了Server类中的方法，这些方法共同组成了Server类的功能，实现了服务器端的核心逻辑：监听客户端连接、管理多个客户端的通信、处理消息广播和动态客户端管理等。</p>
+<center>表3.5  Server类中的方法</center>
+<table>
+<thead>
+<tr>
+<th>方法名
+</th>
+<th>返回值类型
+</th>
+<th>参数列表
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server
+</td>
+<td>无返回值
+</td>
+<td>Int port
+</td>
+<td>在port端口创建一个Socket套接字，创建界面
+</td>
+</tr>
+<tr>
+<td>listen
+</td>
+<td>void
+</td>
+<td>无
+</td>
+<td>监听客户端连接请求
+</td>
+</tr>
+<tr>
+<td>broadcastMessage
+</td>
+<td>void
+</td>
+<td>String message
+ClientAgent me
+</td>
+<td>向出了发送方me外其他客户端广播消息message
+</td>
+</tr>
+</tbody>
+</table>
+<p>在listen方法中，服务器端开放一个端口号不断监听从客户端发送的请求，使用java语言中的Socket类。Socket类位于java.net包中，提供了客户端和服务器之间进行通信的能力，支持基于TCP协议的网络通信。</p>
+<p>Server类服务器的设计逻辑如下：首先使用Socket类创建客户端或服务器端的套接字对象。客户端通过Socket发送请求到服务器的指定地址和端口，服务器接受客户端的连接请求并创建一个ClientAgent客户端代理对象用于处理之后该客户端的请求。</p>
+<p>Server类中监听来自客户端请求的核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 服务器创建socket</span></span><br><span class="line"><span class="type">ServerSocket</span> <span class="variable">serverSocket</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(port);</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">// 等待客户端进行连接</span></span><br><span class="line">    <span class="type">Socket</span> <span class="variable">socket</span> <span class="operator">=</span> serverSocket.accept();</span><br><span class="line">    System.out.println(<span class="string">&quot;新的客户端发送请求：&quot;</span> + socket);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个新的线程用于处理客户的请求</span></span><br><span class="line">    <span class="type">ClientAgent</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClientAgent</span>(socket);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加到当前所有用户请求的列表中</span></span><br><span class="line">    clients.add(client);</span><br><span class="line">    client.start();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之后服务器不断监听是否有客户端向当前的Socket发送请求，如果检测到有请求，则创建一个新的线程类的实例化对象client处理这个客户端的请求，之后继续监听是否有其他客户端发送请求。</p>
+<h2 id="7-2-内部类clientagent的实现">7.2 内部类ClientAgent的实现</h2>
+<p>ClientAgent是Server类中的一个重要的内部线程类，主要负责处理服务器与单个客户端之间的通信。表3.6展示了其中的私有变量，具体变量类型和作用如下所示。</p>
+<center>表3.6  ClientAgent类中的变量</center>
+<table>
+<thead>
+<tr>
+<th>变量名
+</th>
+<th>变量类型
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>myName
+</td>
+<td>String
+</td>
+<td>用于存储当前socket对应的用户名
+</td>
+</tr>
+<tr>
+<td>socket
+</td>
+<td>Socket
+</td>
+<td>负责处理的客户端socket
+</td>
+</tr>
+<tr>
+<td>send
+</td>
+<td>PrintWriter
+</td>
+<td>用于向客户端发送消息
+</td>
+</tr>
+<tr>
+<td>receive
+</td>
+<td>BufferedReader
+</td>
+<td>用于从客户端接收消息
+</td>
+</tr>
+</tbody>
+</table>
+<p>同时定义了表3.7中的方法，来有效地处理客户端的连接、登录、消息收发等操作，保证了服务器与客户端之间的稳定通信和用户管理功能。</p>
+<center>表3.7  ClientAgent类中的方法</center>
+<table>
+<thead>
+<tr>
+<th>方法名
+</th>
+<th>返回值类型
+</th>
+<th>参数列表
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ClientAgent
+</td>
+<td>无返回值
+</td>
+<td>Socket socket
+</td>
+<td>实例化与客户端通信所需的变量socket、send和receive
+</td>
+</tr>
+<tr>
+<td>login
+</td>
+<td>void
+</td>
+<td>String username
+String password
+</td>
+<td>处理客户端的登录请求
+</td>
+</tr>
+<tr>
+<td>exit
+</td>
+<td>void
+</td>
+<td>String username
+</td>
+<td>处理客户端的退出请求
+</td>
+</tr>
+<tr>
+<td>privateChat
+</td>
+<td>void
+</td>
+<td>String username
+String message
+</td>
+<td>处理客户端的私聊消息
+</td>
+</tr>
+<tr>
+<td>run
+</td>
+<td>void
+</td>
+<td>无
+</td>
+<td>根据客户端发送消息的消息头类型进行逻辑处理
+</td>
+</tr>
+</tbody>
+</table>
+<p>在上述方法中，最重要的是run方法的实现。在run方法中，通过reverive.readLine()不断读取客户端发送的消息，直到客户端断开连接。如果收到客户端发送的消息，根据消息头的类型进行逻辑处理。</p>
+<p>同时，应当捕获可能的异常并及时输出错误信息。最终，在客户端断开连接时，执行清理工作：退出用户、关闭流和socket，并从在线用户clients列表中移除当前ClientAgent实例，核心代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 用于接受当前socket客户端发送的消息</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String message;</span><br><span class="line">        <span class="keyword">while</span> ((message = receive.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 解析客户端发送的消息类型</span></span><br><span class="line">            <span class="keyword">if</span> (message.contains(<span class="string">&quot;message:&quot;</span>)) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">content</span> <span class="operator">=</span> mp.get(socket) + <span class="string">&quot;：&quot;</span> + message.substring(<span class="number">8</span>);</span><br><span class="line">                <span class="comment">// 收到客户端消息，广播给所有客户端</span></span><br><span class="line">                broadcastMessage(content, <span class="built_in">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">st</span> <span class="operator">=</span> message.indexOf(<span class="string">&quot;:&quot;</span>);</span><br><span class="line">                <span class="type">int</span> <span class="variable">ed</span> <span class="operator">=</span> message.indexOf(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> message.substring(st + <span class="number">1</span>, ed);</span><br><span class="line">                <span class="type">String</span> <span class="variable">pwdOrMsg</span> <span class="operator">=</span> message.substring(ed + <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span> (message.contains(<span class="string">&quot;loginRequest:&quot;</span>))</span><br><span class="line">                    login(username, pwdOrMsg);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    privateChat(username, pwdOrMsg);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Error handling client: &quot;</span> + e.getMessage());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> mp.get(socket);</span><br><span class="line">            exit(username);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 关闭流和socket</span></span><br><span class="line">            send.close();</span><br><span class="line">            receive.close();</span><br><span class="line">            socket.close();</span><br><span class="line">            clients.remove(<span class="built_in">this</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;用户断开连接: &quot;</span> + socket);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Error closing client: &quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="7-3-client类实现">7.3 Client类实现</h2>
+<p>Client类是一个基于Java Swing的客户端应用程序，用于实现在线聊天系统的功能，其中包含内部类ServerAgent用于处理来自服务器的消息。</p>
+<center>表3.8  Client类中的变量</center>
+<table>
+<thead>
+<tr>
+<th>变量名
+</th>
+<th>变量类型
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>socket
+</td>
+<td>Socket
+</td>
+<td>用于与server进行通信的套接字
+</td>
+</tr>
+<tr>
+<td>receive
+</td>
+<td>BufferReader
+</td>
+<td>用于从服务器接收消息
+</td>
+</tr>
+<tr>
+<td>send
+</td>
+<td>PrintWriter
+</td>
+<td>用于向服务器发送消息
+</td>
+</tr>
+<tr>
+<td>chatUserName
+</td>
+<td>String
+</td>
+<td>当前要进行私聊的用户名
+</td>
+</tr>
+</tbody>
+</table>
+<p>如表3.9所示，在Client类中，有以下关键方法用于实现客户端的核心功能。</p>
+<center>表3.9  Client类中的方法</center>
+<table>
+<thead>
+<tr>
+<th>方法名
+</th>
+<th>返回值类型
+</th>
+<th>参数列表
+</th>
+<th>作用
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Client
+</td>
+<td>无返回值
+</td>
+<td>无
+</td>
+<td>实例化与服务器通信所需的变量socket、send和receive
+</td>
+</tr>
+<tr>
+<td>loginCheck
+</td>
+<td>boolean
+</td>
+<td>String username
+String password
+</td>
+<td>发送用户登录请求到服务器，并等待服务器返回登录结果
+</td>
+</tr>
+<tr>
+<td>loginSuccess
+</td>
+<td>void
+</td>
+<td>String username
+</td>
+<td>显示聊天界面，并启动新线程用于接收服务器发送的消息
+</td>
+</tr>
+<tr>
+<td>createUI
+</td>
+<td>void
+</td>
+<td>String username
+</td>
+<td>处理客户端的私聊消息
+</td>
+</tr>
+<tr>
+<td>newChatArea
+</td>
+<td>void
+</td>
+<td>无
+</td>
+<td>创建用户界面
+</td>
+</tr>
+<tr>
+<td>sendMessage
+</td>
+<td>void
+</td>
+<td>无
+</td>
+<td>发送消息给服务器
+</td>
+</tr>
+<tr>
+<td>newMessage
+</td>
+<td>void
+</td>
+<td>String message
+</td>
+<td>处理接收到的新消息
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-4-内部类serveragent的实现">7.4 内部类ServerAgent的实现</h2>
+<p>在Client类中，最重要的是ServerAgent类的实现。ServerAgent类通过继承Thread类，实现了多线程处理接收服务器消息的功能。</p>
+<p>在ServerAgent类定义了一个run方法，通过循环持续接收消息，并根据消息内容动态调整客户端的行为和界面显示，实现了与服务器端的实时通信和状态同步。其中使用了try-catch块捕获IOException异常，在捕获到异常时，抛出RuntimeException并传递原始异常对象，以便进行异常处理或记录。</p>
+<p>ServerAgent类的代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ServerAgent</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        String message;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> ((message = receive.readLine()) == <span class="literal">null</span>) <span class="keyword">break</span>;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 打印接收到的消息</span></span><br><span class="line">            System.out.println(message);</span><br><span class="line">            <span class="comment">// 判断客户端收到的信息类型</span></span><br><span class="line">            <span class="comment">// 1.新用户上线</span></span><br><span class="line">            <span class="keyword">if</span> (message.contains(<span class="string">&quot;new:&quot;</span>)) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">newUserName</span> <span class="operator">=</span> message.substring(<span class="number">4</span>);</span><br><span class="line">                newUserLogin(newUserName);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 2.有用户下线</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (message.contains(<span class="string">&quot;delete:&quot;</span>)) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> message.substring(<span class="number">7</span>);</span><br><span class="line">                removeUser(username);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 3.强制下线</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (message.contains(<span class="string">&quot;exit&quot;</span>)) &#123;</span><br><span class="line">                dispose();</span><br><span class="line">                <span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 4.解除禁言</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (message.contains(<span class="string">&quot;dismute&quot;</span>)) &#123;</span><br><span class="line">                sendButton.setEnabled(<span class="literal">true</span>);</span><br><span class="line">                chatButton.setEnabled(<span class="literal">true</span>);</span><br><span class="line">                sendButton.setText(<span class="string">&quot;发送消息&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 5.禁言</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (message.contains(<span class="string">&quot;mute&quot;</span>)) &#123;</span><br><span class="line">                sendButton.setEnabled(<span class="literal">false</span>);</span><br><span class="line">                chatButton.setEnabled(<span class="literal">false</span>);</span><br><span class="line">                sendButton.setText(<span class="string">&quot;禁言中&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 6.聊天消息</span></span><br><span class="line">            <span class="keyword">else</span> newMessage(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1>8 程序演示</h1>
+<p>在程序演示部分创建1个服务器端和2个客户端进行测试，以演示多个客户端同时与服务器通信和聊天功能测试的情况。</p>
+<h2 id="8-1-客户端注册和登录功能演示">8.1 客户端注册和登录功能演示</h2>
+<p>启动在线聊天室程序后，登录界面如图3.2所示。</p>
+<p><img src="image_NQSUl3Fhpd.jpeg" alt=""></p>
+<center>图3.2  在线聊天室登录界面</center>
+<p>当用户第一次登录在线聊天程序时，需要注册对应的用户名和密码，即点击“注册”按钮进行用户的注册，如图3.3所示。</p>
+<p><img src="image_1_5LzhEutMu5.jpeg" alt=""></p>
+<center>图3.3  在线聊天室注册界面</center>
+<p>输入用户名和密码，点击“注册”，之后系统会提示是否注册成功，注册成功后可以在登录界面输入刚才注册的用户名和密码进行登录。如图3.4所示，当用户名和密码正确时，会提示登录成功。</p>
+<p><img src="image_2_QjXYngnVRB.jpeg" alt=""></p>
+<center>图3.4  登录成功</center>
+<p>登录成功之后会进入到聊天界面，此时用户可以选择和其他用户进行群聊或私聊，如图3.5所示。</p>
+<p><img src="image_wwhBQAiKp5.png" alt=""></p>
+<center>图3.5  1个用户的客户端界面</center>
+<p>同时，从图3.5可以看到当前用户为202113115，并且此时只有一个用户。这里再注册一个用户进行测试，同样登录进入到聊天界面如图3.6所示。此时由于用户202113115在线，所以在用户1的其他在线用户中会显示用户202113115的存在。同样在用户202113115的其他用户列表中也会显示用户1在线。</p>
+<p><img src="image_1_HggVJWwZlM.png" alt=""></p>
+<center>图3.6  2个用户的客户端界面</center>
+<p>查看数据库中是否有对应的用户名和密码，如图3.7所示，发现此时MySQL数据库中存在已经两个用户注册的用户名和密码，说明程序对数据库的操作正确。</p>
+<p><img src="image_2_8vJFCQadVH.png" alt=""></p>
+<center>图3.7  数据库中存储的数据</center>
+<h2 id="8-2-客户端群聊功能演示">8.2 客户端群聊功能演示</h2>
+<p>客户端群聊功能是一个典型的网络应用场景，通常涉及多个用户通过网络连接在同一个聊天室或频道中进行即时通讯。当用户1在群聊窗口中发送一个消息时，其他所有用户都能够收到这条消息，演示结果如图3.8所示。</p>
+<p><img src="image_3_bZv9_rg4wf.png" alt=""></p>
+<center>图3.8  群聊功能</center>
+<h2 id="8-3-客户端私聊功能演示">8.3 客户端私聊功能演示</h2>
+<p>客户端私聊功能与群聊功能有所不同，因为它需要指定接收者，而不是简单地将消息广播给所有连接的客户端，所以私聊功能需要进行额外的设计，同时私聊时应当单独打开一个聊天窗口，而不应该在群聊窗口中进行显示，。</p>
+<p>用户1可以在左侧的其他在线用户列表中选择要进行私聊的用户，这里选择用户202113115，之后点击左侧“选定用户私聊”的按钮，即可开启一个和用户202113115私聊的窗口。此时，用户1和用户202113115的聊天内容除了他们其他人室看不见的，演示结果如图3.9所示。</p>
+<p><img src="image_4_dSeYFyi0SF.png" alt=""></p>
+<center>图3.9  私聊功能</center>
+<h2 id="8-4-服务器消息日志功能演示">8.4 服务器消息日志功能演示</h2>
+<p>由图3.10可以看到，服务器的界面有查看用户消息日志、查看在线用户、对指定的用户强制下线、禁言和解除禁言的功能。通过这些功能可以了解系统负载和活跃度，同时在发现恶意行为、违反规定或其他紧急情况下，管理员可以立即将用户强制下线或进行禁言，有助于维护在线聊天室的秩序和安全，提升了管理员对系统运行状态和用户活动的可视化和控制能力。</p>
+<p>经过前面演示操作后的消息日志如图3.10所示，可以看到在服务器端能够看到所有用户的行为，例如所有用户的登录和注册。</p>
+<p><img src="image_5_N3nYDwHGlm.png" alt=""></p>
+<center>图3.10  服务器界面</center>
+<h2 id="8-5-服务器禁言功能演示">8.5 服务器禁言功能演示</h2>
+<p>在服务器端可以对右侧在线用户中指定的用户进行禁言功能，防止有些用户发表不正当言论等行为，具体操作是点击一个用户后，点击底部中间的“禁言”按钮，结果如图3.11所示。</p>
+<p><img src="image_6_k5QlFe-IAA.png" alt=""></p>
+<center>图3.11  服务器禁言功能</center>
+<p>之后会提示已将用户1禁言，用户1将无法在聊天室中发送任何消息。发送消息按钮变为灰色以及不可点击状态，以示禁言状态。同时，管理员禁言后，用户1也将无法发起或回复任何私聊会话。私聊按钮也会被禁用，以防止用户1绕过禁言限制。</p>
+<p>用户1禁言后的效果如图3.12所示。</p>
+<p><img src="image_7_8uP7FL3T-I.png" alt=""></p>
+<center>图3.12  用户1被禁言时的客户端</center>
+<h2 id="8-6-服务器解除禁言功能演示">8.6 服务器解除禁言功能演示</h2>
+<p>将用户禁言一段时间后，可以对用户解除禁言。通过点击“解除禁言”按钮实现，解除禁言后用户可以正常发送消息以及和其他用户进行私聊。</p>
+<p><img src="image_8_RusLszb8WP.png" alt=""></p>
+<center>图3.13  服务器解除禁言功能</center>
+<h2 id="8-7-服务器强制下线功能演示">8.7 服务器强制下线功能演示</h2>
+<p>在服务器端可以对指定的用户进行强制下线的操作，即选定一个用户后，点击底部左侧的“强制下线”按钮，即可将对应的用户强制下线。被强制下线的用户的所在的客户端会弹出图3.14所示的下线提示窗口。</p>
+<p><img src="image_9_tNWlxuaFds.png" alt=""></p>
+<center>图3.14  服务器强制下线功能</center>
+<p>经过上述操作后，查看服务器端的日志文件如图3.15所示。</p>
+<p><img src="image_10_do1fRPYcuN.png" alt=""></p>
+<center>图3.15  服务器消息日志</center>
+<hr>
+<h1>9 结束语</h1>
+<p>本次计算机网络课程设计应该是本科阶段的最后一个课程设计，通过计算机科学与技术专业的这么多次课程设计，感觉自己的代码能力和工程能力有了很大的提升。在此次设计一个基于TCP协议的简易聊天室程序时，我从中收获了许多宝贵的计算机网络知识和实践经验，其中最主要的是深刻理解了书本上所学的TCP协议和C/S架构。</p>
+<p>在日常生活中，可靠的消息通信是非常重要的，如果人们之间传送的消息如果出现了丢失和差错，将会导致不可挽回的后果。通过实现聊天室程序，我深入理解了TCP协议的可靠性、流量控制和拥塞控制机制。理解TCP连接的建立、数据传输和断开过程对于两个源点之间的可靠通信至关重要。并且我学会了如何使用Socket API来实现基于TCP的通信。这不仅仅是理论知识，还涉及到实际的编码和调试过程，帮助我熟悉了如何在实际项目中应用所学的网络概念。</p>
+<p>此外，实现一个聊天室需要处理多个客户端同时连接的情况，我通过使用并发编程来有效地管理多个线程或进程来处理这些连接。在开发过程中，我遇到了各种各样的错误和异常情况，例如客户端与服务器连接不上、服务器连接数据库失败以及服务器对收到的信息解析错误等。通过解决这些问题，我提升了自己的错误处理能力和调试技能，学会了如何有效地排查和修复网络程序中的问题。</p>
+<p>计算机专业的理论知识学习固然重要，但仅仅停留在理论层面是远远不够的。只有将理论知识应用到实际项目中，才能真正理解它们的意义和实际效果。只有实际实现一个聊天室，才能体会到TCP如何在实际通信中处理数据包的传输和重传，以及如何通过Socket进行通信。在今后的学习和职业生涯中，这种实践经验将为我提供宝贵的基础和信心，使我能够更好地应对复杂的技术挑战和项目需求。</p>
+<hr>
+<h1>10 参考资料</h1>
+<ol>
+<li>王罡, 林立志. 基于Windows的TCP/IP编程[M]. 北京, 清华大学出版社, 2002.</li>
+<li>李向江, 赵怡涛, 马雪凝. 基于Socket接口的局域网聊天系统设计[J]. 长江信息通信, 2024,37(04):109-111.</li>
+<li>张玉, 贾遂民, 郑桂萍. 基于Socket的网络聊天系统的设计与实现[J]. 计算机时代, 2022,(12): 93-95.</li>
+<li>甄泰航. 基于Socket通信的社交应用软件[J]. 电子技术与软件工程, 2020, (16): 30-33.</li>
+<li>谢希仁. 计算机网络（第8版）[M]. 北京, 电子工业出版社, 2021.</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/06/22/%E8%AE%A1%E7%BD%91%E8%AF%BE%E8%AE%BE%EF%BC%9A%E5%9F%BA%E4%BA%8ETCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8E%86%E8%81%8A%E5%A4%A9%E5%AE%A4%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">http://zhouzimu.top/2024/06/22/计网课设：基于TCP协议的简历聊天室程序设计/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/23/6.23%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6%E5%A4%8F%E4%BB%A4%E8%90%A5%E5%88%9D%E7%AD%9B%E6%9C%BA%E8%AF%95/" title="6.23天津大学夏令营初筛机试"><img class="cover" src="https://youimg1.c-ctrip.com/target/100o15000000xuzux45A8.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">6.23天津大学夏令营初筛机试</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/22/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C3%EF%BC%9A%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/" title="信息安全实验3：密码爆破"><img class="cover" src="https://x0.ifengimg.com/res/2020/509C9F74EE5091B281850685FA03BF8493FDA10F_size73_w640_h486.jpeg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">信息安全实验3：密码爆破</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E7%89%A9%E7%90%86%E5%B1%82/" title="计算机网络第2章：物理层"><img class="cover" src="https://th.bing.com/th/id/OIP.upyRHF4n063vA2_j7PdDhwHaC7?w=1440&h=571&rs=1&pid=ImgDetMain" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第2章：物理层</div></div></a></div><div><a href="/2024/06/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="计算机网络第3章：数据链路层"><img class="cover" src="https://pic2.zhimg.com/v2-15bdc5c257f7c109f184f9872c57b2d5_b.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-07</div><div class="title">计算机网络第3章：数据链路层</div></div></a></div><div><a href="/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/" title="计算机网络第4章：网络层"><img class="cover" src="https://so1.360tres.com/t01b34c003ce53dbb04.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-08</div><div class="title">计算机网络第4章：网络层</div></div></a></div><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC5%E7%AB%A0%EF%BC%9A%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计算机网络第5章：传输层"><img class="cover" src="https://pic1.zhimg.com/v2-2159a954d03d90c2d869bf962a7ef775_720w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第5章：传输层</div></div></a></div><div><a href="/2024/06/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E5%BA%94%E7%94%A8%E5%B1%82/" title="计算机网络第6章：应用层"><img class="cover" src="https://www.scensmart.com/wp-content/uploads/2019/04/ARM-%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1%E5%99%A8-1-1024x576.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-09</div><div class="title">计算机网络第6章：应用层</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1 题目要求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2 整体架构设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.1 服务器端设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.2 客户端设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-text">2.3 数据库设计</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3 TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5"><span class="toc-text">3.1 面向连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-tcp%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%AB%AF%E7%82%B9%E6%98%AFsocket"><span class="toc-text">3.2 TCP连接的端点是Socket</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">4 通信消息格式设计</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E6%B6%88%E6%81%AF%E5%A4%B4"><span class="toc-text">4.1 消息头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E6%B6%88%E6%81%AF%E4%BD%93"><span class="toc-text">4.2 消息体</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5 数据库交互功能设计</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">6 界面绘制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">7 Socket编程实现聊天功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-server%E7%B1%BB%E5%AE%9E%E7%8E%B0"><span class="toc-text">7.1 Server类实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E5%86%85%E9%83%A8%E7%B1%BBclientagent%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">7.2 内部类ClientAgent的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-client%E7%B1%BB%E5%AE%9E%E7%8E%B0"><span class="toc-text">7.3 Client类实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-%E5%86%85%E9%83%A8%E7%B1%BBserveragent%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">7.4 内部类ServerAgent的实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">8 程序演示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E5%BD%95%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.1 客户端注册和登录功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%BE%A4%E8%81%8A%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.2 客户端群聊功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%A7%81%E8%81%8A%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.3 客户端私聊功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%B6%88%E6%81%AF%E6%97%A5%E5%BF%97%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.4 服务器消息日志功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-5-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A6%81%E8%A8%80%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.5 服务器禁言功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-6-%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E9%99%A4%E7%A6%81%E8%A8%80%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.6 服务器解除禁言功能演示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%BA%E5%88%B6%E4%B8%8B%E7%BA%BF%E5%8A%9F%E8%83%BD%E6%BC%94%E7%A4%BA"><span class="toc-text">8.7 服务器强制下线功能演示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">9 结束语</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">10 参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling"><img src="https://haowallpaper.com/link/common/file/previewFileImg/16303799969041792" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读8：AutoPooling"/></a><div class="content"><a class="title" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling">论文精读8：AutoPooling</a><time datetime="2025-01-22T09:19:35.000Z" title="发表于 2025-01-22 17:19:35">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN"><img src="https://deeptables.readthedocs.io/en/latest/_images/pnn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读7：PNN"/></a><div class="content"><a class="title" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN">论文精读7：PNN</a><time datetime="2025-01-05T06:59:04.000Z" title="发表于 2025-01-05 14:59:04">2025-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://haowallpaper.com/link/common/file/previewFileImg/6676074414d4ad203e7090e119edfda2')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
+  let create_time = Math.round((new Date(2024, 1, 23).getTime()) / 1000);
+  let timestamp = Math.round((new Date().getTime()) / 1000);
+  let second = timestamp - create_time;
+  let time = new Array(0, 0, 0, 0, 0);
+  if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+  }
+  if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+  }
+  if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+  }
+  if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+  }
+  if (second > 0) {
+      time[4] = second;
+  }
+  currentTimeHtml = "本站已安全运行 " +
+      time[0] + " 年 " +
+      (time[1] + 31) + " 天 " +
+      time[2] + " 时 " +
+      time[3] + " 分 " +
+      time[4] + " 秒";
+  document.getElementById("running-time").innerHTML = currentTimeHtml;
+  }, 1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'NoyeArk/noyeark.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><script src="/js/nav.js"></script><script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'iyiSf8ljbaf';</script><script src="/js/tianli_gpt.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>

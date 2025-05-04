@@ -1,0 +1,558 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机组成原理第3章：系统总线 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 总线的基本概念 计算机系统的五大部件之间的互连方式有两种：  各部件之间使用单独的连线——分散连接 将各部件连到一组公共信息传输线上——总线连接  总线是连接各个部件的信息传输线，是各个部件共享的传输介质，同一时刻，只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接受相同的信息。  这里有点像局域网的广播信道，同一时刻只能由一个主机发送数据，其他只能监听。  1.1 总线结构的计算机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理第3章：系统总线">
+<meta property="og:url" content="http://zhouzimu.top/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/index.html">
+<meta property="og:site_name" content="诺亚方舟">
+<meta property="og:description" content="1 总线的基本概念 计算机系统的五大部件之间的互连方式有两种：  各部件之间使用单独的连线——分散连接 将各部件连到一组公共信息传输线上——总线连接  总线是连接各个部件的信息传输线，是各个部件共享的传输介质，同一时刻，只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接受相同的信息。  这里有点像局域网的广播信道，同一时刻只能由一个主机发送数据，其他只能监听。  1.1 总线结构的计算机">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-8ebcd28f5186822931fccf35eecbe345_720w.jpg?source=172ae18b">
+<meta property="article:published_time" content="2024-06-08T02:08:41.000Z">
+<meta property="article:modified_time" content="2024-08-19T07:10:17.000Z">
+<meta property="article:author" content="弘树">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-8ebcd28f5186822931fccf35eecbe345_720w.jpg?source=172ae18b"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://zhouzimu.top/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 弘树","link":"链接: ","source":"来源: 诺亚方舟","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成原理第3章：系统总线',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-19 15:10:17'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/tianli_gpt.css"><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://pic1.zhimg.com/v2-8ebcd28f5186822931fccf35eecbe345_720w.jpg?source=172ae18b')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理第3章：系统总线</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-06-08T02:08:41.000Z" title="发表于 2024-06-08 10:08:41">2024-06-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%B8%93%E4%B8%9A%E8%AF%BE/">专业课</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机组成原理第3章：系统总线"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>1 总线的基本概念</h1>
+<p>计算机系统的五大部件之间的互连方式有两种：</p>
+<ol>
+<li>各部件之间使用单独的连线——分散连接</li>
+<li>将各部件连到一组公共信息传输线上——总线连接</li>
+</ol>
+<p><strong>总线</strong>是连接各个部件的信息传输线，是各个部件共享的传输介质，同一时刻，只允许有一个部件向总线发送信息，而多个部件可以同时从总线上接受相同的信息。</p>
+<blockquote>
+<p>这里有点像局域网的广播信道，同一时刻只能由一个主机发送数据，其他只能监听。</p>
+</blockquote>
+<h2 id="1-1-总线结构的计算机举例">1.1 总线结构的计算机举例</h2>
+<h3 id="1-1-1-面向-cpu-的双总线结构框图">1.1.1 面向 CPU 的双总线结构框图</h3>
+<p><img src="image_sfJGu3nrcm.png" alt=""></p>
+<p>这种结构在I/O设备与主存交换信息时仍然要占用CPU，因此会影响CPU的工作效率。</p>
+<h3 id="1-1-2-单总线结构框图">1.1.2 单总线结构框图</h3>
+<p><img src="image_twFb3d3G2Z.png" alt=""></p>
+<p>当主存与I/O交换信息时，原则上不影响CPU的工作，CPU仍可继续处理不访问主存或I/O设备的操作，工作效率有所提升。</p>
+<p>由于只有一组总线，当某一时刻各部件都要占用系统总线时，就会发生冲突。</p>
+<h3 id="1-1-3-以存储器为中心的双总线结构框图">1.1.3 以存储器为中心的双总线结构框图</h3>
+<p><img src="image_LfR5QrRh5e.png" alt=""></p>
+<p>在单总线基础上又开辟出一条CPU与主存之间的总线，称为存储总线，只供主存与CPU之间传输信息。既提高了传输效率，又减轻了系统总线的负担，还保证了IO设备与存储器交换信息时不经过CPU的特点。</p>
+<hr>
+<h1>2 总线的分类</h1>
+<h2 id="2-1-片内总线">2.1 片内总线</h2>
+<p>片内总线是指芯片内部的总线，如在CPU芯片内部，寄存器与寄存器之间、寄存器与算逻单元ALU之间都由片内总线相连。</p>
+<h2 id="2-2-系统总线">2.2 系统总线</h2>
+<p>系统总线是指CPU、主存、IO设备各大部分之间的信息传输线。根据传输信息的不同，可分为３类：数据总线、地址总线和控制总线。</p>
+<h3 id="2-2-1-数据总线">2.2.1 数据总线</h3>
+<p>数据总线用来传输各功能部件之间的数据信息，它是双向传输总线，其位数与机器字长、存储字长有关，一般位8位、16位、32位。</p>
+<p>数据总线的位数称为<strong>数据总线宽度</strong>，通常情况下，数据总线宽度是小于等于机器字长位数。 64位的机器字长，数据总线宽度可以是8位、16位、32位、64位。</p>
+<h3 id="2-2-2-地址总线">2.2.2 地址总线</h3>
+<p><strong>地址总线</strong>主要用来指出数据总线上源数据或目的数据在主存单元的地址或I/O设备的地址。</p>
+<p>简单的说就是地址总线用来指明源数据在主存单元中要存入的地址，以及目的数据在I/O设备中的地址。例如：</p>
+<ol>
+<li>要从存储器中读取一个数据时，CPU需要将要读取的数据在存储单元中的地址传送到地址总线上，发送给存储单元时，存储单元根据收到的地址信息读取数据。</li>
+<li>要将数据经过I/O设备输出时，CPU除了将数据传输到数据总线外，还需要将该设备I/O接口的地址传送到地址总线上。这样才能根据地址找到对应的设备从而输出数据。</li>
+</ol>
+<h3 id="2-2-3-控制总线">2.2.3 控制总线</h3>
+<p>控制总线是用来控制各部件在数据总线和地址总线上的实现使用权，用来发出各种控制信号的传输线。控制总线可以是单向的，也可以是双向的。</p>
+<p>常见的控制信号如下：</p>
+<p><img src="image_1wLkZCpbH1.png" alt=""></p>
+<h2 id="2-3-通信总线">2.3 通信总线</h2>
+<p>通信总线用于计算机系统之间或计算机系统与其他系统（如控制仪表、移动通信等）之间的通信。按传输方式可以分为两种：<strong>串行通信和并行通信</strong>。</p>
+<h3 id="2-3-1-串行通信">2.3.1 串行通信</h3>
+<p>串行通信指数据在单条1位宽的传输线上，一位一位的按顺序分时发送。  </p>
+<p>1字节的信息在串行通信中要分8次从地位到高位按顺序逐次传送。</p>
+<h3 id="2-3-2-并行通信">2.3.2 并行通信</h3>
+<p>并行通信指数据在多条1位宽的传输线上，同时由源传送到目的地。</p>
+<p><strong>并行通信适用于近距离的数据传输，串行通信适用于远距离。 数据传输速率与距离成反比。</strong></p>
+<p>在短距离内，并行数据传送速率比串行数据传送速率高得多。</p>
+<hr>
+<h1>3 总线特性及性能指标</h1>
+<h2 id="3-1-总线特性">3.1 总线特性</h2>
+<p>从物理角度看，总线由许多导线直接印刷在电路板上，延伸到各个部件。</p>
+<p><img src="image_xAKNNudSc8.png" alt=""></p>
+<p>图中CPU、主存、IO这些插板（又称插卡）通过插头与水平方向总线插槽连接。</p>
+<p>总线特性包括机械特性、电气特性、功能特性、时间特性。</p>
+<ol>
+<li><strong>机械特性</strong>：总线在机械连接方式上的一些性能，如尺寸、形状、管脚数及排列顺序；</li>
+<li><strong>电气特性</strong>：总线上的每一根传输线上信号的传输方向和有效的电平范围；</li>
+<li><strong>功能特性</strong>：每根传输线的功能；</li>
+<li><strong>时间特性</strong>：总线中的任一根线在什么时间内有效，信号的时序关系。</li>
+</ol>
+<h2 id="3-2-性能指标">3.2 性能指标</h2>
+<p>总线性能指标如下：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总线宽度</td>
+<td>通常是指数据总线的根数，用bit位表示</td>
+</tr>
+<tr>
+<td>总线带宽</td>
+<td>总线的传输速率，单位时间内总线上传输数据的位数，通常用每秒传输信息的字节数来衡量，单位可用MBps</td>
+</tr>
+<tr>
+<td>时钟同步/异步</td>
+<td>总线上的数据与时钟同步工作的总线称为同步总线,与时钟不同步工作的总线称为异步总线。</td>
+</tr>
+<tr>
+<td>总线复用</td>
+<td>一条总线在不同时刻可以传输两种信号，就是一条总线可以当几条用。</td>
+</tr>
+<tr>
+<td>信号线数</td>
+<td>地址总线，数据总线、控制总线三种总线数的和</td>
+</tr>
+<tr>
+<td>总线控制方式</td>
+<td>突发工作，自动配置，仲裁方式，逻辑方式，计数方式</td>
+</tr>
+<tr>
+<td>其他指标</td>
+<td>负载能力，电源电压</td>
+</tr>
+</tbody>
+</table>
+<p>总线的负载能力即驱动能力，是指当总线接上负载后，总线输入输出的逻辑电平是否能保持在正常的额定范围内。</p>
+<h2 id="3-3-总线标准">3.3 总线标准</h2>
+<p><img src="image_wZixZZ8Aud.png" alt=""></p>
+<p><img src="image_P8MjxZ1EAQ.png" alt=""></p>
+<hr>
+<h1>4 总线结构</h1>
+<p>总线结构可分为单总线结构和多总线结构两种。</p>
+<h2 id="4-1-单总线结构">4.1 单总线结构</h2>
+<p><img src="image_ce6Tns-bng.png" alt=""></p>
+<p>这样的总线结构会严重影响CPU的运行效率，因为当CPU需要与主存进行信息交换时，总线使用权很容易被其他设备占用，并且当设备很多时，总线很长。</p>
+<h2 id="4-2-多总线结构">4.2 多总线结构</h2>
+<h3 id="4-2-1-双总线结构">4.2.1 双总线结构</h3>
+<p><img src="image_RTzj5gUqNN.png" alt=""></p>
+<p>如图所示的双总线结构是将总线分为<strong>主存总线和I/O总线</strong>。</p>
+<p><strong>通道：</strong> 一种具有特殊功能的CPU，对I/O设备具有统一管理的功能，完成外部设备与主存储器之间的数据传送，系统吞吐能力可以相当大。通道有自己的控制器，指令系统，能够执行简单的指令。通道程序通常由操作系统编写，而非人工。</p>
+<h3 id="4-2-2-三总线结构">4.2.2 三总线结构</h3>
+<p><img src="image_UUUTT5NeOv.png" alt=""></p>
+<ul>
+<li>主存总线用于CPU和主存之间的信息传输。</li>
+<li>I/O总线用于CPU与各类I/O设备之间传递信息。</li>
+<li>DMA总线用于高速I/O设备与主存之间直接信息交换。</li>
+</ul>
+<h3 id="4-2-3-三总线结构的又一形式">4.2.3 三总线结构的又一形式</h3>
+<p><img src="image_lSvTHpQSi_.png" alt=""></p>
+<p>由于CPU的运行速度通常远大于主存的运行速度，速度差容易导致CPU等待时间过久而降低整体运行效率，所以设置了Cache缓存来解决。 </p>
+<p>Cache是小容量高速的存储器，传输系统CPU与主存之间的信息。</p>
+<h3 id="4-2-4-四总线结构">4.2.4 四总线结构</h3>
+<p><img src="image_KOcLNvUsDM.png" alt=""></p>
+<p>又增加了一条与计算机系统紧密相连的高速总线。在高速总线上挂接了一些高速设备。</p>
+<p>它们通过Cache控制机构中的高速总线桥或高速缓冲器与系统总线和局部总线相连，使得这些高速设备与CPU更密切。</p>
+<p>一些低速设备如图文传真FAX、调制解调器等仍然挂在扩展总线上，并由扩展总线接口与高速总线相连。</p>
+<h2 id="4-3-总线结构举例">4.3 总线结构举例</h2>
+<h3 id="4-3-1-传统微型机总线结构">4.3.1 传统微型机总线结构</h3>
+<p><img src="image_MaGsclcoyj.png" alt=""></p>
+<h3 id="4-3-2-vl-bus局部总线结构">4.3.2 VL-BUS局部总线结构</h3>
+<p><img src="image_5MDLEiR_AO.png" alt=""></p>
+<h3 id="4-3-3-pci总线结构">4.3.3 PCI总线结构</h3>
+<p><img src="image_8EvnF0WPgx.png" alt=""></p>
+<h3 id="4-3-4-多层-pci-总线结构">4.3.4 多层 PCI 总线结构</h3>
+<p><img src="image_LXOOxgfJap.png" alt=""></p>
+<hr>
+<h1>5 总线控制</h1>
+<p>总线上所连接的各类设备，按其对总线有无控制功能可分为主设备（模块）和从设备（模块）两种。<strong>主设备对总线有控制权，从设备只能响应从主设备发来的总线命令，对总线没有控制权。</strong></p>
+<h2 id="5-1-总线判优控制">5.1 总线判优控制</h2>
+<p><strong>总线判优控制用来决定多个设备发出总线请求时，哪个设备具有总线使用权。</strong></p>
+<p>总线判优控制可分<strong>集中式</strong>和<strong>分布式</strong>两种，前者将控制逻辑集中在一处（如在CPU中），后者将控制逻辑分散在与总线连接的各个部件或设备上。</p>
+<p>常见的几种控制优先权的仲裁方式有三种： 链式查询、计数器定时查询和独立请求方式。</p>
+<h3 id="5-1-1-链式查询">5.1.1 链式查询</h3>
+<p><img src="image_Dv1eZ6rpUG.png" alt=""></p>
+<p>图中控制总线中有3根线用于总线控制（BS总线忙、BR总线请求和BG总线同意），其中总线同意信号BG是串行地从一个I/0接口送到下一个l/0接口。</p>
+<p><strong>如果BG到达的接口有总线请求，BG信号就不再往下传，意味着该接口获得了总线使用权，并建立总线忙BS信号，表示它占用了总线。</strong></p>
+<p>可见在链式查询中，<strong>离总线控制部件最近的设备具有最高的优先级。</strong></p>
+<p>这种方式的特点是：只需很少几根线就能按一定优先次序实现总线控制，并且很容易扩充设备，但对电路故障很敏感，且优先级别低的设备可能很难获得请求。即：</p>
+<ul>
+<li>优点： 结构简单，需要的线少。容易扩充设备。</li>
+<li>缺点： 对电路故障敏感，优先级低的设备获得总线请求的可能性低。</li>
+</ul>
+<h3 id="5-1-2-计数器定时查询">5.1.2 计数器定时查询</h3>
+<p><img src="image_zF2WrdZkXH.png" alt=""></p>
+<p>多了一条设备地址线，少了总线同意BG线。</p>
+<p>总线控制部件接到由BR送来的总线请求信号后，在总线未被使用（BS=0）的情况下，总线控制部件中的计数器开始计数，并通过设备地址线向各设备发出一组地址信号。</p>
+<p>当某个请求占用总线的设备地址与计数值一致时，便获得总线使用权，此时终止计数查询。</p>
+<p>举例： 加入总线控制部件接收到总线请求信号后，计数器从0开始计时，此时I/O接口从0到n编号，并按顺序排列。计数器数到1时，判断第1个设备是否发送了总线请求信号，是则I/O接口设备获得总线使用权限，同时计数器停止计时。否则计时器继续往下数，直到找到发送请求的设备为止。</p>
+<ul>
+<li><strong>优点</strong>： I/O设备的优先级控制非常灵活，可以通过设置计数器计数的初值进行设定。计数器可以从上一次计数的终止点开始计数，也可以每次置0，也可以设定某个值。</li>
+<li><strong>缺点</strong>：增加了控制线（设备地址线）数，控制也较复杂。</li>
+</ul>
+<h3 id="5-1-3-独立请求方式">5.1.3 独立请求方式</h3>
+<p><img src="image_tUuUCUJ2tU.png" alt=""></p>
+<p>独立请求方式就每个设备都有一条总线请求线BR和总线同意线BG。</p>
+<p>优缺点非常明显，控制线数量多，总线控制非常复杂。但响应速度快，优先次序控制灵活。</p>
+<blockquote>
+<p>链式查询：使用2根线确定总线使用权属于哪个设备<br>
+计数器查询：大致使用logn 根线<br>
+独立请求：使用2n 根线</p>
+</blockquote>
+<h2 id="5-2-总线通信控制">5.2 总线通信控制</h2>
+<p>在主模块获得总线使用权后，主设备会和从设备进行信息交换，而总线通信控制的目的就是解决主模块和从模块双方协调配合的问题。</p>
+<p>将完成一次总线操作的时间称为总线传输周期，分为以下4个阶段：</p>
+<ol>
+<li>申请分配阶段：主模块向上申请总线使用权，根据总线的判优逻辑获得总线使用权。</li>
+<li>寻址阶段：主设备向从设备发出命令并给出地址。</li>
+<li>传数阶段：主模块和从模块交换数据。</li>
+<li>结束阶段：主模块和从模块撤销相关的信息。</li>
+</ol>
+<p>通常使用4种通信方式：同步通信、异步通信、半同步通信和分离式通信。</p>
+<h3 id="5-2-1-同步通信">5.2.1 同步通信</h3>
+<p>同步通信，要有统一的定长的时钟标准来控制数据传送的过程，每一个操作、信号的给出都是在固定的时间点。</p>
+<p>在同步通信中，模块间都用的统一的定长时钟标准，它们要在同样的时限完成规定的操作，主模块和从模块间是强制同步的，对多个速度不同的模块，必须要用最慢的那个模块来定下时钟标准，这就导致快的模块要按照慢的模块的标准来传输。</p>
+<p>所以同步通信一般应用在总线长度较短，存取时间比较一致的情况下才使用同步通信。</p>
+<h4 id="5-2-1-1-同步通信数据输入过程">5.2.1.1 同步通信数据输入过程</h4>
+<p><img src="image_Ef72xKktd8.png" alt=""></p>
+<ol>
+<li>申请分配、寻址阶段：在传输周期开始之前，主模块必须要先获得总线的使用权，并且获得从模块的地址信号。</li>
+<li>T1阶段：主模块发地址</li>
+<li>T2阶段：主模块发出读命令</li>
+<li>T3阶段：从模块提供数据</li>
+<li>T4阶段：主模块撤销读命令，从模块撤销数据</li>
+</ol>
+<h4 id="5-2-1-2-同步通信数据输出过程">5.2.1.2 同步通信数据输出过程</h4>
+<p><img src="image_G9LJjkovRb.png" alt=""></p>
+<ol>
+<li>T1阶段：主模块发地址</li>
+<li>T1.5阶段：主模块提供要写入的数据</li>
+<li>T2阶段：主模块发出写命令，从模块写入数据</li>
+<li>T4阶段：主模块撤销读命令和数据等信号</li>
+</ol>
+<p>同步通信的优点：</p>
+<ol>
+<li>规定明确、统一，模块间的配合简单一致</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>主、从模块时间配合属于强制性“同步”，必须在限定时间内完成规定的要求</li>
+<li>严重影响总线的工作效率，缺乏灵活性</li>
+</ol>
+<h3 id="5-2-2-异步通信">5.2.2 异步通信</h3>
+<p>和同步通信相反，异步通信没有统一的时钟标准，采用的是应答的方式。  </p>
+<p>在异步通信时，主设备发起请求，从设备受主设备的控制。  </p>
+<p>和同步相比，没有定长的时钟，但是要增加一条请求线和一条应答线，请求线用于主设备向从设备发送请求信号，应答线用于从设备向主设备发送应答信号。</p>
+<p><img src="image_fTb7iruJAb.png" alt=""></p>
+<h4 id="5-2-2-1-不互锁">5.2.2.1 不互锁</h4>
+<p>主设备向从设备发送请求信号，从设备收到请求后作出应答，主设备不管从设备有没有应答，一段时间过后主设备会撤销请求，从设备也不管主设备有没有接收到应答信号，一段时间后也会撤销应答。</p>
+<p>例如，CPU向主存写信息，就是采用这种方式。</p>
+<h4 id="5-2-2-2-半互锁">5.2.2.2 半互锁</h4>
+<p>主设备向从设备发送请求信号，从设备收到请求后发出应答信号，主设备只有在收到应答信号后才会撤销请求，如果没有收到应答信号，<strong>它的请求信号会一直保持。</strong></p>
+<p>例如，在多机系统中，某个CPU要访问共享存储器时，该CPU发出访存命令后，必须收到存储器未被占用的回答信号，才能真正进行访存操作。</p>
+<h4 id="5-2-2-3-全互锁">5.2.2.3 全互锁</h4>
+<p>主设备向从设备发送请求信号，从设备收到请求后发出应答信号，主设备只有在收到应答信号后才会撤销请求，从设备只有在主设备撤销请求后才会撤销应答。  </p>
+<p>这种方式可以完成可靠的通信传输。例如，在网络通信中使用的就是全互锁方式。</p>
+<ul>
+<li><strong>波特率</strong>：单位时间内传送二进制数据的位数，单位是bps（位/秒），记作波特。</li>
+<li><strong>比特率</strong>：单位时间内传送二进制有效数据的位数，单位用bps表示。</li>
+</ul>
+<h3 id="5-2-3-半同步通信">5.2.3 半同步通信</h3>
+<p>半同步通信是同步通信和异步通信的结合，主要解决的是不同速度的两个模块之间进行通信的问题。  </p>
+<ul>
+<li>同步通信发送方用系统时钟前沿发信号，接收方用系统时间后沿判断识别。  </li>
+<li>异步通信允许不同素的的模块和谐工作。  </li>
+</ul>
+<p>半同步为了完成这两个要求，增加一条等待相应信号，这条等待信号由从设备给出。</p>
+<p><img src="image_cE7_tJdxgo.png" alt=""></p>
+<ol>
+<li>T1时钟前，主模块给从模块发送地址信息</li>
+<li>T2时，主模块发送读命令</li>
+<li>在T3时钟前，如果从设备不能准备好数据，wait信号有效，在T2时钟和T3时钟之间插入一个Tw周期，在T3开始前发送数据信号</li>
+<li>wait信号结束，数据准备完成</li>
+<li>T3周期从模块提供数据</li>
+<li>T4周期读命令和数据命令撤销</li>
+</ol>
+<p>半同步通信适用于系统工作速度不高但又包含了由许多工作速度差异较大的各类设备组成的简单系统。</p>
+<p>缺点是对系统时钟频率不能要求太高，从整体看，系统工作的速度还不是很高。</p>
+<h3 id="5-2-4-分离式通信">5.2.4 分离式通信</h3>
+<p>分离式通信充分挖掘总线每个瞬间的潜力，让总线发挥最大的效能。  </p>
+<p>一个总线传输周期可分为以下三个子周期（以输入数据为例）：  </p>
+<ol>
+<li>主模块发地址、命令 （占用总线）  </li>
+<li>从模块准备数据 （不占用总线，且时间一般很长）  </li>
+<li>从模块向主模块发数据 （占用总线）</li>
+</ol>
+<p>分离式通信为什么能充分挖掘系统总线的潜力？主要是因为分离式传输把一个总线传输周期分成了两个子周期；</p>
+<ol>
+<li>
+<p>子周期1：主模块申请占用总线，使用完后马上放弃总线的使用权；</p>
+</li>
+<li>
+<p>子周期2：从模块申请占用总线，将各种信息送至总线上；此时的从模块实际上变成了主模块，因为是当前的模块发起的总线请求。</p>
+</li>
+</ol>
+<p>子周期1完成地址、命令的传达后，立马放弃总线的使用权，从模块收到请求后准备数据，此时总线是空闲的，可以处理其他的总线判优操作，如其他传输的子周期1或子周期2；</p>
+<p>如果不分子周期，一个传输周期一直占用总线，在从模块准备数据时总线是空闲的，但周期未结束，总线无法处理其他请求。</p>
+<p>所以分离式通信可以充分挖掘总线的潜力，提高系统总线的利用率。</p>
+<p>分离式通信的特点：  </p>
+<ol>
+<li>
+<p>各模块有权申请占用总线  </p>
+</li>
+<li>
+<p>采用同步方式通信，不等对方回答  </p>
+</li>
+<li>
+<p>各模块准备数据时，不占用总线  </p>
+</li>
+<li>
+<p>总线被占用时无空闲</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC3%E7%AB%A0%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF/">http://zhouzimu.top/2024/06/08/计算机组成原理第3章：系统总线/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></div><div class="post_share"><div class="social-share" data-image="https://pic1.zhimg.com/v2-8ebcd28f5186822931fccf35eecbe345_720w.jpg?source=172ae18b" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/06/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%B1%82/" title="计算机网络第4章：网络层"><img class="cover" src="https://so1.360tres.com/t01b34c003ce53dbb04.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">计算机网络第4章：网络层</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/" title="数据库第10章：数据库恢复技术"><img class="cover" src="https://nebula-website-cn.oss-cn-hangzhou.aliyuncs.com/nebula-blog/andy-database-review/database-review.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据库第10章：数据库恢复技术</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/09/06/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E8%AE%BE%E8%AE%A1/" title="计算机组成原理第10章：控制单元的设计"><img class="cover" src="https://p9.itc.cn/q_70/images01/20220531/6ead220087724fa09b2f1e418c498d70.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-06</div><div class="title">计算机组成原理第10章：控制单元的设计</div></div></a></div><div><a href="/2024/08/19/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E5%AD%98%E5%82%A8%E5%99%A8/" title="计算机组成原理第4章：存储器"><img class="cover" src="https://img.dramx.com/website/dramx/20210305153456_%E5%AD%98%E5%82%A8%E5%99%A8.jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-19</div><div class="title">计算机组成原理第4章：存储器</div></div></a></div><div><a href="/2024/09/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC8%E7%AB%A0%EF%BC%9ACPU%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E5%8A%9F%E8%83%BD/" title="计算机组成原理第8章：CPU的结构和功能"><img class="cover" src="https://i.insider.com/60402d8eb46d720018b04c1f?width=1200&format=jpeg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-02</div><div class="title">计算机组成原理第8章：CPU的结构和功能</div></div></a></div><div><a href="/2024/09/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC9%E7%AB%A0%EF%BC%9A%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E5%8A%9F%E8%83%BD/" title="计算机组成原理第9章：控制单元的功能"><img class="cover" src="https://rmtzx.sciencenet.cn/kxwsprint/64686ad7e4b00d9f0ea0ec6f.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-09-03</div><div class="title">计算机组成原理第9章：控制单元的功能</div></div></a></div><div><a href="/2024/08/08/%E8%AE%A1%E7%BB%84%E9%9D%A2%E7%BB%8F1%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0%E5%92%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A1%A8%E7%A4%BA/" title="计组面经1：计算机系统概述和数据的表示"><img class="cover" src="https://p5.toutiaoimg.com/origin/pgc-image/489a82315a6847c383b86ea7801e7b1e?from=pc" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-08</div><div class="title">计组面经1：计算机系统概述和数据的表示</div></div></a></div><div><a href="/2024/08/12/%E8%AE%A1%E7%BB%84%E9%9D%A2%E7%BB%8F2%EF%BC%9A%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F/" title="计组面经2：存储系统"><img class="cover" src="https://th.bing.com/th/id/R.2fef2b4b23ac6c430ddb66a1b91cf1ea?rik=Mbwafbw1kLKZHg&riu=http%3a%2f%2fwww.kinghpc.cn%2fuploads%2fimage%2f20201205%2f1607179776.jpg&ehk=8839eSTddQTui0TgMc3oov6NZ3jZn12FgxIogzgZIjs%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-12</div><div class="title">计组面经2：存储系统</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1 总线的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%BE%E4%BE%8B"><span class="toc-text">1.1 总线结构的计算机举例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-%E9%9D%A2%E5%90%91-cpu-%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="toc-text">1.1.1 面向 CPU 的双总线结构框图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="toc-text">1.1.2 单总线结构框图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-%E4%BB%A5%E5%AD%98%E5%82%A8%E5%99%A8%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E6%A1%86%E5%9B%BE"><span class="toc-text">1.1.3 以存储器为中心的双总线结构框图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2 总线的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%89%87%E5%86%85%E6%80%BB%E7%BA%BF"><span class="toc-text">2.1 片内总线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="toc-text">2.2 系统总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-%E6%95%B0%E6%8D%AE%E6%80%BB%E7%BA%BF"><span class="toc-text">2.2.1 数据总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E5%9C%B0%E5%9D%80%E6%80%BB%E7%BA%BF"><span class="toc-text">2.2.2 地址总线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-%E6%8E%A7%E5%88%B6%E6%80%BB%E7%BA%BF"><span class="toc-text">2.2.3 控制总线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E9%80%9A%E4%BF%A1%E6%80%BB%E7%BA%BF"><span class="toc-text">2.3 通信总线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E4%B8%B2%E8%A1%8C%E9%80%9A%E4%BF%A1"><span class="toc-text">2.3.1 串行通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E5%B9%B6%E8%A1%8C%E9%80%9A%E4%BF%A1"><span class="toc-text">2.3.2 并行通信</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3 总线特性及性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7"><span class="toc-text">3.1 总线特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">3.2 性能指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86"><span class="toc-text">3.3 总线标准</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">4 总线结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.1 单总线结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%A4%9A%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.2 多总线结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.2.1 双总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E4%B8%89%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.2.2 三总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-3-%E4%B8%89%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%88%E4%B8%80%E5%BD%A2%E5%BC%8F"><span class="toc-text">4.2.3 三总线结构的又一形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-4-%E5%9B%9B%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.2.4 四总线结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B"><span class="toc-text">4.3 总线结构举例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-1-%E4%BC%A0%E7%BB%9F%E5%BE%AE%E5%9E%8B%E6%9C%BA%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.3.1 传统微型机总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-2-vl-bus%E5%B1%80%E9%83%A8%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.3.2 VL-BUS局部总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-3-pci%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.3.3 PCI总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-%E5%A4%9A%E5%B1%82-pci-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-text">4.3.4 多层 PCI 总线结构</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">5 总线控制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E6%80%BB%E7%BA%BF%E5%88%A4%E4%BC%98%E6%8E%A7%E5%88%B6"><span class="toc-text">5.1 总线判优控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2"><span class="toc-text">5.1.1 链式查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2"><span class="toc-text">5.1.2 计数器定时查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-3-%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="toc-text">5.1.3 独立请求方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E6%80%BB%E7%BA%BF%E9%80%9A%E4%BF%A1%E6%8E%A7%E5%88%B6"><span class="toc-text">5.2 总线通信控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-1-%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-text">5.2.1 同步通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-1-%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">5.2.1.1 同步通信数据输入过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-1-2-%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA%E8%BF%87%E7%A8%8B"><span class="toc-text">5.2.1.2 同步通信数据输出过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-2-%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-text">5.2.2 异步通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-1-%E4%B8%8D%E4%BA%92%E9%94%81"><span class="toc-text">5.2.2.1 不互锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-2-%E5%8D%8A%E4%BA%92%E9%94%81"><span class="toc-text">5.2.2.2 半互锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-2-3-%E5%85%A8%E4%BA%92%E9%94%81"><span class="toc-text">5.2.2.3 全互锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-3-%E5%8D%8A%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-text">5.2.3 半同步通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-4-%E5%88%86%E7%A6%BB%E5%BC%8F%E9%80%9A%E4%BF%A1"><span class="toc-text">5.2.4 分离式通信</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling"><img src="https://haowallpaper.com/link/common/file/previewFileImg/16303799969041792" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读8：AutoPooling"/></a><div class="content"><a class="title" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling">论文精读8：AutoPooling</a><time datetime="2025-01-22T09:19:35.000Z" title="发表于 2025-01-22 17:19:35">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN"><img src="https://deeptables.readthedocs.io/en/latest/_images/pnn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读7：PNN"/></a><div class="content"><a class="title" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN">论文精读7：PNN</a><time datetime="2025-01-05T06:59:04.000Z" title="发表于 2025-01-05 14:59:04">2025-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic1.zhimg.com/v2-8ebcd28f5186822931fccf35eecbe345_720w.jpg?source=172ae18b')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
+  let create_time = Math.round((new Date(2024, 1, 23).getTime()) / 1000);
+  let timestamp = Math.round((new Date().getTime()) / 1000);
+  let second = timestamp - create_time;
+  let time = new Array(0, 0, 0, 0, 0);
+  if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+  }
+  if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+  }
+  if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+  }
+  if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+  }
+  if (second > 0) {
+      time[4] = second;
+  }
+  currentTimeHtml = "本站已安全运行 " +
+      time[0] + " 年 " +
+      (time[1] + 31) + " 天 " +
+      time[2] + " 时 " +
+      time[3] + " 分 " +
+      time[4] + " 秒";
+  document.getElementById("running-time").innerHTML = currentTimeHtml;
+  }, 1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'NoyeArk/noyeark.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><script src="/js/nav.js"></script><script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'iyiSf8ljbaf';</script><script src="/js/tianli_gpt.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>

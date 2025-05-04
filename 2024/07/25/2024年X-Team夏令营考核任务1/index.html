@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2024年X-Team夏令营考核任务1 | 诺亚方舟</title><meta name="author" content="弘树"><meta name="copyright" content="弘树"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1 知识储备 实现aft-full&#x2F;simple&#x2F;conv，用它们替换代码中的tokenmixer部分，并做cifar100训练。 如果要替换代码中的token_mixer部分，需要首先实现aft-full&#x2F;simple&#x2F;conv。 1.1 cifar100 CIFAR100数据集有100个类。每个类有600张大小为32 × 32的彩色图像，其中500张作为训练集，100张作为测试集。对于每一张图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024年X-Team夏令营考核任务1">
+<meta property="og:url" content="http://zhouzimu.top/2024/07/25/2024%E5%B9%B4X-Team%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A11/index.html">
+<meta property="og:site_name" content="诺亚方舟">
+<meta property="og:description" content="1 知识储备 实现aft-full&#x2F;simple&#x2F;conv，用它们替换代码中的tokenmixer部分，并做cifar100训练。 如果要替换代码中的token_mixer部分，需要首先实现aft-full&#x2F;simple&#x2F;conv。 1.1 cifar100 CIFAR100数据集有100个类。每个类有600张大小为32 × 32的彩色图像，其中500张作为训练集，100张作为测试集。对于每一张图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.NRbxA2g8QcNzFZtrPHjvcwHaFg?rs=1&pid=ImgDetMain">
+<meta property="article:published_time" content="2024-07-25T12:54:05.000Z">
+<meta property="article:modified_time" content="2024-08-16T06:05:50.000Z">
+<meta property="article:author" content="弘树">
+<meta property="article:tag" content="夏令营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.NRbxA2g8QcNzFZtrPHjvcwHaFg?rs=1&pid=ImgDetMain"><link rel="shortcut icon" href="/img/favicon.jpg"><link rel="canonical" href="http://zhouzimu.top/2024/07/25/2024%E5%B9%B4X-Team%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A11/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.12.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 弘树","link":"链接: ","source":"来源: 诺亚方舟","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2024年X-Team夏令营考核任务1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-16 14:05:50'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/myStyle.css"><link rel="stylesheet" href="/css/tianli_gpt.css"><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="loading-box"><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/pic_editor_1635545191.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('https://tse3-mm.cn.bing.net/th/id/OIP-C.NRbxA2g8QcNzFZtrPHjvcwHaFg?rs=1&amp;pid=ImgDetMain')"><nav id="nav"><span id="blog-info"><a href="/" title="诺亚方舟"><span class="site-name">诺亚方舟</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 其他</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-asterisk"></i><span> 归档</span></a></li><li><a class="site-page child" href="/update/"><i class="fa-fw fas fa-archive"></i><span> 更新日志</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2024年X-Team夏令营考核任务1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2024-07-25T12:54:05.000Z" title="发表于 2024-07-25 20:54:05">2024-07-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%9D%E7%A0%94/">保研</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2024年X-Team夏令营考核任务1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>1 知识储备</h1>
+<p>实现<code>aft-full/simple/conv</code>，用它们替换代码中的<a target="_blank" rel="noopener" href="https://github.com/sail-sg/metaformer/blob/64c534ab8f65105fd21713b38e3393a449ca742d/metaformer_baselines.py#L484" title="tokenmixer">tokenmixer</a>部分，并做<code>cifar100</code>训练。</p>
+<p>如果要替换代码中的token_mixer部分，需要首先实现<code>aft-full/simple/conv</code>。</p>
+<h2 id="1-1-cifar100">1.1 cifar100</h2>
+<p><code>CIFAR100</code>数据集有100个类。每个类有600张大小为32 × 32的彩色图像，其中500张作为训练集，100张作为测试集。对于每一张图像，它有fine_labels和coarse_labels两个标签，分别代表图像的细粒度和粗粒度标签，对应下图中的<code>classes</code>和<code>superclass</code>。也就是说，<code>CIFAR100</code>数据集是层次的。</p>
+<p><img src="image_UTEl8hrbrl.png" alt=""></p>
+<h3 id="1-1-1-top-1和top-5">1.1.1 Top-1和Top-5</h3>
+<p>我们在训练完某个分类网络后，假设我们需要分类的数量为50类，我们需要评估它的分类性能。输入测试集的每张图片，会得到它的50个类别的的概率。</p>
+<p><strong>Top-5准确率</strong>：在这张测试的图片50的类别中，取出概率最大的前五个类别，如果真实类别在这五个类别中，则预测正确，否则预测错误。</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>o</mi><mi>p</mi><msub><mn>5</mn><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>y</mi></mrow></msub><mo>=</mo><mfrac><mrow><mtext>真实类别在预测的</mtext><mn>5</mn><mtext>个类别中的数量</mtext></mrow><mtext>所有测试集的数量</mtext></mfrac></mrow><annotation encoding="application/x-tex">top5_{Accuracy}=\frac{真实类别在预测的5个类别中的数量}{所有测试集的数量}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9305479999999999em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mord"><span class="mord">5</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">所</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">试</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">真</span><span class="mord cjk_fallback">实</span><span class="mord cjk_fallback">类</span><span class="mord cjk_fallback">别</span><span class="mord cjk_fallback">在</span><span class="mord cjk_fallback">预</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">的</span><span class="mord">5</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">类</span><span class="mord cjk_fallback">别</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p><strong>Top-1准确率</strong>：平常我们评估预测的准确性指标</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>o</mi><mi>p</mi><msub><mn>1</mn><mrow><mi>A</mi><mi>c</mi><mi>c</mi><mi>u</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>y</mi></mrow></msub><mo>=</mo><mfrac><mtext>预测正确的数量</mtext><mtext>所有测试集的数量</mtext></mfrac></mrow><annotation encoding="application/x-tex">top1_{Accuracy}=\frac{预测正确的数量}{所有测试集的数量}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9305479999999999em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">o</span><span class="mord mathdefault">p</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.328331em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight">u</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">y</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">所</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">试</span><span class="mord cjk_fallback">集</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">预</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">确</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">量</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>而Top-5错误率与Top-1错误率恰好与top-5准确率和top-1准确率相反，他们的和为1。</p>
+<h2 id="1-2-metaformer">1.2 metaformer</h2>
+<p>Transformer在计算机视觉任务中显示出了巨大的潜力。一个普遍的观念就是，基于注意力的<code>token mixer module</code>对Transformer的贡献最大。然而，最近的研究表明，Transformer中基于注意力的模块可以被<code>spatial MLPs</code>所取代，并且所得到的模型仍然表现得很好。</p>
+<p>基于这一结果，作者假设，Transformer的一般架构对模型来说更为重要，而不是特定的<code>token mixer module</code>。为了验证这一假设，作者故意将Transformer中的注意力模块替换为简单空间池化操作，以便只进行最基本的<code>token mixer</code>。令人惊讶的是**<code>PoolFormer</code>**在多个计算机视觉任务上都取得了具有竞争力的性能。</p>
+<p>例如，在<code>ImageNet-1K</code>上，<code>PoolFormer</code>达到了82.1%的Top-1精度，超过了DeiTB/MLP-B240.3%/1.1%，参数减少了35%/52%，mac减少了48%/60%。PoolFormer的有效性验证了作者的假设，并敦促启动<code>MetaFormer</code>的概念，这是一种从Transformer中抽象出来的一般架构，没有指定的<code>token mixer</code>。</p>
+<p>基于大量的实验，作者认为<code>MetaFormer</code>是为最近的Transformer和类似<code>MLP</code>的视觉任务模型获得优越结果的关键。这项工作需要更多的未来研究，致力于改进<code>MetaFormer</code>，而不是专注于<code>token mixer module</code>。此外，作者提出的**<code>PoolFormer</code>**可以作为未来<code>MetaFormer</code>设计的Baseline。</p>
+<p><img src="image_G0OlhSN0YT.png" alt=""></p>
+<hr>
+<h1>2 实现过程</h1>
+<p>需要找一下怎么跑这个模型？<code>metaformer</code>的模型使用代码在哪个地方？</p>
+<h2 id="2-1-遇到的问题">2.1 遇到的问题</h2>
+<h3 id="2-1-1-git-bash不能切换环境">2.1.1 git bash不能切换环境</h3>
+<p>首先我尝试在git中修改使用的<code>conda</code>环境，输入命令后报错如下：</p>
+<p><img src="image_LULvdmgYqF.png" alt=""></p>
+<p>可能由于环境变量出现问题，参考网上一个帖子的做法，首先进入<code>..\Anaconda\etc\profile.d</code>目录下，在此打开git bash，然后输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;. &#x27;<span class="variable">$&#123;PWD&#125;</span>&#x27;/conda.sh&quot;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p>之后再次切换环境，如下图所示，切换成功。</p>
+<p><img src="image_YOYbdpvk5s.png" alt=""></p>
+<h3 id="2-1-2-bash运行使用的python程序不对">2.1.2 bash运行使用的python程序不对</h3>
+<p>运行实验的代码需要运行.sh脚本，然后使用bash命令，这个bash命令默认是git中的，而且执行时显示的路径为：<code>F:\env\gcc\msys64\mingw64\bin\python3.exe</code></p>
+<p>发现问题了，原因在于在sh脚本中使用的python是默认的，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">NUM_PROC=<span class="variable">$1</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line">python3 -m torch.distributed.launch --nproc_per_node=<span class="variable">$NUM_PROC</span> train.py <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>将其中的<code>python3</code>修改为指定的python环境即可，修改后运行结果如下：</p>
+<p><img src="image_Th_37px8AI.png" alt=""></p>
+<p>虽然还是报错，但是起码能跑起来了。 </p>
+<h3 id="2-1-3-local-rank参数报错">2.1.3 local_rank参数报错</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> train.py: error: unrecognized arguments: --local-rank=0 </span><br><span class="line">E0710 10:43:26.383000 21308 torch\distributed\elastic\multiprocessing\api.py:826] failed (exitcode: 2) local_rank: 0 (pid: 16056) of binary: F:\anaconda\anaconda3\envs\DeltaZero\python.exe</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\runpy.py&quot;</span>, line 196, <span class="keyword">in</span> _run_module_as_main</span><br><span class="line">    <span class="built_in">return</span> _run_code(code, main_globals, None,</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\runpy.py&quot;</span>, line 86, <span class="keyword">in</span> _run_code</span><br><span class="line">    <span class="built_in">exec</span>(code, run_globals)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\distributed\launch.py&quot;</span>, line 198, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    main()</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\distributed\launch.py&quot;</span>, line 194, <span class="keyword">in</span> main</span><br><span class="line">    launch(args)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\distributed\launch.py&quot;</span>, line 179, <span class="keyword">in</span> launch</span><br><span class="line">    run(args)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\distributed\launcher\api.py&quot;</span>, line 132, <span class="keyword">in</span> __call__</span><br><span class="line">    <span class="built_in">return</span> launch_agent(self._config, self._entrypoint, list(args))</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\distributed\launcher\api.py&quot;</span>, line 263, <span class="keyword">in</span> launch_agent</span><br><span class="line">    raise ChildFailedError(</span><br><span class="line">torch.distributed.elastic.multiprocessing.errors.ChildFailedError:</span><br><span class="line">============================================================</span><br><span class="line">train.py FAILED</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">Failures:</span><br><span class="line">  &lt;NO_OTHER_FAILURES&gt;</span><br><span class="line">------------------------------------------------------------</span><br><span class="line">Root Cause (first observed failure):</span><br><span class="line">[0]:</span><br><span class="line">  <span class="keyword">time</span>      : 2024-07-10_10:43:26</span><br><span class="line">  host      : DESKTOP-PIQBNCN</span><br><span class="line">  rank      : 0 (local_rank: 0)</span><br><span class="line">  exitcode  : 2 (pid: 16056)</span><br><span class="line">  error_file: &lt;N/A&gt;</span><br><span class="line">  traceback : To <span class="built_in">enable</span> traceback see: https://pytorch.org/docs/stable/elastic/errors.html</span><br><span class="line">============================================================</span><br></pre></td></tr></table></figure>
+<p>报错的地方用红字体标出，可以看到由于一个未知的参数<code>--local-rank=0</code>，接下来找一下这个参数在哪传入的。</p>
+<p>这个参数不能是用户自己设置的，应该是<code>pytorch</code>自动帮你填写。</p>
+<p>在运行文件之前加入参数<code>--use_env</code>得以解决，如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NUM_PROC=1</span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line">F:/anaconda/anaconda3/envs/DeltaZero/python -m torch.distributed.launch --nproc_per_node=<span class="variable">$NUM_PROC</span> --use_env train.py <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-4-assertionerror-torch-not-compiled-with-cuda-enabled">2.1.4 AssertionError: Torch not compiled with CUDA enabled</h3>
+<p>使用如下命令查看有否有可用的<code>cuda</code>，发现返回False。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="built_in">print</span>(torch.cuda.is_available())</span><br></pre></td></tr></table></figure>
+<p>然后查看<code>conda</code>环境中的<code>pytorch</code>是CPU版本还是GPU版本，突然发现找不到<code>pytorch</code>包，但是我记得之前下过，有点尴尬。</p>
+<p><img src="image_65AAyUHr8A.png" alt=""></p>
+<p>所以需要下载<code>pytorch</code>包。</p>
+<p><img src="image_jP8NnrGo-C.png" alt=""></p>
+<p>安装完成之后，运行程序，上述报错解决。</p>
+<h3 id="2-1-5-runtimeerror-found-0-images-in-subfolders">2.1.5 RuntimeError: Found 0 images in subfolders</h3>
+<p>在创建数据集的时候出现了错误，完整报错如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">&quot;D:\Code\Paper-code\metaformer\train.py&quot;</span>, line 572, <span class="keyword">in</span> main</span><br><span class="line">    dataset_train = create_dataset(</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\timm\data\dataset_factory.py&quot;</span>, line 142, <span class="keyword">in</span> create_dataset</span><br><span class="line">    ds = ImageDataset(root, parser=name, class_map=class_map, load_bytes=load_bytes, **kwargs)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\timm\data\dataset.py&quot;</span>, line 32, <span class="keyword">in</span> __init__</span><br><span class="line">    parser = create_parser(parser or <span class="string">&#x27;&#x27;</span>, root=root, class_map=class_map)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\timm\data\parsers\parser_factory.py&quot;</span>, line 27, <span class="keyword">in</span> create_parser</span><br><span class="line">    parser = ParserImageFolder(root, **kwargs)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\timm\data\parsers\parser_image_folder.py&quot;</span>, line 73, <span class="keyword">in</span> __init__</span><br><span class="line">    raise RuntimeError(</span><br><span class="line">RuntimeError: Found 0 images <span class="keyword">in</span> subfolders of D:\Code\Paper-code\metaformer\cifar-100\train. Supported image extensions are .png, .jpg, .jpeg</span><br></pre></td></tr></table></figure>
+<p>感觉这个应该是原来是使用<code>imagenet</code>进行训练，但是我换成了<code>cifar100</code>的原因。</p>
+<p>手动将数据集换成了<code>cifar100</code>，使用<code>timm</code>库中的create_dataset可以自动进行下载，设置代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">args.dataset = <span class="string">&quot;torch/CIFAR100&quot;</span></span><br><span class="line">args.dataset_download = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>运行结果如下，解决了上述报错问题。</p>
+<p><img src="image_3fTF6CkbFb.png" alt=""></p>
+<h3 id="2-1-6-valueerror-too-many-values-to-unpack-expected-3">2.1.6 ValueError: too many values to unpack (expected 3)</h3>
+<p>数据集更换为<code>cifar100</code>后，运行程序，完整报错如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\train.py&quot;</span>, line <span class="number">792</span>, <span class="keyword">in</span> train_one_epoch</span><br><span class="line">    output = model(<span class="built_in">input</span>)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">666</span>, <span class="keyword">in</span> forward</span><br><span class="line">    x = <span class="variable language_">self</span>.forward_features(x)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">662</span>, <span class="keyword">in</span> forward_features</span><br><span class="line">    x = <span class="variable language_">self</span>.stages[i](x)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\container.py&quot;</span>, line <span class="number">217</span>, <span class="keyword">in</span> forward</span><br><span class="line">    <span class="built_in">input</span> = module(<span class="built_in">input</span>)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">522</span>, <span class="keyword">in</span> forward</span><br><span class="line">    <span class="variable language_">self</span>.token_mixer(<span class="variable language_">self</span>.norm1(x))</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\aft\aft_full.py&quot;</span>, line <span class="number">17</span>, <span class="keyword">in</span> forward</span><br><span class="line">    batch_size, seq_len, _ = x.shape</span><br><span class="line">ValueError: too many values to unpack (expected <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>从报错信息可以看出，应该是替换的<code>aft_full</code>模块的输入和真实数据的输入有偏差。</p>
+<p>跑程序的时候显存都快占满了，希望电脑别崩。</p>
+<p><img src="image_O-siT0kLNn.png" alt=""></p>
+<p>可以将<code>aft_full</code>模块的输入打印出来看一下：</p>
+<blockquote>
+<p><code>x.shape: torch.Size([256, 56, 56, 64])</code></p>
+</blockquote>
+<p>现在需要弄明白这4个维度分别代表什么意思，应该从上一个模块的输出开始分析。</p>
+<p>同时发现模型的初始输入的形状与上面相同，所以应该分析<code>data_loader</code>数据的形状。从其中取出的input的形状为<code>[256, 3, 224, 224]</code>，其中的224是什么来的？</p>
+<ul>
+<li>256：batch_size</li>
+<li>56：数据增强之后的高</li>
+<li>56：数据增强之后的宽</li>
+<li>64：通道数</li>
+</ul>
+<h3 id="2-1-7-runtimeerror-find-was-unable-to-find-an-engine-to-execute-this-computation">2.1.7 RuntimeError: FIND was unable to find an engine to execute this computation</h3>
+<p>上面问题解决后，又出现了下面这个报错：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\train.py&quot;</span>, line <span class="number">935</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    main()</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\train.py&quot;</span>, line <span class="number">709</span>, <span class="keyword">in</span> main</span><br><span class="line">    train_metrics = train_one_epoch(</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\train.py&quot;</span>, line <span class="number">790</span>, <span class="keyword">in</span> train_one_epoch</span><br><span class="line">    output = model(<span class="built_in">input</span>)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">666</span>, <span class="keyword">in</span> forward</span><br><span class="line">    x = <span class="variable language_">self</span>.forward_features(x)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">661</span>, <span class="keyword">in</span> forward_features</span><br><span class="line">    x = <span class="variable language_">self</span>.downsample_layers[i](x)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;D:\Code\Paper-code\metaformer\metaformer_baselines.py&quot;</span>, line <span class="number">210</span>, <span class="keyword">in</span> forward</span><br><span class="line">    x = <span class="variable language_">self</span>.conv(x)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\module.py&quot;</span>, line <span class="number">1501</span>, <span class="keyword">in</span> _call_impl</span><br><span class="line">    <span class="keyword">return</span> forward_call(*args, **kwargs)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\conv.py&quot;</span>, line <span class="number">463</span>, <span class="keyword">in</span> forward</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">self</span>._conv_forward(<span class="built_in">input</span>, <span class="variable language_">self</span>.weight, <span class="variable language_">self</span>.bias)</span><br><span class="line">  File <span class="string">&quot;F:\anaconda\anaconda3\envs\DeltaZero\lib\site-packages\torch\nn\modules\conv.py&quot;</span>, line <span class="number">459</span>, <span class="keyword">in</span> _conv_forward</span><br><span class="line">    <span class="keyword">return</span> F.conv2d(<span class="built_in">input</span>, weight, bias, <span class="variable language_">self</span>.stride,</span><br><span class="line">RuntimeError: FIND was unable to find an engine to execute this computation</span><br></pre></td></tr></table></figure>
+<p>nvidia-smi 中的CUDA 版本与 nvcc不一致，nvidia-smi的结果显示CUDA版本是12.3，而从nvcc-V命令来看，却是CUDA 11.8。</p>
+<p><img src="image_QFqCiWo-rj.png" alt=""></p>
+<p><img src="image__LpiAkantD.png" alt=""></p>
+<p>其实是因为CUDA 有两种API，分别是运行时 API 和 驱动API，即所谓的 Runtime API 与 Driver API。</p>
+<ul>
+<li><code>nvidia-smi</code> 的结果除了有 GPU 驱动版本型号，还有 <code>CUDA Driver API</code>的型号，这里是 12.3</li>
+<li><code>nvcc</code>的结果是对应 <code>CUDA Runtime API</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th><code>CUDA </code>API类型</th>
+<th>显示</th>
+<th>CUDA版本号例子</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nvidia-smi</td>
+<td>Driver API</td>
+<td>GPU 驱动版本号；CUDA Driver API号</td>
+<td>11.0</td>
+<td></td>
+</tr>
+<tr>
+<td>nvcc -V</td>
+<td>Runtime API</td>
+<td>CUDA Runtime API</td>
+<td>10.0</td>
+<td>安装python包（例如torch）需要匹配runtime cuda版本</td>
+</tr>
+</tbody>
+</table>
+<p>从网上查了相关资料，有的说可能由于<code>pytorch</code>版本过高，我的版本是2.0.1。将<code>pytorch 2.0.0</code>更改为<code>torch1.13.1+cu117</code>后解决。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-8-runtimeerror-cudnn-error-cudnn-status-internal-error">2.1.8 RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR</h3>
+<p>上面那个错误解决之后，又报了下面这个错误，麻了😂：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR</span><br><span class="line">You can try to repro this exception using the following code snippet. If that doesn<span class="string">&#x27;t trigger the error, please include your original repro script when reporting this issue.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">import torch</span></span><br><span class="line"><span class="string">torch.backends.cuda.matmul.allow_tf32 = False</span></span><br><span class="line"><span class="string">torch.backends.cudnn.benchmark = True</span></span><br><span class="line"><span class="string">torch.backends.cudnn.deterministic = False</span></span><br><span class="line"><span class="string">torch.backends.cudnn.allow_tf32 = True</span></span><br><span class="line"><span class="string">data = torch.randn([256, 64, 56, 56], dtype=torch.float, device=&#x27;</span>cuda<span class="string">&#x27;, requires_grad=True)</span></span><br><span class="line"><span class="string">net = torch.nn.Conv2d(64, 128, kernel_size=[3, 3], padding=[1, 1], stride=[2, 2], dilation=[1, 1], groups=1)</span></span><br><span class="line"><span class="string">net = net.cuda().float()</span></span><br><span class="line"><span class="string">out = net(data)</span></span><br><span class="line"><span class="string">out.backward(torch.randn_like(out))</span></span><br><span class="line"><span class="string">torch.cuda.synchronize()</span></span><br></pre></td></tr></table></figure>
+<p>使用下述命令解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">torch.backends.cudnn.enabled = <span class="literal">False</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="2-1-9-runtimeerror-cuda-error-out-of-memory">2.1.9 RuntimeError: CUDA error: out of memory</h3>
+<p>上面那个错误解决之后，又报了下面这个错误，麻了😂：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">&quot;D:\Code\Paper-code\metaformer\aft\aft_full.py&quot;</span>, line <span class="number">25</span>, <span class="keyword">in</span> forward</span><br><span class="line">num = torch.exp(w_bias) @ (torch.exp(k) * v)</span><br><span class="line">RuntimeError: CUDA error: out of memory</span><br><span class="line">CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.</span><br><span class="line">For debugging consider passing CUDA_LAUNCH_BLOCKING=<span class="number">1.</span></span><br></pre></td></tr></table></figure>
+<p>这个错误 <code>RuntimeError: CUDA error: out of memory</code> 表明 GPU 内存不足以执行当前的运算。这通常发生在处理大型数据集或复杂模型时，特别是当所有输入、模型参数和中间结果都存储在 GPU 上时。</p>
+<p>把batch_size从1024调至128，可以成功运行。</p>
+<hr>
+<h1>3 训练</h1>
+<h2 id="3-1-模型太大">3.1 模型太大</h2>
+<p>训练的时候感觉速度很慢，听学长的看了一下模型大小，发现<code>14G</code>，改小一点吧。</p>
+<p>现在回头看，原来这是个大坑，改小也没让你改那么小啊🤪</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://zhouzimu.top">弘树</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://zhouzimu.top/2024/07/25/2024%E5%B9%B4X-Team%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A11/">http://zhouzimu.top/2024/07/25/2024年X-Team夏令营考核任务1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhouzimu.top" target="_blank">诺亚方舟</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%8F%E4%BB%A4%E8%90%A5/">夏令营</a></div><div class="post_share"><div class="social-share" data-image="https://tse3-mm.cn.bing.net/th/id/OIP-C.NRbxA2g8QcNzFZtrPHjvcwHaFg?rs=1&amp;pid=ImgDetMain" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>码字不易，如果对你有帮助的话请喝一杯奶茶吧~</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.png" target="_blank"><img class="post-qr-code-img" src="/img/alipay.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/07/26/2024%E5%B9%B4X-Team%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A12/" title="2024年X-Team夏令营考核任务2"><img class="cover" src="https://www.tju.edu.cn/__local/B/9D/9A/A049818DECF16DAEC919CC9F9C3_99A586F0_1AA68.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">2024年X-Team夏令营考核任务2</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/24/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C5%EF%BC%9ASQL%E6%B3%A8%E5%85%A5%EF%BC%88%E5%AD%97%E7%AC%A6%E6%B3%A8%E5%85%A5%EF%BC%89/" title="信息安全实验5：SQL注入（字符注入）"><img class="cover" src="https://10.idqqimg.com/qqcourse_logo_ng/ajNVdqHZLLBaNUvJIjKr4awxGr1xVg92rUdNuFYy99zAMibXk1logeYfZdHu4PET2jYHyhmytPn4/" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">信息安全实验5：SQL注入（字符注入）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/07/26/2024%E5%B9%B4X-Team%E5%A4%8F%E4%BB%A4%E8%90%A5%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A12/" title="2024年X-Team夏令营考核任务2"><img class="cover" src="https://www.tju.edu.cn/__local/B/9D/9A/A049818DECF16DAEC919CC9F9C3_99A586F0_1AA68.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-26</div><div class="title">2024年X-Team夏令营考核任务2</div></div></a></div><div><a href="/2024/08/16/2024%E5%B9%B4%E8%A5%BF%E4%BA%A4%E5%A4%9A%E5%AA%92%E4%BD%93%E5%B0%8F%E7%BB%84%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A11/" title="2024年西交多媒体小组考核任务1"><img class="cover" src="https://p1-bk.byteimg.com/tos-cn-i-mlhdmxsy5m/3f2b1548a7c44c0ca72b469abae9e8e0~tplv-mlhdmxsy5m-q75:0:0.image" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-16</div><div class="title">2024年西交多媒体小组考核任务1</div></div></a></div><div><a href="/2024/08/17/2024%E5%B9%B4%E8%A5%BF%E4%BA%A4%E5%A4%9A%E5%AA%92%E4%BD%93%E5%B0%8F%E7%BB%84%E8%80%83%E6%A0%B8%E4%BB%BB%E5%8A%A12/" title="2024年西交多媒体小组考核任务2"><img class="cover" src="https://th.bing.com/th/id/R.d1e77ebe7e1ef13b001be24eaa7eaaff?rik=Q3Ynuc9AkNFC%2fw&riu=http%3a%2f%2fedu.cnr.cn%2feduzt%2fxajtdx%2fxyyyxa%2f20170515%2fW020170515616781459243.jpg&ehk=Td19yXpzYjCP8oc%2fnAnzvHZI017jtc23%2bpNlBydTtw0%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-17</div><div class="title">2024年西交多媒体小组考核任务2</div></div></a></div><div><a href="/2024/07/03/%E5%A4%A9%E6%B4%A5%E5%A4%A7%E5%AD%A6%E6%99%BA%E7%AE%97%E5%A4%8F%E4%BB%A4%E8%90%A5%E4%B9%8B%E6%97%85/" title="天津大学智算夏令营之旅"><img class="cover" src="https://www.tju.edu.cn/0910da11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-03</div><div class="title">天津大学智算夏令营之旅</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/pic_editor_1635545191.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">弘树</div><div class="author-info__description">在我坚定无比的内心，总以最坚强的节奏解开案情</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">121</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">17</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NoyeArk"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/NoyeArk" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:horiki0@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://leetcode.cn/u/horiki/" target="_blank" title="Leetcode"><i class="fas fa-l" style="color: #59e285;"></i></a><a class="social-icon" href="https://www.kaggle.com/horiki" target="_blank" title="Kaggle"><i class="fas fa-k" style="color: #4a7dbe;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc" style="font-size: 15px;"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">1 知识储备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-cifar100"><span class="toc-text">1.1 cifar100</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-top-1%E5%92%8Ctop-5"><span class="toc-text">1.1.1 Top-1和Top-5</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-metaformer"><span class="toc-text">1.2 metaformer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">2 实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">2.1 遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-git-bash%E4%B8%8D%E8%83%BD%E5%88%87%E6%8D%A2%E7%8E%AF%E5%A2%83"><span class="toc-text">2.1.1 git bash不能切换环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-bash%E8%BF%90%E8%A1%8C%E4%BD%BF%E7%94%A8%E7%9A%84python%E7%A8%8B%E5%BA%8F%E4%B8%8D%E5%AF%B9"><span class="toc-text">2.1.2 bash运行使用的python程序不对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-local-rank%E5%8F%82%E6%95%B0%E6%8A%A5%E9%94%99"><span class="toc-text">2.1.3 local_rank参数报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-assertionerror-torch-not-compiled-with-cuda-enabled"><span class="toc-text">2.1.4 AssertionError: Torch not compiled with CUDA enabled</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5-runtimeerror-found-0-images-in-subfolders"><span class="toc-text">2.1.5 RuntimeError: Found 0 images in subfolders</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-6-valueerror-too-many-values-to-unpack-expected-3"><span class="toc-text">2.1.6 ValueError: too many values to unpack (expected 3)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-7-runtimeerror-find-was-unable-to-find-an-engine-to-execute-this-computation"><span class="toc-text">2.1.7 RuntimeError: FIND was unable to find an engine to execute this computation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-8-runtimeerror-cudnn-error-cudnn-status-internal-error"><span class="toc-text">2.1.8 RuntimeError: cuDNN error: CUDNN_STATUS_INTERNAL_ERROR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-9-runtimeerror-cuda-error-out-of-memory"><span class="toc-text">2.1.9 RuntimeError: CUDA error: out of memory</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">3 训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%A8%A1%E5%9E%8B%E5%A4%AA%E5%A4%A7"><span class="toc-text">3.1 模型太大</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline" style="font-size: 17px;"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list" style="font-size: 16px;"><div class="aside-list-item"><a class="thumbnail" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet"><img src="https://i.ytimg.com/vi/v5BoeTyOAhM/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYACzgWKAgwIABABGFsgYShlMA8=&amp;rs=AOn4CLChXkjgk_egO-1uGInclI_lQe_MMg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读9：ADSNet"/></a><div class="content"><a class="title" href="/2025/02/17/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB9%EF%BC%9AADSNet/" title="论文精读9：ADSNet">论文精读9：ADSNet</a><time datetime="2025-02-17T09:09:52.000Z" title="发表于 2025-02-17 17:09:52">2025-02-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词"><img src="https://image.uisdc.com/wp-content/uploads/2025/01/banner2025012108482456.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2024年AI年度关键词"/></a><div class="content"><a class="title" href="/2025/01/27/2024%E5%B9%B4AI%E5%B9%B4%E5%BA%A6%E5%85%B3%E9%94%AE%E8%AF%8D/" title="2024年AI年度关键词">2024年AI年度关键词</a><time datetime="2025-01-27T11:03:16.000Z" title="发表于 2025-01-27 19:03:16">2025-01-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling"><img src="https://haowallpaper.com/link/common/file/previewFileImg/16303799969041792" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读8：AutoPooling"/></a><div class="content"><a class="title" href="/2025/01/22/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB8%EF%BC%9AAutoPooling/" title="论文精读8：AutoPooling">论文精读8：AutoPooling</a><time datetime="2025-01-22T09:19:35.000Z" title="发表于 2025-01-22 17:19:35">2025-01-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN"><img src="https://deeptables.readthedocs.io/en/latest/_images/pnn.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文精读7：PNN"/></a><div class="content"><a class="title" href="/2025/01/05/%E8%AE%BA%E6%96%87%E7%B2%BE%E8%AF%BB7%EF%BC%9APNN/" title="论文精读7：PNN">论文精读7：PNN</a><time datetime="2025-01-05T06:59:04.000Z" title="发表于 2025-01-05 14:59:04">2025-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://tse3-mm.cn.bing.net/th/id/OIP-C.NRbxA2g8QcNzFZtrPHjvcwHaFg?rs=1&amp;pid=ImgDetMain')"><div id="footer-wrap" style="padding: 5px 5px;"><div class="copyright">&copy;2024 - 2025 By 弘树</div><div id="running-time" style="font-size: 14px;"><script>setInterval(() => {
+  let create_time = Math.round((new Date(2024, 1, 23).getTime()) / 1000);
+  let timestamp = Math.round((new Date().getTime()) / 1000);
+  let second = timestamp - create_time;
+  let time = new Array(0, 0, 0, 0, 0);
+  if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+  }
+  if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+  }
+  if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+  }
+  if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+  }
+  if (second > 0) {
+      time[4] = second;
+  }
+  currentTimeHtml = "本站已安全运行 " +
+      time[0] + " 年 " +
+      (time[1] + 31) + " 天 " +
+      time[2] + " 时 " +
+      time[3] + " 分 " +
+      time[4] + " 秒";
+  document.getElementById("running-time").innerHTML = currentTimeHtml;
+  }, 1000);</script></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(() => {
+  const loadUtterances = () => {
+    let ele = document.createElement('script')
+    ele.id = 'utterances_comment'
+    ele.src = 'https://utteranc.es/client.js'
+    ele.setAttribute('repo', 'NoyeArk/noyeark.github.io')
+    ele.setAttribute('issue-term', 'pathname')
+    const nowTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'photon-dark' : 'github-light'
+    ele.setAttribute('theme', nowTheme)
+    ele.crossOrigin = 'anonymous'
+    ele.async = true
+    document.getElementById('utterances-wrap').appendChild(ele)
+  }
+
+  const utterancesTheme = theme => {
+    const iframe = document.querySelector('.utterances-frame')
+    if (iframe) {
+      const theme = theme === 'dark' ? 'photon-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: theme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  btf.addGlobalFn('themeChange', utterancesTheme, 'utterances')
+
+  if ('Utterances' === 'Utterances' || !false) {
+    if (false) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><script src="/js/nav.js"></script><script>let tianliGPT_postSelector = '\#post \#article-container';let tianliGPT_key = 'iyiSf8ljbaf';</script><script src="/js/tianli_gpt.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.12.0"></script></div></div></body></html>
